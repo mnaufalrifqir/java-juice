@@ -1,13 +1,13 @@
-@extends('front.layouts.app')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
   <nav x-data="{navOpen : true}" class="p-4">
     <div class="container mx-auto">
       <div class="flex items-center justify-between h-[43px]">
         <div class="flex items-center order-1 sm:order-2">
-          <img src="{{asset('assets/logo/logo-app.png')}}" class="h-[43px]" alt="logo">
+          <img src="<?php echo e(asset('assets/logo/logo-app.png')); ?>" class="h-[43px]" alt="logo">
           <p id="CompanyName" class="font-extrabold text-xl">Java Juice Indonesia</p>
         </div>
-        <img @click ="navOpen = !navOpen" src="{{asset('assets/menu/more.svg')}}" class="lg:hidden order-2 sm:order-1" alt="navbar">
+        <img @click ="navOpen = !navOpen" src="<?php echo e(asset('assets/menu/more.svg')); ?>" class="lg:hidden order-2 sm:order-1" alt="navbar">
         <div class="order-2 hidden lg:block">
           <ul class="flex items-center gap-[30px]">
             <li class="font-semibold hover:text-[#F8A401] transition-all duration-300 text-[#F8A401]">
@@ -87,7 +87,7 @@
     </div>
   </nav>
   <div class="content w-full h-full top-0 right-0 overflow-hidden z-0">
-    <img src="{{asset('assets/backgrounds/banner.png')}}" class="w-full h-auto object-cover" alt="banner">
+    <img src="<?php echo e(asset('assets/backgrounds/banner.png')); ?>" class="w-full h-auto object-cover" alt="banner">
   </div>
   <div id="BestSeller" class="content w-full flex flex-col gap-[30px] justify-center mt-20">
     <div class="flex items-center text-center justify-center">
@@ -99,40 +99,40 @@
     <div class="relative">
       <div id="slider" class="center flex justify-center gap-[100px] overflow-hidden">
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-1.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-1.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-2.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-2.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-3.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-3.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-4.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-4.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-5.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-5.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-6.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-6.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-6.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-6.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-6.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-6.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-6.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
       </div>
     </div>
@@ -147,22 +147,22 @@
     <div class="relative">
       <div id="slider" class="responsive flex flex-wrap items-center gap-[30px] justify-center">
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-1.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-1.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-2.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-2.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-3.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-3.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-4.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-4.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-5.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-5.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-6.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
       </div>
     </div>
@@ -177,22 +177,22 @@
     <div class="relative">
       <div id="slider" class="responsive flex flex-wrap items-center gap-[30px] justify-center">
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-1.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-1.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-2.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-2.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-3.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-3.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-4.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-4.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-5.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-5.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-6.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
       </div>
     </div>
@@ -202,19 +202,19 @@
       <h2 class="font-bold text-4xl leading-[45px] text-[#3a3a3a] text-center mb-10">Our Partners</h2>
       <div class="flex flex-wrap items-center justify-between">
         <div class="card w-[200px] flex flex-col items-center p-4 text-center">
-            <img src="{{asset('assets/partners/adhimix-logo.png')}}" class="object-contain w-full h-full" alt="icon">
+            <img src="<?php echo e(asset('assets/partners/adhimix-logo.png')); ?>" class="object-contain w-full h-full" alt="icon">
         </div>
         <div class="card w-[200px] flex flex-col items-center p-4 text-center">
-            <img src="{{asset('assets/partners/adira-logo.png')}}" class="object-contain w-full h-full" alt="icon">
+            <img src="<?php echo e(asset('assets/partners/adira-logo.png')); ?>" class="object-contain w-full h-full" alt="icon">
         </div>
         <div class="card w-[200px] flex flex-col items-center p-4 text-center">
-            <img src="{{asset('assets/partners/holcim-logo.png')}}" class="object-contain w-full h-full" alt="icon">
+            <img src="<?php echo e(asset('assets/partners/holcim-logo.png')); ?>" class="object-contain w-full h-full" alt="icon">
         </div>
         <div class="card w-[200px] flex flex-col items-center p-4 text-center">
-            <img src="{{asset('assets/partners/mnc-logo.png')}}" class="object-contain w-full h-full" alt="icon">
+            <img src="<?php echo e(asset('assets/partners/mnc-logo.png')); ?>" class="object-contain w-full h-full" alt="icon">
         </div>
         <div class="card w-[200px] flex flex-col items-center p-4 text-center">
-          <img src="{{asset('assets/partners/telkomsel-logo.png')}}" class="object-contain w-full h-full" alt="icon">
+          <img src="<?php echo e(asset('assets/partners/telkomsel-logo.png')); ?>" class="object-contain w-full h-full" alt="icon">
         </div>
       </div>
     </div>
@@ -340,7 +340,7 @@
       <div class="flex flex-wrap items-center justify-between p-[10px]">
         <div class="flex items-center p-4">
           <div class="card w-[50px] flex shrink-0 overflow-hidden mr-2">
-              <img src="{{asset('assets/icons/trophy-1.png')}}" class="object-contain w-full h-full" alt="icon">
+              <img src="<?php echo e(asset('assets/icons/trophy-1.png')); ?>" class="object-contain w-full h-full" alt="icon">
           </div>
           <div class="flex flex-col">
             <p class="font-extrabold text-xl leading-[30px] text-black">High Quality</p>
@@ -349,7 +349,7 @@
         </div>
         <div class="flex items-center p-4">
           <div class="card w-[50px] flex shrink-0 overflow-hidden mr-2">
-              <img src="{{asset('assets/icons/guarantee.png')}}" class="object-contain w-full h-full" alt="icon">
+              <img src="<?php echo e(asset('assets/icons/guarantee.png')); ?>" class="object-contain w-full h-full" alt="icon">
           </div>
           <div class="flex flex-col">
             <p class="font-extrabold text-xl leading-[30px] text-black">Warranty Protection</p>
@@ -358,7 +358,7 @@
         </div>
         <div class="flex items-center p-4">
           <div class="card w-[50px] flex shrink-0 overflow-hidden mr-2">
-              <img src="{{asset('assets/icons/shipping.png')}}" class="object-contain w-full h-full" alt="icon">
+              <img src="<?php echo e(asset('assets/icons/shipping.png')); ?>" class="object-contain w-full h-full" alt="icon">
           </div>
           <div class="flex flex-col">
             <p class="font-extrabold text-xl leading-[30px] text-black">Free Shipping</p>
@@ -367,7 +367,7 @@
         </div>
         <div class="flex items-center p-4">
           <div class="card w-[50px] flex shrink-0 overflow-hidden mr-2">
-              <img src="{{asset('assets/icons/customer-support.png')}}" class="object-contain w-full h-full" alt="icon">
+              <img src="<?php echo e(asset('assets/icons/customer-support.png')); ?>" class="object-contain w-full h-full" alt="icon">
           </div>
           <div class="flex flex-col">
             <p class="font-extrabold text-xl leading-[30px] text-black">24 / 7 Support</p>
@@ -444,13 +444,13 @@
         </div>
     </div>
   </footer>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('before-scripts')
+<?php $__env->startPush('before-scripts'); ?>
   <script src="//unpkg.com/alpinejs" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="{{ asset('/sw.js') }}"></script>
+  <script src="<?php echo e(asset('/sw.js')); ?>"></script>
   <script>
     if ("serviceWorker" in navigator) {
       // Register a service worker hosted at the root of the
@@ -467,13 +467,14 @@
     console.error("Service workers are not supported.");
   }
   </script>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('after-scripts')
-  <link href="{{asset('css/slick.css')}}" rel="stylesheet">
+<?php $__env->startPush('after-scripts'); ?>
+  <link href="<?php echo e(asset('css/slick.css')); ?>" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script src="{{asset('js/slider.js')}}"></script>
-@endpush
+  <script src="<?php echo e(asset('js/slider.js')); ?>"></script>
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('front.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Project\Backend\Laravel\java-juice\resources\views/front/index.blade.php ENDPATH**/ ?>
