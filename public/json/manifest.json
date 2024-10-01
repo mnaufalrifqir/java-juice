@@ -1,14 +1,14 @@
 {
-    "name": "Laravel Package Tutorial",
-    "short_name": "LPT",
-    "start_url": "/index.php",
+    "name": "Java Juice Indonesia",
+    "short_name": "Java Juice Shop",
+    "start_url": "../../api/index.php",
     "background_color": "#6777ef",
-    "description": "Tutorial of Laravel Package",
+    "description": "Java Juice Indonesia PWA",
     "display": "fullscreen",
     "theme_color": "#6777ef",
     "icons": [
         {
-            "src": "logo.PNG",
+            "src": "../assets/logo/logo-app.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"

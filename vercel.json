@@ -15,6 +15,10 @@
             "dest": "/public/css/"
         },
         {
+            "src": "/json/(.*)",
+            "dest": "/public/json/"
+        },
+        {
             "src": "/build/assets/(.*)",
             "dest": "/public/build/assets/"
         },
