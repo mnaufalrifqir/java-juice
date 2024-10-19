@@ -33,7 +33,7 @@ class RolePermissionSeeder extends Seeder
                 ]
             );
         }
-        
+
         $superAdminRole = Role::FirstOrCreate(
             [
                 'name' => 'super_admin'
@@ -42,8 +42,8 @@ class RolePermissionSeeder extends Seeder
 
         $user = User::create([
             'name' => 'Java Juice',
-            'email' => 'super@admin.com',
-            'password' => bcrypt('123123123')
+            'email' => env('EMAIL_SUPER_ADMIN'),
+            'password' => bcrypt(env('PASSWORD_SUPER_ADMIN'))
         ]);
 
         $user->assignRole($superAdminRole);
