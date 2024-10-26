@@ -1,7 +1,44 @@
-@extends('front.layouts.app')
-@section('content')
-  <x-navbar/>
-  <x-hero-section/>
+<?php $__env->startSection('content'); ?>
+  <?php if (isset($component)) { $__componentOriginala591787d01fe92c5706972626cdf7231 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginala591787d01fe92c5706972626cdf7231 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.navbar','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('navbar'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginala591787d01fe92c5706972626cdf7231)): ?>
+<?php $attributes = $__attributesOriginala591787d01fe92c5706972626cdf7231; ?>
+<?php unset($__attributesOriginala591787d01fe92c5706972626cdf7231); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginala591787d01fe92c5706972626cdf7231)): ?>
+<?php $component = $__componentOriginala591787d01fe92c5706972626cdf7231; ?>
+<?php unset($__componentOriginala591787d01fe92c5706972626cdf7231); ?>
+<?php endif; ?>
+  <?php if (isset($component)) { $__componentOriginala038281ce129721dd88a49670137597b = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginala038281ce129721dd88a49670137597b = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.hero-section','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('hero-section'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginala038281ce129721dd88a49670137597b)): ?>
+<?php $attributes = $__attributesOriginala038281ce129721dd88a49670137597b; ?>
+<?php unset($__attributesOriginala038281ce129721dd88a49670137597b); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginala038281ce129721dd88a49670137597b)): ?>
+<?php $component = $__componentOriginala038281ce129721dd88a49670137597b; ?>
+<?php unset($__componentOriginala038281ce129721dd88a49670137597b); ?>
+<?php endif; ?>
   <div id="BestSeller" class="content w-full flex flex-col gap-[30px] justify-center mt-20">
     <div class="flex items-center text-center justify-center">
       <div class="flex flex-col gap-[14px]">
@@ -12,40 +49,40 @@
     <div class="relative">
       <div id="slider" class="center flex justify-center gap-[100px] overflow-hidden">
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-1.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-1.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-2.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-2.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-3.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-3.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-4.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-4.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-5.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-5.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-6.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-6.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-6.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-6.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-6.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-6.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-6.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
       </div>
     </div>
@@ -60,22 +97,22 @@
     <div class="relative">
       <div id="slider" class="responsive flex flex-wrap items-center gap-[30px] justify-center">
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-1.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-1.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-2.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-2.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-3.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-3.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-4.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-4.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-5.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-5.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-6.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
       </div>
     </div>
@@ -90,22 +127,22 @@
     <div class="relative">
       <div id="slider" class="responsive flex flex-wrap items-center gap-[30px] justify-center">
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-1.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-1.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-2.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-2.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-3.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-3.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-4.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-4.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-5.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-5.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
         <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{asset('assets/best-products/product-6.jpg')}}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
         </div>
       </div>
     </div>
@@ -115,19 +152,19 @@
       <h2 class="font-bold text-4xl leading-[45px] text-[#3a3a3a] text-center mb-10">Our Partners</h2>
       <div class="flex flex-wrap items-center justify-between">
         <div class="card w-[200px] flex flex-col items-center p-4 text-center">
-            <img src="{{asset('assets/partners/adhimix-logo.png')}}" class="object-contain w-full h-full" alt="icon">
+            <img src="<?php echo e(asset('assets/partners/adhimix-logo.png')); ?>" class="object-contain w-full h-full" alt="icon">
         </div>
         <div class="card w-[200px] flex flex-col items-center p-4 text-center">
-            <img src="{{asset('assets/partners/adira-logo.png')}}" class="object-contain w-full h-full" alt="icon">
+            <img src="<?php echo e(asset('assets/partners/adira-logo.png')); ?>" class="object-contain w-full h-full" alt="icon">
         </div>
         <div class="card w-[200px] flex flex-col items-center p-4 text-center">
-            <img src="{{asset('assets/partners/holcim-logo.png')}}" class="object-contain w-full h-full" alt="icon">
+            <img src="<?php echo e(asset('assets/partners/holcim-logo.png')); ?>" class="object-contain w-full h-full" alt="icon">
         </div>
         <div class="card w-[200px] flex flex-col items-center p-4 text-center">
-            <img src="{{asset('assets/partners/mnc-logo.png')}}" class="object-contain w-full h-full" alt="icon">
+            <img src="<?php echo e(asset('assets/partners/mnc-logo.png')); ?>" class="object-contain w-full h-full" alt="icon">
         </div>
         <div class="card w-[200px] flex flex-col items-center p-4 text-center">
-          <img src="{{asset('assets/partners/telkomsel-logo.png')}}" class="object-contain w-full h-full" alt="icon">
+          <img src="<?php echo e(asset('assets/partners/telkomsel-logo.png')); ?>" class="object-contain w-full h-full" alt="icon">
         </div>
       </div>
     </div>
@@ -253,7 +290,7 @@
       <div class="flex flex-wrap items-center justify-between p-[10px]">
         <div class="flex items-center p-4">
           <div class="card w-[50px] flex shrink-0 overflow-hidden mr-2">
-              <img src="{{asset('assets/icons/trophy-1.png')}}" class="object-contain w-full h-full" alt="icon">
+              <img src="<?php echo e(asset('assets/icons/trophy-1.png')); ?>" class="object-contain w-full h-full" alt="icon">
           </div>
           <div class="flex flex-col">
             <p class="font-extrabold text-xl leading-[30px] text-black">High Quality</p>
@@ -262,7 +299,7 @@
         </div>
         <div class="flex items-center p-4">
           <div class="card w-[50px] flex shrink-0 overflow-hidden mr-2">
-              <img src="{{asset('assets/icons/guarantee.png')}}" class="object-contain w-full h-full" alt="icon">
+              <img src="<?php echo e(asset('assets/icons/guarantee.png')); ?>" class="object-contain w-full h-full" alt="icon">
           </div>
           <div class="flex flex-col">
             <p class="font-extrabold text-xl leading-[30px] text-black">Warranty Protection</p>
@@ -271,7 +308,7 @@
         </div>
         <div class="flex items-center p-4">
           <div class="card w-[50px] flex shrink-0 overflow-hidden mr-2">
-              <img src="{{asset('assets/icons/shipping.png')}}" class="object-contain w-full h-full" alt="icon">
+              <img src="<?php echo e(asset('assets/icons/shipping.png')); ?>" class="object-contain w-full h-full" alt="icon">
           </div>
           <div class="flex flex-col">
             <p class="font-extrabold text-xl leading-[30px] text-black">Free Shipping</p>
@@ -280,7 +317,7 @@
         </div>
         <div class="flex items-center p-4">
           <div class="card w-[50px] flex shrink-0 overflow-hidden mr-2">
-              <img src="{{asset('assets/icons/customer-support.png')}}" class="object-contain w-full h-full" alt="icon">
+              <img src="<?php echo e(asset('assets/icons/customer-support.png')); ?>" class="object-contain w-full h-full" alt="icon">
           </div>
           <div class="flex flex-col">
             <p class="font-extrabold text-xl leading-[30px] text-black">24 / 7 Support</p>
@@ -290,14 +327,33 @@
       </div>
     </div>
   </div>
-  <x-footer/>
-@endsection
+  <?php if (isset($component)) { $__componentOriginal8a8716efb3c62a45938aca52e78e0322 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal8a8716efb3c62a45938aca52e78e0322 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.footer','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('footer'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal8a8716efb3c62a45938aca52e78e0322)): ?>
+<?php $attributes = $__attributesOriginal8a8716efb3c62a45938aca52e78e0322; ?>
+<?php unset($__attributesOriginal8a8716efb3c62a45938aca52e78e0322); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal8a8716efb3c62a45938aca52e78e0322)): ?>
+<?php $component = $__componentOriginal8a8716efb3c62a45938aca52e78e0322; ?>
+<?php unset($__componentOriginal8a8716efb3c62a45938aca52e78e0322); ?>
+<?php endif; ?>
+<?php $__env->stopSection(); ?>
 
-@push('before-scripts')
+<?php $__env->startPush('before-scripts'); ?>
   <script src="//unpkg.com/alpinejs" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="{{ asset('/js/sw.js') }}"></script>
+  <script src="<?php echo e(asset('/js/sw.js')); ?>"></script>
   <script>
     if ("serviceWorker" in navigator) {
       // Register a service worker hosted at the root of the
@@ -314,13 +370,14 @@
     console.error("Service workers are not supported.");
   }
   </script>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('after-scripts')
-  <link href="{{asset('css/slick.css')}}" rel="stylesheet">
+<?php $__env->startPush('after-scripts'); ?>
+  <link href="<?php echo e(asset('css/slick.css')); ?>" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script src="{{asset('js/slider.js')}}"></script>
-@endpush
+  <script src="<?php echo e(asset('js/slider.js')); ?>"></script>
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('front.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Project\Backend\java-juice\resources\views/front/index.blade.php ENDPATH**/ ?>
