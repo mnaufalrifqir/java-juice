@@ -10,18 +10,32 @@ class Transaction extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
-        'fullname',
-        'address',
-        'destination',
+        'first_name',
+        'last_name',
+        'street',
+        'province',
+        'city',
+        'postal_code',
+        'phone_number',
+        'email',
         'courier',
         'weight',
-        'status',
-        'subtotal',
         'shipping_cost',
+        'subtotal',
         'total',
         'payment_status',
         'shipping_status',
         'payment_url',
         'user_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function detailsTransaction()
+    {
+        return $this->hasMany(DetailsTransaction::class, 'transaction_id', 'id');
+    }
 }

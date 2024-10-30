@@ -12,7 +12,7 @@ class Product extends Model
 
     protected $fillable = [
         'name',
-        'short_description',
+        'category_id',
         'description',
         'weight',
         'price',
@@ -26,8 +26,13 @@ class Product extends Model
         return $this->hasMany(DetailsTransaction::class, 'product_id', 'id');
     }
 
-    public function cart()
+    public function carts()
     {
         return $this->hasMany(Cart::class, 'product_id', 'id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }

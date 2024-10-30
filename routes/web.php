@@ -10,17 +10,20 @@ use App\Http\Controllers\OurTeamController;
 use App\Http\Controllers\HeroSectionController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\CategoryController;
+
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
+
 Route::get('/products', [FrontController::class, 'products'])->name('front.product');
-// Route::get('/product/{product:id}', [FrontController::class, 'product'])->name('front.product');
+Route::get('/product/{product:id}', [FrontController::class, 'details'])->name('front.details');
+
 Route::prefix('about')->name('front.')->group(function () {
     Route::get('/', [FrontController::class, 'about'])->name('about');
     Route::get('/team', [FrontController::class, 'team'])->name('team');
 });
 
 Route::get('/contact', [FrontController::class, 'contact'])->name('front.contact');
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -31,8 +34,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/cart', [CartController::class, 'index'])->name('front.cart');
-    Route::get('/transaction', [TransactionController::class, 'transaction'])->name('front.transaction');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.addToCart');
+    Route::post('/cart/update/{cartId}', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
+    Route::delete('/cart/remove/{cartId}', [CartController::class, 'removeFromCart'])->name('cart.removeFromCart');
+
+    Route::get('/checkout', [TransactionController::class, 'checkout'])->name('transactions.checkout');
+    Route::get('/cities/{provinceId}', [TransactionController::class, 'getCities']);
+    Route::post('/shipping-cost', [TransactionController::class, 'getShippingCost']);
+
+    Route::get('/order', [TransactionController::class, 'order'])->name('transactions.order');
 
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::middleware('can:manage statistics')->group(function () {
@@ -53,6 +64,14 @@ Route::middleware('auth')->group(function () {
     
         Route::middleware('can:manage hero sections')->group(function () {
             Route::resource('hero_sections', HeroSectionController::class);
+        });
+
+        Route::middleware('can:manage transactions')->group(function () {
+            Route::resource('transactions', TransactionController::class);
+        });
+
+        Route::middleware('can:manage categories')->group(function () {
+            Route::resource('categories', CategoryController::class);
         });
     });
 });

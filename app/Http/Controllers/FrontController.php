@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Product;
 
 class FrontController extends Controller
 {
@@ -14,7 +14,8 @@ class FrontController extends Controller
 
     public function products()
     {
-        return view('front.products');
+        $products = Product::orderByDesc('created_at')->paginate(1);
+        return view('front.products', compact('products'));
     }
 
     public function about()
@@ -30,5 +31,15 @@ class FrontController extends Controller
     public function contact()
     {
         return view('front.contact');
+    }
+
+    public function details(Product $product)
+    {
+        return view('front.details', compact('product'));
+    }
+
+    public function checkout()
+    {
+        return view('front.checkout');
     }
 }

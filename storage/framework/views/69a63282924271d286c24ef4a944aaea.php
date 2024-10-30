@@ -4,13 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
   <link href="<?php echo e(asset('css/output.css')); ?>" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <!-- CSS for carousel/flickity-->
   <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
   <link rel="stylesheet" href="https://unpkg.com/flickity-fade@2/flickity-fade.css">
-
-  
 
   <!-- PWA  -->
   <meta name="theme-color" content="#6777ef"/>
@@ -18,6 +17,10 @@
   <link rel="manifest" href="<?php echo e(asset('json/manifest.json')); ?>">
   
   <title>Java Juice Indonesia</title>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="//unpkg.com/alpinejs" defer></script>
 
   <?php echo app('Illuminate\Foundation\Vite')('resources/css/app.css'); ?>
   

@@ -13,21 +13,25 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('fullname');
-            $table->string('address');
-            $table->string('destination');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('street');
+            $table->string('province');
+            $table->string('city');
+            $table->string('postal_code');
+            $table->string('phone_number');
+            $table->string('email');
             $table->string('courier');
-            $table->float('weight');
-            $table->string('status');
-            $table->float('subtotal');
-            $table->float('shipping_cost');
-            $table->float('total');
+            $table->integer('weight');
+            $table->integer('shipping_cost');
+            $table->integer('subtotal');
+            $table->integer('total');
             $table->string('payment_status');
             $table->string('shipping_status');
             $table->string('payment_url');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->softDeletes();
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

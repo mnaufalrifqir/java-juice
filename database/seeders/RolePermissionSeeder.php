@@ -24,6 +24,7 @@ class RolePermissionSeeder extends Seeder
             'manage teams',
             'manage hero sections',
             'manage transactions',
+            'manage categories',
         ];
 
         foreach ($permissions as $permission) {

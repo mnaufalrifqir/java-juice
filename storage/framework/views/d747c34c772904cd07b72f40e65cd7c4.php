@@ -1,0 +1,1 @@
+<?php /**PATH E:\Project\Backend\Laravel\java-juice\resources\views/front/order.blade.php ENDPATH**/ ?>

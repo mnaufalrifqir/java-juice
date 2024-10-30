@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('short_description');
             $table->text('description');
             $table->float('weight');
             $table->float('price');
             $table->integer('stock');
             $table->integer('discount');
             $table->string('image');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -33,4 +33,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('products');
     }
+
+    
 };

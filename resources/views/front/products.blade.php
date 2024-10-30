@@ -1,231 +1,79 @@
 @extends('front.layouts.app')
 @section('content')
-  <x-navbar/>
-  <x-hero-section/>
-   <main class="container mx-auto px-4 py-8">
+  <x-navbar />
+  <x-banner />
+  <main class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold mb-4">
-     Product
+      Product
     </h1>
     <nav class="text-gray-500 mb-8">
-     <a class="hover:text-gray-700" href="#">
-      Home
-     </a>
-     &gt;
-     <span>
-      Product
-     </span>
+      <a class="hover:text-gray-700" href="#">
+        Home
+      </a>
+      &gt;
+      <span>
+        Product
+      </span>
     </nav>
     <!-- Product Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-     <!-- Product Card -->
-     <div class="bg-white shadow rounded-lg overflow-hidden">
-      <img alt="Product Image" class="w-full h-48 object-cover" height="300" src="https://storage.googleapis.com/a1aa/image/HoGFJlutTRq2A9rLVZiP1HlgYLWEHlRPXp6eI1aYqkhfnsoTA.jpg" width="300"/>
-      <div class="p-4">
-       <h2 class="text-lg font-bold">
-        Syltherine
-       </h2>
-       <p class="text-gray-500">
-        Stylish cafe chair
-       </p>
-       <p class="text-lg font-bold text-gray-900">
-        Rp 2.500.000
-       </p>
-       <p class="text-sm text-gray-400 line-through">
-        Rp 3.500.000
-       </p>
-      </div>
-     </div>
-     <!-- Repeat Product Cards -->
-     <div class="bg-white shadow rounded-lg overflow-hidden">
-      <img alt="Product Image" class="w-full h-48 object-cover" height="300" src="https://storage.googleapis.com/a1aa/image/HoGFJlutTRq2A9rLVZiP1HlgYLWEHlRPXp6eI1aYqkhfnsoTA.jpg" width="300"/>
-      <div class="p-4">
-       <h2 class="text-lg font-bold">
-        Leviosa
-       </h2>
-       <p class="text-gray-500">
-        Stylish cafe chair
-       </p>
-       <p class="text-lg font-bold text-gray-900">
-        Rp 2.500.000
-       </p>
-      </div>
-     </div>
-     <div class="bg-white shadow rounded-lg overflow-hidden">
-      <img alt="Product Image" class="w-full h-48 object-cover" height="300" src="https://storage.googleapis.com/a1aa/image/HoGFJlutTRq2A9rLVZiP1HlgYLWEHlRPXp6eI1aYqkhfnsoTA.jpg" width="300"/>
-      <div class="p-4">
-       <h2 class="text-lg font-bold">
-        Lolito
-       </h2>
-       <p class="text-gray-500">
-        Luxury big sofa
-       </p>
-       <p class="text-lg font-bold text-gray-900">
-        Rp 7.000.000
-       </p>
-       <p class="text-sm text-gray-400 line-through">
-        Rp 14.000.000
-       </p>
-      </div>
-     </div>
-     <div class="bg-white shadow rounded-lg overflow-hidden">
-      <img alt="Product Image" class="w-full h-48 object-cover" height="300" src="https://storage.googleapis.com/a1aa/image/HoGFJlutTRq2A9rLVZiP1HlgYLWEHlRPXp6eI1aYqkhfnsoTA.jpg" width="300"/>
-      <div class="p-4">
-       <h2 class="text-lg font-bold">
-        Respira
-       </h2>
-       <p class="text-gray-500">
-        Outdoor bar table and stool
-       </p>
-       <p class="text-lg font-bold text-gray-900">
-        Rp 500.000
-       </p>
-      </div>
-     </div>
-     <!-- Repeat Product Cards -->
-     <div class="bg-white shadow rounded-lg overflow-hidden">
-      <img alt="Product Image" class="w-full h-48 object-cover" height="300" src="https://storage.googleapis.com/a1aa/image/HoGFJlutTRq2A9rLVZiP1HlgYLWEHlRPXp6eI1aYqkhfnsoTA.jpg" width="300"/>
-      <div class="p-4">
-       <h2 class="text-lg font-bold">
-        Syltherine
-       </h2>
-       <p class="text-gray-500">
-        Stylish cafe chair
-       </p>
-       <p class="text-lg font-bold text-gray-900">
-        Rp 2.500.000
-       </p>
-       <p class="text-sm text-gray-400 line-through">
-        Rp 3.500.000
-       </p>
-      </div>
-     </div>
-     <div class="bg-white shadow rounded-lg overflow-hidden">
-      <img alt="Product Image" class="w-full h-48 object-cover" height="300" src="https://storage.googleapis.com/a1aa/image/HoGFJlutTRq2A9rLVZiP1HlgYLWEHlRPXp6eI1aYqkhfnsoTA.jpg" width="300"/>
-      <div class="p-4">
-       <h2 class="text-lg font-bold">
-        Leviosa
-       </h2>
-       <p class="text-gray-500">
-        Stylish cafe chair
-       </p>
-       <p class="text-lg font-bold text-gray-900">
-        Rp 2.500.000
-       </p>
-      </div>
-     </div>
-     <div class="bg-white shadow rounded-lg overflow-hidden">
-      <img alt="Product Image" class="w-full h-48 object-cover" height="300" src="https://storage.googleapis.com/a1aa/image/HoGFJlutTRq2A9rLVZiP1HlgYLWEHlRPXp6eI1aYqkhfnsoTA.jpg" width="300"/>
-      <div class="p-4">
-       <h2 class="text-lg font-bold">
-        Lolito
-       </h2>
-       <p class="text-gray-500">
-        Luxury big sofa
-       </p>
-       <p class="text-lg font-bold text-gray-900">
-        Rp 7.000.000
-       </p>
-       <p class="text-sm text-gray-400 line-through">
-        Rp 14.000.000
-       </p>
-      </div>
-     </div>
-     <div class="bg-white shadow rounded-lg overflow-hidden">
-      <img alt="Product Image" class="w-full h-48 object-cover" height="300" src="https://storage.googleapis.com/a1aa/image/HoGFJlutTRq2A9rLVZiP1HlgYLWEHlRPXp6eI1aYqkhfnsoTA.jpg" width="300"/>
-      <div class="p-4">
-       <h2 class="text-lg font-bold">
-        Respira
-       </h2>
-       <p class="text-gray-500">
-        Outdoor bar table and stool
-       </p>
-       <p class="text-lg font-bold text-gray-900">
-        Rp 500.000
-       </p>
-      </div>
-     </div>
-     <!-- Repeat Product Cards -->
-     <div class="bg-white shadow rounded-lg overflow-hidden">
-      <img alt="Product Image" class="w-full h-48 object-cover" height="300" src="https://storage.googleapis.com/a1aa/image/HoGFJlutTRq2A9rLVZiP1HlgYLWEHlRPXp6eI1aYqkhfnsoTA.jpg" width="300"/>
-      <div class="p-4">
-       <h2 class="text-lg font-bold">
-        Syltherine
-       </h2>
-       <p class="text-gray-500">
-        Stylish cafe chair
-       </p>
-       <p class="text-lg font-bold text-gray-900">
-        Rp 2.500.000
-       </p>
-       <p class="text-sm text-gray-400 line-through">
-        Rp 3.500.000
-       </p>
-      </div>
-     </div>
-     <div class="bg-white shadow rounded-lg overflow-hidden">
-      <img alt="Product Image" class="w-full h-48 object-cover" height="300" src="https://storage.googleapis.com/a1aa/image/HoGFJlutTRq2A9rLVZiP1HlgYLWEHlRPXp6eI1aYqkhfnsoTA.jpg" width="300"/>
-      <div class="p-4">
-       <h2 class="text-lg font-bold">
-        Leviosa
-       </h2>
-       <p class="text-gray-500">
-        Stylish cafe chair
-       </p>
-       <p class="text-lg font-bold text-gray-900">
-        Rp 2.500.000
-       </p>
-      </div>
-     </div>
-     <div class="bg-white shadow rounded-lg overflow-hidden">
-      <img alt="Product Image" class="w-full h-48 object-cover" height="300" src="https://storage.googleapis.com/a1aa/image/HoGFJlutTRq2A9rLVZiP1HlgYLWEHlRPXp6eI1aYqkhfnsoTA.jpg" width="300"/>
-      <div class="p-4">
-       <h2 class="text-lg font-bold">
-        Lolito
-       </h2>
-       <p class="text-gray-500">
-        Luxury big sofa
-       </p>
-       <p class="text-lg font-bold text-gray-900">
-        Rp 7.000.000
-       </p>
-       <p class="text-sm text-gray-400 line-through">
-        Rp 14.000.000
-       </p>
-      </div>
-     </div>
-     <div class="bg-white shadow rounded-lg overflow-hidden">
-      <img alt="Product Image" class="w-full h-48 object-cover" height="300" src="https://storage.googleapis.com/a1aa/image/HoGFJlutTRq2A9rLVZiP1HlgYLWEHlRPXp6eI1aYqkhfnsoTA.jpg" width="300"/>
-      <div class="p-4">
-       <h2 class="text-lg font-bold">
-        Respira
-       </h2>
-       <p class="text-gray-500">
-        Outdoor bar table and stool
-       </p>
-       <p class="text-lg font-bold text-gray-900">
-        Rp 500.000
-       </p>
-      </div>
-     </div>
+      <!-- Product Card -->
+      @forelse($products as $product)
+      <a href="{{ route('front.details', ['product' => $product->id]) }}" class="bg-white shadow rounded-lg overflow-hidden">
+          <img alt="Product Image" class="w-full h-auto object-cover" src="{{ Storage::url($product->image) }}" />
+          <div class="p-4">
+              <h2 class="text-lg font-bold">
+                  {{ $product->name }}
+              </h2>
+              <p class="text-gray-500">
+                  {{ $product->category->name }}
+              </p>
+              <p class="text-lg font-bold text-gray-900">
+                  Rp {{ number_format($product->price, 0, ',', '.') }}
+              </p>
+              @if($product->discount)
+              <p class="text-sm text-gray-400 line-through">
+                  Rp {{ number_format($product->discount, 0, ',', '.') }}
+              </p>
+              @endif
+          </div>
+      </a>
+      @empty
+      <p>No products found.</p>
+      @endforelse
     </div>
+  
     <!-- Pagination -->
     <div class="flex justify-center mt-8">
-     <nav class="inline-flex space-x-2">
-      <a class="px-4 py-2 bg-yellow-500 text-white rounded" href="#">
-       1
-      </a>
-      <a class="px-4 py-2 bg-gray-200 text-gray-700 rounded" href="#">
-       2
-      </a>
-      <a class="px-4 py-2 bg-gray-200 text-gray-700 rounded" href="#">
-       3
-      </a>
-      <a class="px-4 py-2 bg-gray-200 text-gray-700 rounded" href="#">
-       Next
-      </a>
-     </nav>
+      <!-- Previous Page Link -->
+      @if(!$products->onFirstPage())
+      <a href="{{ $products->previousPageUrl() }}#product-list" class="px-4 py-2 bg-gray-300 rounded-md">Previous</a>
+      @endif
+
+      <!-- Page Numbers -->
+      @for ($page = 1; $page <= $products->lastPage(); $page++)
+      @if ($page == $products->currentPage())
+      <span class="px-4 py-2 bg-yellow-500 text-white rounded-md">{{ $page }}</span>
+      @else
+      <a href="{{ $products->url($page) }}#product-list" class="px-4 py-2 mx-2 bg-gray-300 rounded-md">{{ $page }}</a>
+      @endif
+      @endfor
+
+      <!-- Next Page Link -->
+      @if($products->hasMorePages())
+      <a href="{{ $products->nextPageUrl() }}#product-list" class="px-4 py-2 bg-gray-300 rounded-md">Next</a>
+      @endif
     </div>
-   </main>
-   <!-- Footer -->
-   <x-footer/>
+  </main>
+  <x-footer />
 @endsection
+
+@push('before-scripts')
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.location.hash === "#product-list") {
+        document.getElementById("product-list").scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  </script>
+@endpush

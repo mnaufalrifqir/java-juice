@@ -1,8 +1,8 @@
 @extends('front.layouts.app')
 @section('content')
-  <x-navbar/>
-  <x-hero-section/>
-  <section class="container mx-auto py-16 px-6">
+    <x-navbar/>
+    <x-banner />
+    <section class="container mx-auto py-16 px-6">
     <h2 class="text-3xl font-bold text-center mb-4">Get In Touch With Us</h2>
     <p class="text-center text-gray-600 mb-12">For More Information About Our Product & Services. Please Feel Free To Drop Us An Email. Our Staff Always Be There To Help You Out. Do Not Hesitate!</p>
     <div class="flex flex-wrap -mx-6">
@@ -53,6 +53,6 @@
             </form>
         </div>
     </div>
-</section>
-  <x-footer/>
+    </section>
+    <x-footer/>
 @endsection

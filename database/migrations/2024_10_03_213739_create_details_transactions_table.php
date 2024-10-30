@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('details_transactions', function (Blueprint $table) {
             $table->id();
             $table->integer('quantity');
-            $table->float('total');
-            $table->foreignId('transaction_id')->constrained()->onDelete('cascade');
-            $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->softDeletes();
+            $table->integer('total_price');
+            $table->foreignId('transaction_id')->constrained('transactions');
+            $table->foreignId('product_id')->constrained('products');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
