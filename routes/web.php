@@ -43,6 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/cities/{provinceId}', [TransactionController::class, 'getCities']);
     Route::post('/shipping-cost', [TransactionController::class, 'getShippingCost']);
 
+    Route::post('/payment', [TransactionController::class, 'payment']);
+
+    // User Transaction
     Route::get('/order', [TransactionController::class, 'order'])->name('transactions.order');
 
     Route::prefix('admin')->name('admin.')->group(function () {
@@ -67,7 +70,8 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::middleware('can:manage transactions')->group(function () {
-            Route::resource('transactions', TransactionController::class);
+            Route::get('transactions', [TransactionController::class, 'index'])->name('transactions.index');
+            Route::get('transactions/{transaction_id}', [TransactionController::class, 'show'])->name('transactions.show');
         });
 
         Route::middleware('can:manage categories')->group(function () {

@@ -22,10 +22,10 @@ return new class extends Migration
             $table->string('phone_number');
             $table->string('email');
             $table->string('courier');
-            $table->integer('weight');
-            $table->integer('shipping_cost');
-            $table->integer('subtotal');
-            $table->integer('total');
+            $table->float('weight');
+            $table->float('shipping_cost');
+            $table->float('subtotal');
+            $table->float('total');
             $table->string('payment_status');
             $table->string('shipping_status');
             $table->string('payment_url');

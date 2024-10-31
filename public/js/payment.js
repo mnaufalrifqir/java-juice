@@ -83,25 +83,65 @@ function calculateTotal() {
     const shippingCost =
         parseInt(document.getElementById("shipping-cost").value) || 0;
     const total = subtotal + shippingCost;
-    console.log(subtotal, shippingCost, total);
+
+    document.getElementById("total").value = total;
     document.getElementById("total").innerText = `Rp. ${total.toLocaleString(
         "id-ID"
     )}`;
 }
 
-document.getElementById("pay-button").onclick = function () {
-    snap.pay("{{$snapToken}}", {
-        onSuccess: function (result) {
-            console.log("success");
-            console.log(result);
+document.getElementById("pay-button").addEventListener("click", function () {
+    const csrfToken = document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content");
+
+    const weight = parseInt(document.getElementById("weight").value) || 0;
+    const subtotal =
+        parseInt(
+            document
+                .getElementById("subtotal")
+                .textContent.replace(/[^\d]/g, "")
+        ) || 0;
+
+    const data = {
+        firstName: document.getElementById("first-name").value,
+        lastName: document.getElementById("last-name").value,
+        streetAddress: document.getElementById("street").value,
+        province: document.getElementById("province").value,
+        city: document.getElementById("city").value,
+        postalCode: document.getElementById("postal-code").value,
+        phoneNumber: document.getElementById("phone-number").value,
+        email: document.getElementById("email").value,
+        courier: document.getElementById("courier").value,
+        weight: weight,
+        shippingCost: document.getElementById("shipping-cost").value,
+        subtotal: subtotal,
+        total: document.getElementById("total").value,
+    };
+
+    console.log(data);
+
+    fetch(`/payment`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": csrfToken,
         },
-        onPending: function (result) {
-            console.log("pending");
-            console.log(result);
-        },
-        onError: function (result) {
-            console.log("error");
-            console.log(result);
-        },
-    });
-};
+        body: JSON.stringify(data),
+    })
+        .then((response) => response.json())
+        .then((result) => {
+            snap.pay(result.snap_token, {
+                onSuccess: function (result) {
+                    alert("Payment success!");
+                },
+                onPending: function (result) {
+                    alert("Payment pending.");
+                },
+                onError: function (result) {
+                    alert("Payment failed.");
+                },
+            });
+        })
+        .catch((error) => console.error("Error:", error));
+});
