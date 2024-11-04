@@ -1,4 +1,4 @@
-<footer class="container max-w-[1130px] mx-auto flex flex-col mt-10 bg-white py-8">
+<footer class="container mx-auto flex flex-col mt-10 border-t bg-white py-8">
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
@@ -64,4 +64,4 @@
             </p>
         </div>
     </div>
-  </footer><?php /**PATH D:\Project\Backend\java-juice\resources\views/components/footer.blade.php ENDPATH**/ ?>
+</footer><?php /**PATH D:\Project\Backend\java-juice\resources\views/components/footer.blade.php ENDPATH**/ ?>

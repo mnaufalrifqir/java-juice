@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/cities/{provinceId}', [TransactionController::class, 'getCities']);
     Route::post('/shipping-cost', [TransactionController::class, 'getShippingCost']);
 
-    Route::post('/payment', [TransactionController::class, 'payment']);
+    Route::post('/payment', [TransactionController::class, 'payment'])->name('transactions.payment');
 
     // User Transaction
     Route::get('/order', [TransactionController::class, 'order'])->name('transactions.order');
@@ -69,10 +69,10 @@ Route::middleware('auth')->group(function () {
             Route::resource('hero_sections', HeroSectionController::class);
         });
 
-        Route::middleware('can:manage transactions')->group(function () {
-            Route::get('transactions', [TransactionController::class, 'index'])->name('transactions.index');
-            Route::get('transactions/{transaction_id}', [TransactionController::class, 'show'])->name('transactions.show');
-        });
+        // Route::middleware('can:manage transactions')->group(function () {
+        //     Route::get('transactions', [TransactionController::class, 'index'])->name('transactions.index');
+        //     Route::get('transactions/{transaction_id}', [TransactionController::class, 'show'])->name('transactions.show');
+        // });
 
         Route::middleware('can:manage categories')->group(function () {
             Route::resource('categories', CategoryController::class);

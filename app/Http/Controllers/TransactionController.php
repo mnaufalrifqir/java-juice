@@ -7,21 +7,11 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Http;
-use Midtrans\Snap;
 use Midtrans\Notification;
-use Midtrans\Config;
 use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
-    public function __construct()
-    {
-        Config::$serverKey = config('midtrans.server_key');
-        Config::$isProduction = config('midtrans.is_production');
-        Config::$isSanitized = config('midtrans.is_sanitized');
-        Config::$is3ds = config('midtrans.is_3ds');
-    }
-    
     /**
      * Display a listing of the resource.
      */
@@ -109,8 +99,8 @@ class TransactionController extends Controller
         $response = Http::withHeaders([
             'key' => env('RAJAONGKIR_API_KEY')
         ])->get(env('RAJAONGKIR_BASE_URL') . "/city", [
-            'province' => $provinceId
-        ]);
+                    'province' => $provinceId
+                ]);
 
         return $response->successful() ? response()->json($response->json()['rajaongkir']['results']) : response()->json([]);
     }
@@ -120,11 +110,11 @@ class TransactionController extends Controller
         $response = Http::withHeaders([
             'key' => env('RAJAONGKIR_API_KEY')
         ])->post(env('RAJAONGKIR_BASE_URL') . '/cost', [
-            'origin' => $request->origin,
-            'destination' => $request->destination,
-            'weight' => $request->weight,
-            'courier' => $request->courier,
-        ]);
+                    'origin' => $request->origin,
+                    'destination' => $request->destination,
+                    'weight' => $request->weight,
+                    'courier' => $request->courier,
+                ]);
 
         return $response->successful() ? response()->json($response->json()['rajaongkir']['results']['0']['costs']) : response()->json([]);
     }
@@ -133,22 +123,31 @@ class TransactionController extends Controller
      * Store a newly created resource in storage.
      */
     public function payment(StoreTransactionRequest $request)
-    {
+{
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = config('midtrans.server_key');
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+
         return DB::transaction(function () use ($request) {
             $validated = $request->validated();
             
             $transaction = Transaction::create([
-                'first_name' => $validated['firstName'],
-                'last_name' => $validated['lastName'],
-                'street' => $validated['streetAddress'],
+                'first_name' => $validated['first_name'],
+                'last_name' => $validated['last_name'],
+                'street_address' => $validated['street_address'],
                 'province' => $validated['province'],
                 'city' => $validated['city'],
-                'postal_code' => $validated['postalCode'],
-                'phone_number' => $validated['phoneNumber'],
+                'postal_code' => $validated['postal_code'],
+                'phone_number' => $validated['phone_number'],
                 'email' => $validated['email'],
                 'courier' => $validated['courier'],
                 'weight' => $validated['weight'],
-                'shipping_cost' => $validated['shippingCost'],
+                'shipping_cost' => $validated['shipping_cost'],
                 'subtotal' => $validated['subtotal'],
                 'total' => $validated['total'],
                 'payment_status' => 'pending',
@@ -167,9 +166,9 @@ class TransactionController extends Controller
                 $item->delete();
             }
 
-            $payload = [
+            $params = [
                 'transaction_details' => [
-                    'order_id' => $transaction->id,
+                    'order_id' => 'ORDER-' . uniqid(),
                     'gross_amount' => $transaction->total,
                 ],
                 'customer_details' => [
@@ -178,7 +177,7 @@ class TransactionController extends Controller
                     'email' => $transaction->email,
                     'phone' => $transaction->phone_number,
                     'shipping_address' => [
-                        'address' => $transaction->street,
+                        'address' => $transaction->street_address,
                         'city' => $transaction->city,
                         'postal_code' => $transaction->postal_code,
                         'phone' => $transaction->phone_number,
@@ -187,14 +186,24 @@ class TransactionController extends Controller
                 ],
             ];
 
-            $snapToken = Snap::getSnapToken($payload);
-            $transaction->payment_url = $snapToken;
-            $transaction->save();
+            try {
+                $snapTransaction = \Midtrans\Snap::createTransaction($params);
+                $transaction->payment_url = $snapTransaction->redirect_url;
+                $transaction->save();
 
-            return response()->json(['snap_token' => $snapToken]);
+                return response()->json([
+                    'message' => 'Transaction created successfully',
+                    'snap_token' => $snapTransaction->token,
+                    'payment_url' => $transaction->payment_url,
+                ]);
+            } catch (\Exception $e) {
+                return response()->json([
+                    'message' => 'Transaction failed',
+                    'error' => $e->getMessage(),
+                ], 500);
+            }
         });
     }
-
 
     public function notificationHandler(Request $request)
     {

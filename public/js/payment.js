@@ -1,3 +1,7 @@
+const csrfToken = document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content");
+
 document.getElementById("province").addEventListener("change", function () {
     const provinceId = this.value;
     const citySelect = document.getElementById("city");
@@ -22,7 +26,7 @@ document.getElementById("province").addEventListener("change", function () {
 });
 
 document.getElementById("courier").addEventListener("change", function () {
-    const shippingOption = document.getElementById("shipping-option");
+    const shippingOption = document.getElementById("shipping_option");
     shippingOption.innerHTML = '<option value="">Loading...</option>';
     shippingOption.disabled = true;
 
@@ -32,10 +36,6 @@ document.getElementById("courier").addEventListener("change", function () {
         weight: document.getElementById("weight").value,
         courier: document.getElementById("courier").value,
     };
-
-    const csrfToken = document
-        .querySelector('meta[name="csrf-token"]')
-        .getAttribute("content");
 
     fetch(`/shipping-cost`, {
         method: "POST",
@@ -62,14 +62,14 @@ document.getElementById("courier").addEventListener("change", function () {
 });
 
 document
-    .getElementById("shipping-option")
+    .getElementById("shipping_option")
     .addEventListener("change", function () {
         const shippingOption = this.value;
         const shippingCost = parseInt(shippingOption.split(":")[1]) || 0;
         document.getElementById(
-            "shipping-cost"
+            "shipping_cost"
         ).innerText = `Rp. ${shippingCost.toLocaleString("id-ID")}`;
-        document.getElementById("shipping-cost").value = shippingCost;
+        document.getElementById("shipping_cost").value = shippingCost;
         calculateTotal();
     });
 
@@ -81,7 +81,7 @@ function calculateTotal() {
                 .textContent.replace(/[^\d]/g, "")
         ) || 0;
     const shippingCost =
-        parseInt(document.getElementById("shipping-cost").value) || 0;
+        parseInt(document.getElementById("shipping_cost").value) || 0;
     const total = subtotal + shippingCost;
 
     document.getElementById("total").value = total;
@@ -91,10 +91,6 @@ function calculateTotal() {
 }
 
 document.getElementById("pay-button").addEventListener("click", function () {
-    const csrfToken = document
-        .querySelector('meta[name="csrf-token"]')
-        .getAttribute("content");
-
     const weight = parseInt(document.getElementById("weight").value) || 0;
     const subtotal =
         parseInt(
@@ -103,34 +99,35 @@ document.getElementById("pay-button").addEventListener("click", function () {
                 .textContent.replace(/[^\d]/g, "")
         ) || 0;
 
-    const data = {
-        firstName: document.getElementById("first-name").value,
-        lastName: document.getElementById("last-name").value,
-        streetAddress: document.getElementById("street").value,
+    const request = {
+        first_name: document.getElementById("first_name").value,
+        last_name: document.getElementById("last_name").value,
+        street_address: document.getElementById("street_address").value,
         province: document.getElementById("province").value,
         city: document.getElementById("city").value,
-        postalCode: document.getElementById("postal-code").value,
-        phoneNumber: document.getElementById("phone-number").value,
+        postal_code: document.getElementById("postal_code").value,
+        phone_number: document.getElementById("phone_number").value,
         email: document.getElementById("email").value,
         courier: document.getElementById("courier").value,
         weight: weight,
-        shippingCost: document.getElementById("shipping-cost").value,
+        shipping_cost: document.getElementById("shipping_cost").value,
         subtotal: subtotal,
         total: document.getElementById("total").value,
     };
 
-    console.log(data);
+    console.log(request);
 
-    fetch(`/payment`, {
+    fetch('/payment', {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "X-CSRF-TOKEN": csrfToken,
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(request),
     })
         .then((response) => response.json())
         .then((result) => {
+            console.log(result);
             snap.pay(result.snap_token, {
                 onSuccess: function (result) {
                     alert("Payment success!");
@@ -145,3 +142,21 @@ document.getElementById("pay-button").addEventListener("click", function () {
         })
         .catch((error) => console.error("Error:", error));
 });
+
+// document.getElementById('pay-button').onclick = function(){
+//     // SnapToken acquired from previous step
+//     snap.pay('$transaction->payment_url', {
+//       // Optional
+//       onSuccess: function(result){
+//         /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+//       },
+//       // Optional
+//       onPending: function(result){
+//         /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+//       },
+//       // Optional
+//       onError: function(result){
+//         /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+//       }
+//     });
+//   };

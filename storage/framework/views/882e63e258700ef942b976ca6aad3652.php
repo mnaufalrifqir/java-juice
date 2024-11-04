@@ -11,10 +11,10 @@
      <?php $__env->slot('header', null, []); ?> 
         <div class="flex flex-row justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                <?php echo e(__('Manage Products')); ?>
+                <?php echo e(__('Manage Categories')); ?>
 
             </h2>
-            <a href="<?php echo e(route('admin.products.create')); ?>" class="font-bold py-2 px-6 bg-white text-gray-800 border rounded-full">
+            <a href="<?php echo e(route('admin.categories.create')); ?>" class="font-bold py-2 px-6 bg-white text-gray-800 border rounded-full">
                 Add New
             </a>
         </div>
@@ -27,34 +27,17 @@
                     <thead class="bg-gray-50">
                         <tr>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">ID</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Image</th>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Name</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Category</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Price</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Weight</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Stock</th>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $__empty_1 = true; $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                        <?php $__empty_1 = true; $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                             <tr>
-                                <td class="py-2 px-4 border-b text-center"><?php echo e($product->id); ?></td>
-                                <td class="py-2 px-4 border-b text-center">
-                                    <img src="<?php echo e(Storage::url($product->image)); ?>" alt="<?php echo e($product->name); ?>" class="h-16 w-16 object-cover" width="100" height="100">
-                                </td>
-                                <td class="py-2 px-4 border-b text-center"><?php echo e($product->name); ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?php echo e($product->category->name); ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?php echo e($product->price); ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?php echo e($product->weight); ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?php echo e($product->stock); ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?php echo e($category->id); ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?php echo e($category->name); ?></td>
                                 <td class="py-2 px-4 border-b">
                                     <div class="flex justify-center items-center space-x-4">
-                                        <span title="View">
-                                            <a href="">
-                                                <ion-icon name="eye-outline" class="text-2xl"></ion-icon>
-                                            </a>
-                                        </span>
                                         <span title="Edit">
                                             <a href="">
                                                 <ion-icon name="create-outline" class="text-2xl"></ion-icon>
@@ -70,24 +53,24 @@
                             </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                             <tr>
-                                <td colspan="8" class="py-3 text-center bg-red-500 text-white">
-                                    No products found
+                                <td colspan="3" class="py-3 text-center bg-red-500 text-white">
+                                    No categories found
                                 </td>
                             </tr>
                         <?php endif; ?>
                     </tbody>
                 </table>
                 <div class="bg-gray-50 px-4 py-2 flex justify-between items-center">
-                    <?php if($products->onFirstPage()): ?>
+                    <?php if($categories->onFirstPage()): ?>
                     <span></span>
                     <?php else: ?>
-                    <a href="<?php echo e($products->previousPageUrl()); ?>" class="text-gray-500">Previous</a>
+                    <a href="<?php echo e($categories->previousPageUrl()); ?>" class="text-gray-500">Previous</a>
                     <?php endif; ?>
 
-                    <span class="text-gray-500"><?php echo e($products->firstItem()); ?> - <?php echo e($products->lastItem()); ?> of <?php echo e($products->total()); ?></span>
+                    <span class="text-gray-500"><?php echo e($categories->firstItem()); ?> - <?php echo e($categories->lastItem()); ?> of <?php echo e($categories->total()); ?></span>
 
-                    <?php if($products->hasMorePages()): ?>
-                    <a href="<?php echo e($products->nextPageUrl()); ?>" class="text-gray-500">Next</a>
+                    <?php if($categories->hasMorePages()): ?>
+                    <a href="<?php echo e($categories->nextPageUrl()); ?>" class="text-gray-500">Next</a>
                     <?php else: ?>
                     <span></span>
                     <?php endif; ?>
@@ -105,4 +88,4 @@
 <?php $component = $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
 <?php unset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
 <?php endif; ?>
-<?php /**PATH D:\Project\Backend\java-juice\resources\views/admin/products/index.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\Project\Backend\java-juice\resources\views/admin/categories/index.blade.php ENDPATH**/ ?>

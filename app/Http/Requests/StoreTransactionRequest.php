@@ -24,7 +24,7 @@ class StoreTransactionRequest extends FormRequest
         return [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'street' => 'required|string|max:255',
+            'street_address' => 'required|string|max:255',
             'province' => 'required|string|max:255',
             'city' => 'required|string|max:255',
             'postal_code' => 'required|string|max:10',
@@ -35,9 +35,6 @@ class StoreTransactionRequest extends FormRequest
             'shipping_cost' => 'required|numeric|min:0',
             'subtotal' => 'required|numeric|min:0',
             'total' => 'required|numeric|min:0',
-            'payment_status' => 'string|in:settlement,pending,deny,expire,cancel',
-            'shipping_status' => 'string|in:pending,shipped,delivered,cancelled',
-            'payment_url' => 'url|max:255',
         ];
     }
 }
