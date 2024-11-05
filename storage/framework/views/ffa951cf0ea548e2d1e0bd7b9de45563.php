@@ -57,7 +57,9 @@
       </div>
       <div class="lg:w-1/2 lg:pl-10 mt-6 lg:mt-0">
         <h2 class="text-3xl font-bold"><?php echo e($product->name); ?></h2>
+        <?php if($product->category): ?>
         <p class="text-gray-600 mt-2 text-xl"><?php echo e($product->category->name); ?></p>
+        <?php endif; ?>
         <p class="text-gray-600 mt-2 text-2xl">Rp. <?php echo e(number_format($product->price, 2)); ?></p>
         <div class="flex items-center mt-4">
           <div class="flex items-center text-yellow-500">

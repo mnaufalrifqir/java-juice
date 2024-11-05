@@ -25,9 +25,11 @@
               <h2 class="text-lg font-bold">
                   {{ $product->name }}
               </h2>
+              @if($product->category)
               <p class="text-gray-500">
                   {{ $product->category->name }}
               </p>
+              @endif
               <p class="text-lg font-bold text-gray-900">
                   Rp {{ number_format($product->price, 0, ',', '.') }}
               </p>

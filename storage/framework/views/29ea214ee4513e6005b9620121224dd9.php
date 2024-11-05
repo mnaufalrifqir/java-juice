@@ -63,10 +63,12 @@
                   <?php echo e($product->name); ?>
 
               </h2>
+              <?php if($product->category): ?>
               <p class="text-gray-500">
                   <?php echo e($product->category->name); ?>
 
               </p>
+              <?php endif; ?>
               <p class="text-lg font-bold text-gray-900">
                   Rp <?php echo e(number_format($product->price, 0, ',', '.')); ?>
 

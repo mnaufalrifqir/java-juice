@@ -41,29 +41,41 @@
                             <tr>
                                 <td class="py-2 px-4 border-b text-center"><?php echo e($product->id); ?></td>
                                 <td class="py-2 px-4 border-b text-center">
-                                    <img src="<?php echo e(Storage::url($product->image)); ?>" alt="<?php echo e($product->name); ?>" class="h-16 w-16 object-cover" width="100" height="100">
+                                    <?php if($product->image): ?>
+                                        <img src="<?php echo e(Storage::url($product->image)); ?>" alt="<?php echo e($product->name); ?>" class="h-16 w-16 object-cover rounded" width="100" height="100">
+                                    <?php else: ?>
+                                        <span class="text-gray-500"><?php echo e(__('No image')); ?></span>
+                                    <?php endif; ?>
                                 </td>
                                 <td class="py-2 px-4 border-b text-center"><?php echo e($product->name); ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?php echo e($product->category->name); ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?php echo e($product->price); ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?php echo e($product->weight); ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?php echo e($product->stock); ?></td>
+                                <?php if($product->category): ?>
+                                    <td class="py-2 px-4 border-b text-center"><?php echo e($product->category->name); ?></td>
+                                <?php else: ?>
+                                    <td class="py-2 px-4 border-b text-center text-gray-500"><?php echo e(__('No category')); ?></td>
+                                <?php endif; ?>
+                                <td class="py-2 px-4 border-b text-center">Rp. <?php echo e(number_format($product->price, 2, ',', '.')); ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?php echo e($product->weight); ?> gram</td>
+                                <td class="py-2 px-4 border-b text-center"><?php echo e($product->stock); ?> pcs</td>
                                 <td class="py-2 px-4 border-b">
                                     <div class="flex justify-center items-center space-x-4">
                                         <span title="View">
-                                            <a href="">
+                                            <a href="<?php echo e(route('admin.products.show', $product->id)); ?>">
                                                 <ion-icon name="eye-outline" class="text-2xl"></ion-icon>
                                             </a>
                                         </span>
                                         <span title="Edit">
-                                            <a href="">
+                                            <a href="<?php echo e(route('admin.products.edit', $product->id)); ?>">
                                                 <ion-icon name="create-outline" class="text-2xl"></ion-icon>
                                             </a>
                                         </span>
                                         <span title="Delete">
-                                            <a href="">
-                                                <ion-icon name="trash-outline" class="text-2xl"></ion-icon>
-                                            </a>
+                                            <form action="<?php echo e(route('admin.products.destroy', $product->id)); ?>" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                                                <?php echo csrf_field(); ?>
+                                                <?php echo method_field('DELETE'); ?>
+                                                <button type="submit" title="Delete" class="focus:outline-none">
+                                                    <ion-icon name="trash-outline" class="text-2xl text-red-500"></ion-icon>
+                                                </button>
+                                            </form>
                                         </span>
                                     </div>
                                 </td>
@@ -78,19 +90,26 @@
                     </tbody>
                 </table>
                 <div class="bg-gray-50 px-4 py-2 flex justify-between items-center">
-                    <?php if($products->onFirstPage()): ?>
-                    <span></span>
-                    <?php else: ?>
-                    <a href="<?php echo e($products->previousPageUrl()); ?>" class="text-gray-500">Previous</a>
-                    <?php endif; ?>
+                    <div>
+                        <?php if($products->onFirstPage()): ?>
+                            <span></span>
+                        <?php else: ?>
+                            <a href="<?php echo e($products->previousPageUrl()); ?>" class="text-gray-500 hover:underline">Previous</a>
+                        <?php endif; ?>
+                    </div>
 
-                    <span class="text-gray-500"><?php echo e($products->firstItem()); ?> - <?php echo e($products->lastItem()); ?> of <?php echo e($products->total()); ?></span>
+                    <span class="text-gray-500">
+                        Showing <?php echo e($products->firstItem()); ?> - <?php echo e($products->lastItem()); ?> of <?php echo e($products->total()); ?>
 
-                    <?php if($products->hasMorePages()): ?>
-                    <a href="<?php echo e($products->nextPageUrl()); ?>" class="text-gray-500">Next</a>
-                    <?php else: ?>
-                    <span></span>
-                    <?php endif; ?>
+                    </span>
+
+                    <div>
+                        <?php if($products->hasMorePages()): ?>
+                            <a href="<?php echo e($products->nextPageUrl()); ?>" class="text-gray-500 hover:underline">Next</a>
+                        <?php else: ?>
+                            <span></span>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
         </div>

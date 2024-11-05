@@ -66,7 +66,7 @@
       <p class="text-gray-600 mb-4">
         We love what we do and we do it with passion. We value the experimentation of the message and smart incentives.
       </p>
-      <a class="bg-yellow-500 text-white py-2 px-4 rounded-lg" href="#">View All Team</a>
+      <a class="bg-yellow-500 text-white py-2 px-4 rounded-lg" href="{{Route('front.team')}}">View All Team</a>
     </div>
     <div class="flex flex-wrap justify-center">
       <div class="w-full md:w-1/3 lg:w-1/6 p-4">

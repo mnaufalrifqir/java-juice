@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -41,10 +43,10 @@ class ProductController extends Controller
                 $validated['image'] = $imagePath;
             }
 
-            $newDataRecord = Product::create($validated);
+            Product::create($validated);
         });
 
-        return redirect()->route('admin.products.index');
+        return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
     }
 
     /**
@@ -52,7 +54,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('admin.products.show', compact('product'));
     }
 
     /**
@@ -60,15 +62,31 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        DB::transaction(function () use ($request, $product) {
+            $validated = $request->validated();
+
+            if ($request->hasFile('image')) {
+                if ($product->image) {
+                    Storage::disk('public')->delete($product->image);
+                }
+                
+                $imagePath = $request->file('image')->store('products', 'public');
+                $validated['image'] = $imagePath;
+            }
+
+            $product->update($validated);
+        });
+
+        return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
     }
 
     /**
@@ -76,6 +94,14 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        DB::transaction(function () use ($product) {
+            if ($product->image) {
+                Storage::disk('public')->delete($product->image);
+            }
+            
+            $product->delete();
+        });
+
+        return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
     }
 }

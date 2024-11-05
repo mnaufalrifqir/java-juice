@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
-use Midtrans\Notification;
 use Midtrans\Config;
+use Midtrans\Notification;
+use Midtrans\Snap;
 
 class TransactionController extends Controller
 {
@@ -126,9 +127,9 @@ class TransactionController extends Controller
     public function payment(StoreTransactionRequest $request)
     {
         Config::$serverKey = config('midtrans.server_key');
-        Config::$isProduction = false;
-        Config::$isSanitized = true;
-        Config::$is3ds = true;
+        Config::$isProduction = config('midtrans.is_production');
+        Config::$isSanitized = config('midtrans.is_sanitized');
+        Config::$is3ds = config('midtrans.is_3ds');
 
         $validated = $request->validated();
         $weight = 0;
@@ -183,7 +184,7 @@ class TransactionController extends Controller
             $params = [
                 'transaction_details' => [
                     'order_id' => $transaction->order_id,
-                    'gross_amount' => $total,
+                    'gross_amount' => $transaction->total,
                 ],
                 'customer_details' => [
                     'first_name' => $transaction->first_name,
@@ -200,7 +201,7 @@ class TransactionController extends Controller
                 ],
             ];
 
-            $snapResponse = \Midtrans\Snap::createTransaction($params);
+            $snapResponse = Snap::createTransaction($params);
             $paymentUrl = $snapResponse->redirect_url;
             $snapToken = $snapResponse->token;
 
@@ -218,44 +219,70 @@ class TransactionController extends Controller
     // Handle notification from Midtrans
     public function notificationHandler(Request $request)
     {
-        $notification = new Notification();
-        $transactionStatus = $notification->transaction_status;
-        $paymentType = $notification->payment_type;
-        $fraudStatus = $notification->fraud_status;
-        $orderId = $notification->order_id;
+        // Config::$serverKey = config('midtrans.server_key');
+        // Config::$isProduction = config('midtrans.is_production');
+        // Config::$isSanitized = config('midtrans.is_sanitized');
+        // Config::$is3ds = config('midtrans.is_3ds');
 
-        $transaction = Transaction::where('order_id', $orderId)->first();
+        // // Log the incoming request payload for debugging
+        // \Log::info('Midtrans Notification Payload:', $request->all());
 
-        if (!$transaction) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Order ID not found',
-            ], 404);
-        }
-        
-        if ($transactionStatus == 'capture') {
-            if ($paymentType == 'credit_card') {
-                if ($fraudStatus == 'challenge') {
-                    $transaction->update(['payment_status' => 'pending']);
-                } else {
-                    $transaction->update(['payment_status' => 'success']);
-                }
-            }
-        } else if ($transactionStatus == 'settlement') {
-            $transaction->update(['payment_status' => 'success']);
-        } else if ($transactionStatus == 'pending') {
-            $transaction->update(['payment_status' => 'pending']);
-        } else if ($transactionStatus == 'deny') {
-            $transaction->update(['payment_status' => 'failed']);
-        } else if ($transactionStatus == 'expire') {
-            $transaction->update(['payment_status' => 'expired']);
-        } else if ($transactionStatus == 'cancel') {
-            $transaction->update(['payment_status' => 'failed']);
-        }
+        // try {
+        //     $notification = new Notification();
+        // } catch (\Exception $e) {
+        //     \Log::error('Midtrans Notification Error: ' . $e->getMessage());
+
+        //     return response()->json([
+        //         'status' => 'error',
+        //         'message' => 'Invalid notification: ' . $e->getMessage(),
+        //     ], 400);
+        // }
+
+        // $transactionStatus = $notification->transaction_status;
+        // $paymentType = $notification->payment_type;
+        // $fraudStatus = $notification->fraud_status;
+        // $orderId = $notification->order_id;
+
+        // $transaction = Transaction::where('order_id', $orderId)->first();
+
+        // if (!$transaction) {
+        //     \Log::error("Order ID $orderId not found in transactions");
+
+        //     return response()->json([
+        //         'status' => 'error',
+        //         'message' => 'Order ID not found',
+        //     ], 404);
+        // }
+
+        // // Log the transaction status for debugging
+        // \Log::info("Transaction Status: $transactionStatus, Payment Type: $paymentType, Fraud Status: $fraudStatus, Order ID: $orderId");
+
+        // if ($transactionStatus == 'capture') {
+        //     if ($paymentType == 'credit_card') {
+        //         if ($fraudStatus == 'challenge') {
+        //             $transaction->update(['payment_status' => 'pending']);
+        //         } else {
+        //             $transaction->update(['payment_status' => 'success']);
+        //         }
+        //     }
+        // } elseif ($transactionStatus == 'settlement') {
+        //     $transaction->update(['payment_status' => 'success']);
+        // } elseif ($transactionStatus == 'pending') {
+        //     $transaction->update(['payment_status' => 'pending']);
+        // } elseif ($transactionStatus == 'deny') {
+        //     $transaction->update(['payment_status' => 'failed']);
+        // } elseif ($transactionStatus == 'expire') {
+        //     $transaction->update(['payment_status' => 'expired']);
+        // } elseif ($transactionStatus == 'cancel') {
+        //     $transaction->update(['payment_status' => 'failed']);
+        // }
+
+        // \Log::info("Notification handled successfully for Order ID: $orderId");
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Notification success',
+            'message' => 'Notification handled successfully',
         ]);
     }
+
 }
