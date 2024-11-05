@@ -31,10 +31,7 @@ class StoreTransactionRequest extends FormRequest
             'phone_number' => 'required|string|max:15',
             'email' => 'required|email|max:255',
             'courier' => 'required|string|max:100',
-            'weight' => 'required|numeric|min:0',
             'shipping_cost' => 'required|numeric|min:0',
-            'subtotal' => 'required|numeric|min:0',
-            'total' => 'required|numeric|min:0',
         ];
     }
 }

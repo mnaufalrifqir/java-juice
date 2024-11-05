@@ -7,8 +7,9 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Http;
-use Midtrans\Notification;
 use Illuminate\Support\Facades\DB;
+use Midtrans\Notification;
+use Midtrans\Config;
 
 class TransactionController extends Controller
 {
@@ -123,36 +124,39 @@ class TransactionController extends Controller
      * Store a newly created resource in storage.
      */
     public function payment(StoreTransactionRequest $request)
-{
-        // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = config('midtrans.server_key');
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
-        // Set sanitization on (default)
-        \Midtrans\Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
-        \Midtrans\Config::$is3ds = true;
+    {
+        Config::$serverKey = config('midtrans.server_key');
+        Config::$isProduction = false;
+        Config::$isSanitized = true;
+        Config::$is3ds = true;
 
-        return DB::transaction(function () use ($request) {
-            $validated = $request->validated();
-            
+        $validated = $request->validated();
+        $weight = 0;
+        $subtotal = 0;
+        $total = 0;
+        $paymentUrl = '';
+        $snapToken = '';
+
+        DB::transaction(function () use ($validated, &$weight, &$subtotal, &$total, &$paymentUrl, &$snapToken) {
             $transaction = Transaction::create([
                 'first_name' => $validated['first_name'],
                 'last_name' => $validated['last_name'],
                 'street_address' => $validated['street_address'],
-                'province' => $validated['province'],
-                'city' => $validated['city'],
+                'province' => explode(':', $validated['province'])[1],
+                'city' => explode(':', $validated['city'])[1],
                 'postal_code' => $validated['postal_code'],
                 'phone_number' => $validated['phone_number'],
                 'email' => $validated['email'],
-                'courier' => $validated['courier'],
-                'weight' => $validated['weight'],
+                'courier' => explode(':', $validated['courier'])[0] . ' - ' . explode(':', $validated['courier'])[1],
+                'weight' => 0,
                 'shipping_cost' => $validated['shipping_cost'],
-                'subtotal' => $validated['subtotal'],
-                'total' => $validated['total'],
+                'subtotal' => 0,
+                'total' => 0,
                 'payment_status' => 'pending',
                 'shipping_status' => 'pending',
                 'payment_url' => '',
+                'snap_token' => '',
+                'order_id' => uniqid(),
                 'user_id' => auth()->id(),
             ]);
 
@@ -163,13 +167,23 @@ class TransactionController extends Controller
                     'quantity' => $item->quantity,
                     'total_price' => $item->product->price * $item->quantity,
                 ]);
+                $weight += $item->product->weight * $item->quantity;
+                $subtotal += $item->product->price * $item->quantity;
                 $item->delete();
             }
 
+            $total = $validated['shipping_cost'] + $subtotal;
+
+            $transaction->update([
+                'weight' => $weight,
+                'subtotal' => $subtotal,
+                'total' => $total,
+            ]);
+
             $params = [
                 'transaction_details' => [
-                    'order_id' => 'ORDER-' . uniqid(),
-                    'gross_amount' => $transaction->total,
+                    'order_id' => $transaction->order_id,
+                    'gross_amount' => $total,
                 ],
                 'customer_details' => [
                     'first_name' => $transaction->first_name,
@@ -186,51 +200,62 @@ class TransactionController extends Controller
                 ],
             ];
 
-            try {
-                $snapTransaction = \Midtrans\Snap::createTransaction($params);
-                $transaction->payment_url = $snapTransaction->redirect_url;
-                $transaction->save();
+            $snapResponse = \Midtrans\Snap::createTransaction($params);
+            $paymentUrl = $snapResponse->redirect_url;
+            $snapToken = $snapResponse->token;
 
-                return response()->json([
-                    'message' => 'Transaction created successfully',
-                    'snap_token' => $snapTransaction->token,
-                    'payment_url' => $transaction->payment_url,
-                ]);
-            } catch (\Exception $e) {
-                return response()->json([
-                    'message' => 'Transaction failed',
-                    'error' => $e->getMessage(),
-                ], 500);
-            }
+            $transaction->update([
+                'payment_url' => $paymentUrl,
+                'snap_token' => $snapToken,
+            ]);
         });
+
+        return response()->json([
+            'redirect' => $paymentUrl,
+        ]);
     }
 
+    // Handle notification from Midtrans
     public function notificationHandler(Request $request)
     {
         $notification = new Notification();
-        $transaction = $notification->transaction_status;
-        $type = $notification->payment_type;
-        $fraud = $notification->fraud_status;
-        $order_id = $notification->order_id;
+        $transactionStatus = $notification->transaction_status;
+        $paymentType = $notification->payment_type;
+        $fraudStatus = $notification->fraud_status;
+        $orderId = $notification->order_id;
 
-        if ($transaction == 'capture') {
-            if ($type == 'credit_card') {
-                if ($fraud == 'challenge') {
-                    $transaction->setPending();
+        $transaction = Transaction::where('order_id', $orderId)->first();
+
+        if (!$transaction) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Order ID not found',
+            ], 404);
+        }
+        
+        if ($transactionStatus == 'capture') {
+            if ($paymentType == 'credit_card') {
+                if ($fraudStatus == 'challenge') {
+                    $transaction->update(['payment_status' => 'pending']);
                 } else {
-                    $transaction->setSuccess();
+                    $transaction->update(['payment_status' => 'success']);
                 }
             }
-        } else if ($transaction == 'settlement') {
-            $transaction->setSuccess();
-        } else if ($transaction == 'pending') {
-            $transaction->setPending();
-        } else if ($transaction == 'deny') {
-            $transaction->setFailed();
-        } else if ($transaction == 'expire') {
-            $transaction->setExpired();
-        } else if ($transaction == 'cancel') {
-            $transaction->setFailed();
+        } else if ($transactionStatus == 'settlement') {
+            $transaction->update(['payment_status' => 'success']);
+        } else if ($transactionStatus == 'pending') {
+            $transaction->update(['payment_status' => 'pending']);
+        } else if ($transactionStatus == 'deny') {
+            $transaction->update(['payment_status' => 'failed']);
+        } else if ($transactionStatus == 'expire') {
+            $transaction->update(['payment_status' => 'expired']);
+        } else if ($transactionStatus == 'cancel') {
+            $transaction->update(['payment_status' => 'failed']);
         }
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Notification success',
+        ]);
     }
 }

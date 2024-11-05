@@ -31,7 +31,7 @@
                     <select class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" id="province">
                         <option value="">Select Province</option>
                         @foreach($provinces as $province)
-                            <option value="{{ $province['province_id'] }}">{{ $province['province'] }}</option>
+                            <option value="{{ $province['province_id'] }}:{{ $province['province'] }}">{{ $province['province'] }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -65,11 +65,8 @@
                         <input type="hidden" name="weight" id="weight" value="{{$totalWeight}}">
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700" for="courier">Courier</label>
-                            <select class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" id="courier" name="courier" required>
+                            <select class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" id="courier" name="courier" required disabled>
                                 <option value="">Select Courier</option>
-                                <option value="jne">JNE</option>
-                                <option value="pos">POS</option>
-                                <option value="tiki">TIKI</option>
                             </select>
                         </div>
                         <div class="mb-4">

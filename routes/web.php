@@ -12,7 +12,6 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\CategoryController;
 
-
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 
 Route::get('/products', [FrontController::class, 'products'])->name('front.product');
@@ -24,6 +23,8 @@ Route::prefix('about')->name('front.')->group(function () {
 });
 
 Route::get('/contact', [FrontController::class, 'contact'])->name('front.contact');
+
+Route::post('/notification', [TransactionController::class, 'notificationHandler']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

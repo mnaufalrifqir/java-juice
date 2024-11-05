@@ -168,7 +168,6 @@
 
 <?php $__env->startPush('before-scripts'); ?>
   <script src="<?php echo e(asset('js/quantity.js')); ?>"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <?php $__env->stopPush(); ?>
 
 <?php echo $__env->make('front.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Project\Backend\Laravel\java-juice\resources\views/front/details.blade.php ENDPATH**/ ?>

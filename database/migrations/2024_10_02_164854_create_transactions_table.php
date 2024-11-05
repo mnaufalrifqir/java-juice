@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('street');
+            $table->string('street_address');
             $table->string('province');
             $table->string('city');
             $table->string('postal_code');
@@ -29,6 +29,8 @@ return new class extends Migration
             $table->string('payment_status');
             $table->string('shipping_status');
             $table->string('payment_url');
+            $table->string('snap_token');
+            $table->string('order_id');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
             $table->softDeletes();

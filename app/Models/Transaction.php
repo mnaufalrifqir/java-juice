@@ -12,7 +12,7 @@ class Transaction extends Model
     protected $fillable = [
         'first_name',
         'last_name',
-        'street',
+        'street_address',
         'province',
         'city',
         'postal_code',
@@ -26,32 +26,10 @@ class Transaction extends Model
         'payment_status',
         'shipping_status',
         'payment_url',
+        'snap_token',
+        'order_id',
         'user_id',
     ];
-
-    public function setPending()
-    {
-        $this->payment_status = 'pending';
-        $this->save();
-    }
-
-    public function setSuccess()
-    {
-        $this->payment_status = 'success';
-        $this->save();
-    }
-
-    public function setFailed()
-    {
-        $this->payment_status = 'failed';
-        $this->save();
-    }
-
-    public function setExpired()
-    {
-        $this->payment_status = 'expired';
-        $this->save();
-    }
 
     public function user()
     {
