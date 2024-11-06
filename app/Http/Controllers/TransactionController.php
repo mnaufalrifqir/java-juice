@@ -60,7 +60,8 @@ class TransactionController extends Controller
      */
     public function order()
     {
-        return view('front.order');
+        $transactions = Transaction::where('user_id', auth()->id())->orderByDesc('created_at')->paginate(10);
+        return view('front.orders', compact('transactions'));
     }
 
     /**
@@ -212,72 +213,73 @@ class TransactionController extends Controller
         });
 
         return response()->json([
-            'redirect' => $paymentUrl,
+            'payment_url' => $paymentUrl,
+            'snap_token' => $snapToken,
         ]);
     }
 
     // Handle notification from Midtrans
     public function notificationHandler(Request $request)
     {
-        // Config::$serverKey = config('midtrans.server_key');
-        // Config::$isProduction = config('midtrans.is_production');
-        // Config::$isSanitized = config('midtrans.is_sanitized');
-        // Config::$is3ds = config('midtrans.is_3ds');
+        Config::$serverKey = config('midtrans.server_key');
+        Config::$isProduction = config('midtrans.is_production');
+        Config::$isSanitized = config('midtrans.is_sanitized');
+        Config::$is3ds = config('midtrans.is_3ds');
 
-        // // Log the incoming request payload for debugging
-        // \Log::info('Midtrans Notification Payload:', $request->all());
+        // Log the incoming request payload for debugging
+        \Log::info('Midtrans Notification Payload:', $request->all());
 
-        // try {
-        //     $notification = new Notification();
-        // } catch (\Exception $e) {
-        //     \Log::error('Midtrans Notification Error: ' . $e->getMessage());
+        try {
+            $notification = new Notification();
+        } catch (\Exception $e) {
+            \Log::error('Midtrans Notification Error: ' . $e->getMessage());
 
-        //     return response()->json([
-        //         'status' => 'error',
-        //         'message' => 'Invalid notification: ' . $e->getMessage(),
-        //     ], 400);
-        // }
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Invalid notification: ' . $e->getMessage(),
+            ], 400);
+        }
 
-        // $transactionStatus = $notification->transaction_status;
-        // $paymentType = $notification->payment_type;
-        // $fraudStatus = $notification->fraud_status;
-        // $orderId = $notification->order_id;
+        $transactionStatus = $notification->transaction_status;
+        $paymentType = $notification->payment_type;
+        $fraudStatus = $notification->fraud_status;
+        $orderId = $notification->order_id;
 
-        // $transaction = Transaction::where('order_id', $orderId)->first();
+        $transaction = Transaction::where('order_id', $orderId)->first();
 
-        // if (!$transaction) {
-        //     \Log::error("Order ID $orderId not found in transactions");
+        if (!$transaction) {
+            \Log::error("Order ID $orderId not found in transactions");
 
-        //     return response()->json([
-        //         'status' => 'error',
-        //         'message' => 'Order ID not found',
-        //     ], 404);
-        // }
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Order ID not found',
+            ], 404);
+        }
 
-        // // Log the transaction status for debugging
-        // \Log::info("Transaction Status: $transactionStatus, Payment Type: $paymentType, Fraud Status: $fraudStatus, Order ID: $orderId");
+        // Log the transaction status for debugging
+        \Log::info("Transaction Status: $transactionStatus, Payment Type: $paymentType, Fraud Status: $fraudStatus, Order ID: $orderId");
 
-        // if ($transactionStatus == 'capture') {
-        //     if ($paymentType == 'credit_card') {
-        //         if ($fraudStatus == 'challenge') {
-        //             $transaction->update(['payment_status' => 'pending']);
-        //         } else {
-        //             $transaction->update(['payment_status' => 'success']);
-        //         }
-        //     }
-        // } elseif ($transactionStatus == 'settlement') {
-        //     $transaction->update(['payment_status' => 'success']);
-        // } elseif ($transactionStatus == 'pending') {
-        //     $transaction->update(['payment_status' => 'pending']);
-        // } elseif ($transactionStatus == 'deny') {
-        //     $transaction->update(['payment_status' => 'failed']);
-        // } elseif ($transactionStatus == 'expire') {
-        //     $transaction->update(['payment_status' => 'expired']);
-        // } elseif ($transactionStatus == 'cancel') {
-        //     $transaction->update(['payment_status' => 'failed']);
-        // }
+        if ($transactionStatus == 'capture') {
+            if ($paymentType == 'credit_card') {
+                if ($fraudStatus == 'challenge') {
+                    $transaction->update(['payment_status' => 'pending']);
+                } else {
+                    $transaction->update(['payment_status' => 'success']);
+                }
+            }
+        } elseif ($transactionStatus == 'settlement') {
+            $transaction->update(['payment_status' => 'success']);
+        } elseif ($transactionStatus == 'pending') {
+            $transaction->update(['payment_status' => 'pending']);
+        } elseif ($transactionStatus == 'deny') {
+            $transaction->update(['payment_status' => 'failed']);
+        } elseif ($transactionStatus == 'expire') {
+            $transaction->update(['payment_status' => 'expired']);
+        } elseif ($transactionStatus == 'cancel') {
+            $transaction->update(['payment_status' => 'failed']);
+        }
 
-        // \Log::info("Notification handled successfully for Order ID: $orderId");
+        \Log::info("Notification handled successfully for Order ID: $orderId");
 
         return response()->json([
             'status' => 'success',

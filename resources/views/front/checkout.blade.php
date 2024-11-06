@@ -118,7 +118,7 @@
     <x-footer/>
 @endsection
 
-@push('after-scripts')
-    <script src="https://app.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+@push('before-scripts')
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
     <script src="{{ asset('js/payment.js') }}"></script>
 @endpush

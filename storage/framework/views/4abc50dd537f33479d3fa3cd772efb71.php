@@ -22,8 +22,8 @@
 <?php endif; ?>
     <!-- Main Content -->
     <main class="bg-gray-50 py-10">
-        <div class="container mx-auto">
-            <div class="flex space-x-6">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col lg:flex-row lg:space-x-8">
                 <!-- Card untuk Cart Items -->
                 <div class="flex-1 bg-white shadow-md rounded-lg overflow-hidden">
                     <div class="p-6">

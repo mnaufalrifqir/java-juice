@@ -1,4 +1,4 @@
-<nav x-data="{navOpen : true}" class="p-4">
+<nav x-data="{navOpen : true}" class="p-4 border-b shadow">
     <div class="container mx-auto">
       <div class="flex items-center justify-between h-[43px]">
         <div class="flex items-center order-1">
@@ -39,9 +39,12 @@
               x-transition
               class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 flex flex-col"
             >
+              <?php if (\Illuminate\Support\Facades\Blade::check('role', 'super_admin')): ?>
               <a href="<?php echo e(route('dashboard')); ?>" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+              <?php endif; ?>
+
               <a href="<?php echo e(route('cart.index')); ?>" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Cart</a>
-              <a href="<?php echo e(route('transactions.order')); ?>" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Order</a>
+              <a href="<?php echo e(route('front.orders')); ?>" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Order</a>
               <form method="POST" action="<?php echo e(route('logout')); ?>" class="w-full">
                 <?php echo csrf_field(); ?>
                 <button type="submit" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>

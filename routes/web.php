@@ -25,6 +25,7 @@ Route::prefix('about')->name('front.')->group(function () {
 Route::get('/contact', [FrontController::class, 'contact'])->name('front.contact');
 
 Route::post('/notification', [TransactionController::class, 'notificationHandler']);
+Route::get('/success', [FrontController::class, 'success'])->name('front.success');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -46,8 +47,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/payment', [TransactionController::class, 'payment'])->name('transactions.payment');
 
-    // User Transaction
-    Route::get('/order', [TransactionController::class, 'order'])->name('transactions.order');
+    Route::get('/orders', [TransactionController::class, 'order'])->name('front.orders');
 
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::middleware('can:manage statistics')->group(function () {

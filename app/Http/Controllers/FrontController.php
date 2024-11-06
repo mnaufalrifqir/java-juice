@@ -42,4 +42,9 @@ class FrontController extends Controller
     {
         return view('front.checkout');
     }
+
+    public function success()
+    {
+        return view('front.success');
+    }
 }

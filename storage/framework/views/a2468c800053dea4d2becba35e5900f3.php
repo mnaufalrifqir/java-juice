@@ -155,9 +155,8 @@
 <?php endif; ?>
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startPush('after-scripts'); ?>
-    <script src="https://app.midtrans.com/snap/snap.js" data-client-key="<?php echo e(env('MIDTRANS_CLIENT_KEY')); ?>"></script>
+<?php $__env->startPush('before-scripts'); ?>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?php echo e(env('MIDTRANS_CLIENT_KEY')); ?>"></script>
     <script src="<?php echo e(asset('js/payment.js')); ?>"></script>
 <?php $__env->stopPush(); ?>
-
 <?php echo $__env->make('front.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Project\Backend\Laravel\java-juice\resources\views/front/checkout.blade.php ENDPATH**/ ?>

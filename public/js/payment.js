@@ -146,14 +146,23 @@ document.getElementById("pay-button").addEventListener("click", function () {
     })
         .then((response) => response.json())
         .then((result) => {
-            if (result.redirect) {
-                window.location.href = result.redirect;
-            } else {
-                console.error("Error: Payment URL not received.");
-                alert("Failed to get payment URL. Please try again.");
-            }
+            console.log(result);
+            window.snap.pay(result.snap_token, {
+                onSuccess: function () {
+                    window.location.href = "/success";
+                },
+                onPending: function () {
+                    window.location.href = "/orders";
+                },
+                onError: function () {
+                    window.location.href = "/orders";
+                },
+                onClose: function () {
+                    window.location.href = "/orders";
+                }
+            });
         })
         .catch((error) => console.error("Error:", error));
 });
-
+    
 
