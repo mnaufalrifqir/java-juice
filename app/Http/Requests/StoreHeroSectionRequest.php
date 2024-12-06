@@ -11,7 +11,7 @@ class StoreHeroSectionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreHeroSectionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'isPrimary' => 'required|boolean',
         ];
     }
 }

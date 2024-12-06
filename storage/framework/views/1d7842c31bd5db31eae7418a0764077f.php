@@ -14,38 +14,87 @@
                 <?php echo e(__('Manage Statistics')); ?>
 
             </h2>
-            <a href=" " class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+            <a href="<?php echo e(route('admin.statistics.create')); ?>" class="font-bold py-2 px-6 bg-white text-gray-800 border rounded-full">
                 Add New
             </a>
         </div>
      <?php $__env->endSlot(); ?>
-    
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-10 flex flex-col gap-y-5">
- 
-                <div class="item-card flex flex-row justify-between items-center">
-                    <div class="flex flex-row items-center gap-x-3">
-                        <img src=" " alt="" class="rounded-2xl object-cover w-[90px] h-[90px]">
-                        <div class="flex flex-col">
-                            <h3 class="text-indigo-950 text-xl font-bold">asdsadasd</h3>
-                        </div>
-                    </div> 
-                    <div  class="hidden md:flex flex-col">
-                        <p class="text-slate-500 text-sm">Date</p>
-                        <h3 class="text-indigo-950 text-xl font-bold">asdasdsad}</h3>
-                    </div>
-                    <div class="hidden md:flex flex-row items-center gap-x-3">
-                        <a href=" " class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                            Edit
-                        </a>
-                        <form action=" " method="POST"> 
-                            <button type="submit" class="font-bold py-4 px-6 bg-red-700 text-white rounded-full">
-                                Delete
-                            </button>
-                        </form>
-                    </div>
-                </div> 
+            <?php if(session('success')): ?>
+                <div class="mb-4 p-4 bg-green-100 text-green-800 border border-green-300 rounded-lg">
+                    <?php echo e(session('success')); ?>
+
+                </div>
+            <?php endif; ?>
+
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <table class="min-w-full bg-white">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">ID</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Title</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Description</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Icon</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $__empty_1 = true; $__currentLoopData = $statistics; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $statistic): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                            <tr>
+                                <td class="py-2 px-4 border-b text-center"><?php echo e($statistic->id); ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?php echo e($statistic->title); ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?php echo e($statistic->description); ?></td>
+                                <td class="py-2 px-4 border-b text-center">
+                                    <img src="<?php echo e($statistic->icon); ?>" alt="Icon" class="h-10 mx-auto">
+                                </td>
+                                <td class="py-2 px-4 border-b">
+                                    <div class="flex justify-center items-center space-x-4">
+                                        <span title="Edit">
+                                            <a href="<?php echo e(route('admin.statistics.edit', $statistic->id)); ?>">
+                                                <ion-icon name="create-outline" class="text-2xl"></ion-icon>
+                                            </a>
+                                        </span>
+                                        <span title="Delete">
+                                            <form action="<?php echo e(route('admin.statistics.destroy', $statistic->id)); ?>" method="POST" onsubmit="return confirm('Are you sure you want to delete this statistic?');">
+                                                <?php echo csrf_field(); ?>
+                                                <?php echo method_field('DELETE'); ?>
+                                                <button type="submit" title="Delete" class="focus:outline-none">
+                                                    <ion-icon name="trash-outline" class="text-2xl text-red-500"></ion-icon>
+                                                </button>
+                                            </form>
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                            <tr>
+                                <td colspan="5" class="py-3 text-center bg-red-500 text-white">
+                                    No statistics found
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+                <div class="bg-gray-50 px-4 py-2 flex justify-between items-center">
+                    <?php if($statistics->onFirstPage()): ?>
+                        <span></span>
+                    <?php else: ?>
+                        <a href="<?php echo e($statistics->previousPageUrl()); ?>" class="text-gray-500 hover:underline">Previous</a>
+                    <?php endif; ?>
+
+                    <span class="text-gray-500">
+                        Showing <?php echo e($statistics->firstItem()); ?> - <?php echo e($statistics->lastItem()); ?> of <?php echo e($statistics->total()); ?>
+
+                    </span>
+
+                    <?php if($statistics->hasMorePages()): ?>
+                        <a href="<?php echo e($statistics->nextPageUrl()); ?>" class="text-gray-500 hover:underline">Next</a>
+                    <?php else: ?>
+                        <span></span>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>

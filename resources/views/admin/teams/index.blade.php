@@ -4,39 +4,85 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Manage Teams') }}
             </h2>
-            <a href=" " class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+            <a href="{{ route('admin.teams.create') }}" class="font-bold py-2 px-6 bg-white text-gray-800 border rounded-full">
                 Add New
             </a>
         </div>
     </x-slot>
-    
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-10 flex flex-col gap-y-5">
+            @if (session('success'))
+                <div class="mb-4 p-4 bg-green-100 text-green-800 border border-green-300 rounded-lg">
+                    {{ session('success') }}
+                </div>
+            @endif
 
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <table class="min-w-full bg-white">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">ID</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Name</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Image</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Occupation</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($teams as $team)
+                            <tr>
+                                <td class="py-2 px-4 border-b text-center">{{ $team->id }}</td>
+                                <td class="py-2 px-4 border-b text-center">{{ $team->name }}</td>
+                                <td class="py-2 px-4 border-b text-center">
+                                    <img src="{{ asset('storage/' . $team->image) }}" alt="{{ $team->name }}" class="h-10 mx-auto rounded-full">
+                                </td>
+                                <td class="py-2 px-4 border-b text-center">{{ $team->occupation }}</td>
+                                <td class="py-2 px-4 border-b">
+                                    <div class="flex justify-center items-center space-x-4">
+                                        <span title="Edit">
+                                            <a href="{{ route('admin.teams.edit', $team->id) }}">
+                                                <ion-icon name="create-outline" class="text-2xl"></ion-icon>
+                                            </a>
+                                        </span>
+                                        <span title="Delete">
+                                            <form action="{{ route('admin.teams.destroy', $team->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this team member?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" title="Delete" class="focus:outline-none">
+                                                    <ion-icon name="trash-outline" class="text-2xl text-red-500"></ion-icon>
+                                                </button>
+                                            </form>
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="py-3 text-center bg-red-500 text-white">
+                                    No team members found
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+                <div class="bg-gray-50 px-4 py-2 flex justify-between items-center">
+                    @if($teams->onFirstPage())
+                        <span></span>
+                    @else
+                        <a href="{{ $teams->previousPageUrl() }}" class="text-gray-500 hover:underline">Previous</a>
+                    @endif
 
-                <div class="item-card flex flex-row justify-between items-center">
-                    <div class="flex flex-row items-center gap-x-3">
-                        <img src=" " alt="" class="rounded-2xl object-cover w-[90px] h-[90px]">
-                        <div class="flex flex-col">
-                            <h3 class="text-indigo-950 text-xl font-bold">asdasd</h3>
-                        </div>
-                    </div> 
-                    <div  class="hidden md:flex flex-col">
-                        <p class="text-slate-500 text-sm">Location</p>
-                        <h3 class="text-indigo-950 text-xl font-bold">qweqweqwe</h3>
-                    </div>
-                    <div class="hidden md:flex flex-row items-center gap-x-3">
-                        <a href=" " class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                            Edit
-                        </a>
-                        <form action=" " method="POST"> 
-                            <button type="submit" class="font-bold py-4 px-6 bg-red-700 text-white rounded-full">
-                                Delete
-                            </button>
-                        </form>
-                    </div>
-                </div> 
+                    <span class="text-gray-500">
+                        Showing {{ $teams->firstItem() }} - {{ $teams->lastItem() }} of {{ $teams->total() }}
+                    </span>
+
+                    @if($teams->hasMorePages())
+                        <a href="{{ $teams->nextPageUrl() }}" class="text-gray-500 hover:underline">Next</a>
+                    @else
+                        <span></span>
+                    @endif
+                </div>
             </div>
         </div>
     </div>

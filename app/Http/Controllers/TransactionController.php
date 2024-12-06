@@ -61,7 +61,21 @@ class TransactionController extends Controller
     public function order()
     {
         $transactions = Transaction::where('user_id', auth()->id())->orderByDesc('created_at')->paginate(10);
-        return view('front.orders', compact('transactions'));
+        return view('front.orders.index', compact('transactions'));
+    }
+
+    /**
+     * Display the order details page.
+     */
+    public function details($transactionId)
+    {
+        $transaction = Transaction::findOrFail($transactionId);
+
+        if ($transaction->user_id != auth()->id()) {
+            return redirect()->route('front.orders.index')->with('error', 'You are not authorized to view this order');
+        }
+
+        return view('front.orders.show', compact('transaction'));
     }
 
     /**
@@ -158,7 +172,7 @@ class TransactionController extends Controller
                 'shipping_status' => 'pending',
                 'payment_url' => '',
                 'snap_token' => '',
-                'order_id' => uniqid(),
+                'order_id' => uuid(),
                 'user_id' => auth()->id(),
             ]);
 
@@ -218,7 +232,6 @@ class TransactionController extends Controller
         ]);
     }
 
-    // Handle notification from Midtrans
     public function notificationHandler(Request $request)
     {
         Config::$serverKey = config('midtrans.server_key');
@@ -226,14 +239,9 @@ class TransactionController extends Controller
         Config::$isSanitized = config('midtrans.is_sanitized');
         Config::$is3ds = config('midtrans.is_3ds');
 
-        // Log the incoming request payload for debugging
-        \Log::info('Midtrans Notification Payload:', $request->all());
-
         try {
             $notification = new Notification();
         } catch (\Exception $e) {
-            \Log::error('Midtrans Notification Error: ' . $e->getMessage());
-
             return response()->json([
                 'status' => 'error',
                 'message' => 'Invalid notification: ' . $e->getMessage(),
@@ -248,16 +256,11 @@ class TransactionController extends Controller
         $transaction = Transaction::where('order_id', $orderId)->first();
 
         if (!$transaction) {
-            \Log::error("Order ID $orderId not found in transactions");
-
             return response()->json([
                 'status' => 'error',
                 'message' => 'Order ID not found',
             ], 404);
         }
-
-        // Log the transaction status for debugging
-        \Log::info("Transaction Status: $transactionStatus, Payment Type: $paymentType, Fraud Status: $fraudStatus, Order ID: $orderId");
 
         if ($transactionStatus == 'capture') {
             if ($paymentType == 'credit_card') {
@@ -278,8 +281,6 @@ class TransactionController extends Controller
         } elseif ($transactionStatus == 'cancel') {
             $transaction->update(['payment_status' => 'failed']);
         }
-
-        \Log::info("Notification handled successfully for Order ID: $orderId");
 
         return response()->json([
             'status' => 'success',

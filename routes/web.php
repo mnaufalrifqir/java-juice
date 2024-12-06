@@ -47,7 +47,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/payment', [TransactionController::class, 'payment'])->name('transactions.payment');
 
-    Route::get('/orders', [TransactionController::class, 'order'])->name('front.orders');
+    Route::get('/orders', [TransactionController::class, 'order'])->name('front.orders.index');
+    Route::get('/orders/{transaction_id}', [TransactionController::class, 'details'])->name('front.orders.show');
 
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::middleware('can:manage statistics')->group(function () {
@@ -67,13 +68,13 @@ Route::middleware('auth')->group(function () {
         });
     
         Route::middleware('can:manage hero sections')->group(function () {
+            Route::put('/hero_sections/{id}/set-primary', [HeroSectionController::class, 'setPrimary'])->name('hero_sections.setPrimary');
             Route::resource('hero_sections', HeroSectionController::class);
         });
 
-        // Route::middleware('can:manage transactions')->group(function () {
-        //     Route::get('transactions', [TransactionController::class, 'index'])->name('transactions.index');
-        //     Route::get('transactions/{transaction_id}', [TransactionController::class, 'show'])->name('transactions.show');
-        // });
+        Route::middleware('can:manage transactions')->group(function () {
+            Route::resource('transactions', TransactionController::class);
+        });
 
         Route::middleware('can:manage categories')->group(function () {
             Route::resource('categories', CategoryController::class);

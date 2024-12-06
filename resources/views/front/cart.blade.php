@@ -2,7 +2,7 @@
 @section('content')
     <x-navbar/>
     <!-- Main Content -->
-    <main class="bg-gray-50 py-10">
+    <main class="bg-gray-50 py-10 min-h-screen">
         <div class="container mx-auto px-4 py-8">
             <div class="flex flex-col lg:flex-row lg:space-x-8">
                 <!-- Card untuk Cart Items -->

@@ -6,6 +6,8 @@ use App\Models\HeroSection;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreHeroSectionRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
 
 class HeroSectionController extends Controller
 {
@@ -14,18 +16,19 @@ class HeroSectionController extends Controller
      */
     public function index()
     {
-        //
-        // $hero_sections = HeroSection::orderByDesc('id')->paginate(10);
-        // return view('admin.hero_sections.index', compact('hero_sections'));
-        return view('admin.hero_sections.index');
+        $hero_sections = HeroSection::orderByDesc('isPrimary')
+                                    ->orderBy('id')
+                                    ->paginate(10);
+
+        return view('admin.hero_sections.index', compact('hero_sections'));
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
         return view('admin.hero_sections.create');
     }
 
@@ -34,20 +37,24 @@ class HeroSectionController extends Controller
      */
     public function store(StoreHeroSectionRequest $request)
     {
-        //
         DB::transaction(function () use ($request) {
             $validated = $request->validated();
 
-            if ($request->hasFile('banner')) {
-                $bannerPath = $request->file('banner')->store('banners', 'public');
-                $validated['banner'] = $bannerPath;
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('hero_sections', 'public');
+                $validated['image'] = $imagePath;
             }
 
-            $newDataRecord = HeroSection::create($validated);
+            if (isset($validated['isPrimary']) && $validated['isPrimary'] === "1") {
+                HeroSection::query()->update(['isPrimary' => false]);
+            }
+
+            HeroSection::create($validated);
         });
 
-        return redirect()->route('admin.hero_sections.index');
+        return redirect()->route('admin.hero_sections.index')->with('success', 'Hero section created successfully.');
     }
+
 
     /**
      * Display the specified resource.
@@ -62,7 +69,6 @@ class HeroSectionController extends Controller
      */
     public function edit(HeroSection $hero_section)
     {
-        //
         return view('admin.hero_sections.edit', compact('hero_section'));
     }
 
@@ -79,11 +85,28 @@ class HeroSectionController extends Controller
      */
     public function destroy(HeroSection $hero_section)
     {
-        //
         DB::transaction(function () use ($hero_section) {
+            if ($hero_section->image) {
+                Storage::disk('public')->delete($hero_section->image);
+            }
+            
             $hero_section->delete();
         });
 
-        return redirect()->route('admin.hero_sections.index');
+        return redirect()->route('admin.hero_sections.index')->with('success', 'Image deleted successfully.');
     }
+
+    public function setPrimary($id)
+    {
+        DB::transaction(function () use ($id) {
+            HeroSection::query()->update(['isPrimary' => false]);
+
+            $heroSection = HeroSection::findOrFail($id);
+            $heroSection->isPrimary = true;
+            $heroSection->save();
+        });
+
+        return redirect()->route('admin.hero_sections.index')->with('success', 'Hero section set as primary successfully.');
+    }
+
 }

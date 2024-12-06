@@ -32,7 +32,7 @@
 
         <!-- Order Cards -->
         <?php $__currentLoopData = $transactions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $transaction): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <a href="<?php echo e(route('front.orders.show', $transaction->id)); ?>" class="block bg-white p-6 rounded-lg shadow mb-6 hover:bg-gray-100 transition">
                 <div class="flex justify-between items-center mb-4">
                     <div class="flex items-center">
                         <?php
@@ -70,7 +70,7 @@
                         </div>
                     <?php endif; ?>
                 </div>
-            </div>
+            </a>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
     <?php if (isset($component)) { $__componentOriginal8a8716efb3c62a45938aca52e78e0322 = $component; } ?>
@@ -95,4 +95,4 @@
 <?php endif; ?>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('front.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Project\Backend\Laravel\java-juice\resources\views/front/orders.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('front.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Project\Backend\Laravel\java-juice\resources\views/front/orders/index.blade.php ENDPATH**/ ?>

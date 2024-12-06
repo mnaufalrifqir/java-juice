@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\OurTeam;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreTeamRequest;
+use App\Http\Requests\UpdateTeamRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class OurTeamController extends Controller
 {
@@ -14,8 +16,7 @@ class OurTeamController extends Controller
      */
     public function index()
     {
-        //
-        $teams = OurTeam::orderByDesc('id')->paginate(10);
+        $teams = OurTeam::orderBy('id')->paginate(10);
         return view('admin.teams.index', compact('teams'));
     }
 
@@ -24,7 +25,6 @@ class OurTeamController extends Controller
      */
     public function create()
     {
-        //
         return view('admin.teams.create');
     }
 
@@ -33,28 +33,18 @@ class OurTeamController extends Controller
      */
     public function store(StoreTeamRequest $request)
     {
-        //
         DB::transaction(function () use ($request) {
             $validated = $request->validated();
 
-            if ($request->hasFile('avatar')) {
-                $avatarPath = $request->file('avatar')->store('avatars', 'public');
-                $validated['avatar'] = $avatarPath;
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('teams', 'public');
+                $validated['image'] = $imagePath;
             }
 
-            $newDataRecord = OurTeam::create($validated);
+            OurTeam::create($validated);
         });
 
-        return redirect()->route('admin.teams.index');
-        
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(OurTeam $ourTeam)
-    {
-        //
+        return redirect()->route('admin.teams.index')->with('success', 'Team member created successfully.');
     }
 
     /**
@@ -62,16 +52,30 @@ class OurTeamController extends Controller
      */
     public function edit(OurTeam $team)
     {
-        //
         return view('admin.teams.edit', compact('team'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, OurTeam $ourTeam)
+    public function update(UpdateTeamRequest $request, OurTeam $team)
     {
-        //
+        DB::transaction(function () use ($request, $team) {
+            $validated = $request->validated();
+
+            if ($request->hasFile('image')) {
+                if ($team->image) {
+                    Storage::disk('public')->delete($team->image);
+                }
+
+                $imagePath = $request->file('image')->store('teams', 'public');
+                $validated['image'] = $imagePath;
+            }
+
+            $team->update($validated);
+        });
+
+        return redirect()->route('admin.teams.index')->with('success', 'Team member updated successfully.');
     }
 
     /**
@@ -79,11 +83,14 @@ class OurTeamController extends Controller
      */
     public function destroy(OurTeam $team)
     {
-        //
         DB::transaction(function () use ($team) {
+            if ($team->image) {
+                Storage::disk('public')->delete($team->image);
+            }
+
             $team->delete();
         });
 
-        return redirect()->route('admin.teams.index');
+        return redirect()->route('admin.teams.index')->with('success', 'Team member deleted successfully.');
     }
 }

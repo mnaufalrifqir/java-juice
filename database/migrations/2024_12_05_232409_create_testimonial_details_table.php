@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hero_sections', function (Blueprint $table) {
+        Schema::create('testimonial_details', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
-            $table->boolean('isPrimary')->default(false);
-            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hero_sections');
+        Schema::dropIfExists('testimonial_details');
     }
 };

@@ -11,53 +11,56 @@
      <?php $__env->slot('header', null, []); ?> 
         <div class="flex flex-row justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                <?php echo e(__('Manage Teams')); ?>
+                <?php echo e(__('Manage Transactions')); ?>
 
             </h2>
-            <a href="<?php echo e(route('admin.teams.create')); ?>" class="font-bold py-2 px-6 bg-white text-gray-800 border rounded-full">
-                Add New
-            </a>
         </div>
      <?php $__env->endSlot(); ?>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <?php if(session('success')): ?>
-                <div class="mb-4 p-4 bg-green-100 text-green-800 border border-green-300 rounded-lg">
-                    <?php echo e(session('success')); ?>
-
-                </div>
-            <?php endif; ?>
-
             <div class="bg-white shadow rounded-lg overflow-hidden">
                 <table class="min-w-full bg-white">
                     <thead class="bg-gray-50">
                         <tr>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">ID</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Name</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Image</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Occupation</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Customer</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Total</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Payment Status</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Shipping Status</th>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $__empty_1 = true; $__currentLoopData = $teams; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $team): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                        <?php $__empty_1 = true; $__currentLoopData = $transactions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $transaction): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                             <tr>
-                                <td class="py-2 px-4 border-b text-center"><?php echo e($team->id); ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?php echo e($team->name); ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?php echo e($transaction->id); ?></td>
                                 <td class="py-2 px-4 border-b text-center">
-                                    <img src="<?php echo e(asset('storage/' . $team->image)); ?>" alt="<?php echo e($team->name); ?>" class="h-10 mx-auto rounded-full">
+                                    <?php echo e($transaction->first_name); ?> <?php echo e($transaction->last_name); ?>
+
                                 </td>
-                                <td class="py-2 px-4 border-b text-center"><?php echo e($team->occupation); ?></td>
+                                <td class="py-2 px-4 border-b text-center">Rp <?php echo e(number_format($transaction->total, 0, ',', '.')); ?></td>
+                                <td class="py-2 px-4 border-b text-center">
+                                    <span class="<?php echo e($transaction->payment_status === 'Paid' ? 'text-green-500' : 'text-red-500'); ?>">
+                                        <?php echo e(ucfirst($transaction->payment_status)); ?>
+
+                                    </span>
+                                </td>
+                                <td class="py-2 px-4 border-b text-center">
+                                    <span class="<?php echo e($transaction->shipping_status === 'Delivered' ? 'text-green-500' : 'text-yellow-500'); ?>">
+                                        <?php echo e(ucfirst($transaction->shipping_status)); ?>
+
+                                    </span>
+                                </td>
                                 <td class="py-2 px-4 border-b">
                                     <div class="flex justify-center items-center space-x-4">
                                         <span title="Edit">
-                                            <a href="<?php echo e(route('admin.teams.edit', $team->id)); ?>">
+                                            <a href="<?php echo e(route('admin.transactions.edit', $transaction->id)); ?>">
                                                 <ion-icon name="create-outline" class="text-2xl"></ion-icon>
                                             </a>
                                         </span>
                                         <span title="Delete">
-                                            <form action="<?php echo e(route('admin.teams.destroy', $team->id)); ?>" method="POST" onsubmit="return confirm('Are you sure you want to delete this team member?');">
+                                            <form action="<?php echo e(route('admin.transactions.destroy', $transaction->id)); ?>" method="POST" onsubmit="return confirm('Are you sure you want to delete this transaction?');">
                                                 <?php echo csrf_field(); ?>
                                                 <?php echo method_field('DELETE'); ?>
                                                 <button type="submit" title="Delete" class="focus:outline-none">
@@ -70,27 +73,27 @@
                             </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                             <tr>
-                                <td colspan="5" class="py-3 text-center bg-red-500 text-white">
-                                    No team members found
+                                <td colspan="6" class="py-3 text-center bg-red-500 text-white">
+                                    No transactions found
                                 </td>
                             </tr>
                         <?php endif; ?>
                     </tbody>
                 </table>
                 <div class="bg-gray-50 px-4 py-2 flex justify-between items-center">
-                    <?php if($teams->onFirstPage()): ?>
+                    <?php if($transactions->onFirstPage()): ?>
                         <span></span>
                     <?php else: ?>
-                        <a href="<?php echo e($teams->previousPageUrl()); ?>" class="text-gray-500 hover:underline">Previous</a>
+                        <a href="<?php echo e($transactions->previousPageUrl()); ?>" class="text-gray-500 hover:underline">Previous</a>
                     <?php endif; ?>
 
                     <span class="text-gray-500">
-                        Showing <?php echo e($teams->firstItem()); ?> - <?php echo e($teams->lastItem()); ?> of <?php echo e($teams->total()); ?>
+                        Showing <?php echo e($transactions->firstItem()); ?> - <?php echo e($transactions->lastItem()); ?> of <?php echo e($transactions->total()); ?>
 
                     </span>
 
-                    <?php if($teams->hasMorePages()): ?>
-                        <a href="<?php echo e($teams->nextPageUrl()); ?>" class="text-gray-500 hover:underline">Next</a>
+                    <?php if($transactions->hasMorePages()): ?>
+                        <a href="<?php echo e($transactions->nextPageUrl()); ?>" class="text-gray-500 hover:underline">Next</a>
                     <?php else: ?>
                         <span></span>
                     <?php endif; ?>
@@ -108,4 +111,4 @@
 <?php $component = $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
 <?php unset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
 <?php endif; ?>
-<?php /**PATH E:\Project\Backend\Laravel\java-juice\resources\views/admin/teams/index.blade.php ENDPATH**/ ?>
+<?php /**PATH E:\Project\Backend\Laravel\java-juice\resources\views/admin/transactions/index.blade.php ENDPATH**/ ?>

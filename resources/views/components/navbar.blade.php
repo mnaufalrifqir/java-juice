@@ -43,7 +43,7 @@
               @endrole
 
               <a href="{{ route('cart.index') }}" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Cart</a>
-              <a href="{{ route('front.orders') }}" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Order</a>
+              <a href="{{ route('front.orders.index') }}" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Order</a>
               <form method="POST" action="{{ route('logout') }}" class="w-full">
                 @csrf
                 <button type="submit" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>

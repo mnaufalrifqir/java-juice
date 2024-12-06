@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\CompanyStatistic;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreStatisticRequest;
+use App\Http\Requests\UpdateStatisticRequest;
 use Illuminate\Support\Facades\DB;
-
 
 class CompanyStatisticController extends Controller
 {
@@ -15,9 +14,8 @@ class CompanyStatisticController extends Controller
      */
     public function index()
     {
-        // $statistics = CompanyStatistic::orderByDesc('id')->paginate(10);
-        // return view('admin.statistics.index', compact('statistics'));
-        return view ('admin.statistics.index');
+        $statistics = CompanyStatistic::orderBy('id')->paginate(10);
+        return view('admin.statistics.index', compact('statistics'));
     }
 
     /**
@@ -25,7 +23,6 @@ class CompanyStatisticController extends Controller
      */
     public function create()
     {
-        //
         return view('admin.statistics.create');
     }
 
@@ -34,27 +31,12 @@ class CompanyStatisticController extends Controller
      */
     public function store(StoreStatisticRequest $request)
     {
-        //
         DB::transaction(function () use ($request) {
             $validated = $request->validated();
-
-            if ($request->hasFile('icon')) {
-                $iconPath = $request->file('icon')->store('icons', 'public');
-                $validated['icon'] = $iconPath;
-            }
-
-            $newDataRecord = CompanyStatistic::create($validated);
+            CompanyStatistic::create($validated);
         });
 
-        return redirect()->route('admin.statistics.index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(CompanyStatistic $companyStatistic)
-    {
-        //
+        return redirect()->route('admin.statistics.index')->with('success', 'Statistic created successfully.');
     }
 
     /**
@@ -62,17 +44,20 @@ class CompanyStatisticController extends Controller
      */
     public function edit(CompanyStatistic $statistic)
     {
-        //
         return view('admin.statistics.edit', compact('statistic'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CompanyStatistic $statistic)
+    public function update(UpdateStatisticRequest $request, CompanyStatistic $statistic)
     {
-        //
+        DB::transaction(function () use ($request, $statistic) {
+            $validated = $request->validated();
+            $statistic->update($validated);
+        });
 
+        return redirect()->route('admin.statistics.index')->with('success', 'Statistic updated successfully.');
     }
 
     /**
@@ -80,11 +65,8 @@ class CompanyStatisticController extends Controller
      */
     public function destroy(CompanyStatistic $statistic)
     {
-        //
-        DB::transaction(function () use ($statistic) {
-            $statistic->delete();
-        });
+        $statistic->delete();
 
-        return redirect()->route('admin.statistics.index');
+        return redirect()->route('admin.statistics.index')->with('success', 'Statistic deleted successfully.');
     }
 }
