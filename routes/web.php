@@ -50,6 +50,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders', [TransactionController::class, 'order'])->name('front.orders.index');
     Route::get('/orders/{transaction_id}', [TransactionController::class, 'details'])->name('front.orders.show');
 
+    Route::get('/orders/{transaction_id}/review', [TestimonialController::class, 'create'])->name('front.review.create');
+    Route::post('/orders/{transaction_id}/review', [TestimonialController::class, 'store'])->name('front.review.store');
+
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::middleware('can:manage statistics')->group(function () {
             Route::resource('statistics', CompanyStatisticController::class);
@@ -60,7 +63,8 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::middleware('can:manage testimonials')->group(function () {
-            Route::resource('testimonials', TestimonialController::class);
+            Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
+            
         });
     
         Route::middleware('can:manage teams')->group(function () {

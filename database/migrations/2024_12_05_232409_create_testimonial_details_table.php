@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('testimonial_details', function (Blueprint $table) {
             $table->id();
+            $table->string('comment');
+            $table->float('rating');
+            $table->foreignId('testimonial_id')->constrained()->onDelete('cascade');
+            $table->foreignId('details_transaction_id')->constrained()->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

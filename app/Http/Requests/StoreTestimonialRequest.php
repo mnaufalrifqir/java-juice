@@ -11,7 +11,7 @@ class StoreTestimonialRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StoreTestimonialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'transaction.rating' => 'required|integer|min:1|max:5',
+            'transaction.comment' => 'required|string|max:255',
+            'products.*.details_transaction_id' => 'required|exists:details_transactions,id',
+            'products.*.rating' => 'required|integer|min:1|max:5',
+            'products.*.comment' => 'required|string|max:255',
         ];
     }
 }

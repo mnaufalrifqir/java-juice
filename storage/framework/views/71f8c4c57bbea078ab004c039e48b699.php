@@ -1,1 +1,0 @@
-<?php /**PATH E:\Project\Backend\Laravel\java-juice\resources\views/front/team.blade.php ENDPATH**/ ?>

@@ -70,10 +70,6 @@
                         </x-dropdown>
                     </div>
 
-                    <x-nav-link :href="route('admin.testimonials.index')" :active="request()->routeIs('admin.testimonials.index')">
-                        {{ __('Testimonials') }}
-                    </x-nav-link>
-
                     <x-nav-link :href="route('admin.transactions.index')" :active="request()->routeIs('admin.transactions.index')">
                         {{ __('Transactions') }}
                     </x-nav-link>

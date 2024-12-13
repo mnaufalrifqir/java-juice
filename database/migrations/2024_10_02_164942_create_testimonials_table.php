@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
-            $table->string('message');
+            $table->string('comment');
             $table->float('rating');
             $table->foreignId('transaction_id')->constrained()->onDelete('cascade');
             $table->softDeletes();

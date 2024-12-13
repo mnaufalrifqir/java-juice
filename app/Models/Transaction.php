@@ -25,6 +25,7 @@ class Transaction extends Model
         'total',
         'payment_status',
         'shipping_status',
+        'review_status',
         'payment_url',
         'snap_token',
         'order_id',
@@ -39,5 +40,10 @@ class Transaction extends Model
     public function detailsTransaction()
     {
         return $this->hasMany(DetailsTransaction::class, 'transaction_id', 'id');
+    }
+
+    public function testimonial()
+    {
+        return $this->hasOne(Testimonial::class);
     }
 }

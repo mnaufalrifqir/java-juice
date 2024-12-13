@@ -5,9 +5,15 @@
     <main class="container mx-auto my-10">
         <div class="bg-white p-10 rounded-lg shadow-md">
             <div class="text-center mb-6">
-                <i class="fas fa-check-circle text-green-500 text-4xl"></i>
-                <h1 class="text-2xl font-semibold mt-2">Thanks for your order!</h1>
-                <p class="text-gray-600">The order confirmation has been sent to {{ $transaction->customer_email }}</p>
+                @if ($transaction->payment_status == 'pending')
+                    <i class="fas fa-exclamation-circle text-red-500 text-4xl"></i>
+                    <h1 class="text-2xl font-semibold mt-2 text-red-500">Payment Pending</h1>
+                    <p class="text-gray-600 mt-2">Please complete your payment to process your order.</p>
+                @else
+                    <i class="fas fa-check-circle text-green-500 text-4xl"></i>
+                    <h1 class="text-2xl font-semibold mt-2">Thanks for your order!</h1>
+                    <p class="text-gray-600 mt-2">Thank you for shopping with us. Your order is being processed. Please wait until it arrives, and don't forget to give us a rating!</p>
+                @endif
             </div>
             
             <div class="space-y-6">
@@ -21,7 +27,6 @@
                 <div class="border-t border-gray-200 pt-4">
                     <h2 class="font-semibold text-gray-700">Shipping Method</h2>
                     <p class="text-gray-600">{{ $transaction->courier }}</p>
-                    <a href="#" class="text-blue-500 underline">TRACK ORDER</a>
                 </div>
 
                 <!-- Order Items -->
@@ -56,12 +61,13 @@
                     </div>
                 </div>
 
-                @if ($transaction->payment_status == 'pending')
+                <div class="flex justify-center space-x-4 mt-6">
+                @if ($transaction->payment_status == 'Pending')
                     <button id="pay-button" class="w-full bg-orange-500 text-white font-bold py-2 rounded-md">Pay Now!</button>
+                @else
+                    <a href="{{ route('front.review.create', ['transaction_id' => $transaction->id]) }}" class="bg-black text-white py-3 px-6 rounded-md">Rate Now</a>
                 @endif
-                <!-- Continue Shopping Button -->
-                <div class="text-center mt-6">
-                    <a href="{{ route('front.product') }}" class="bg-black text-white py-3 px-6 rounded-full">Continue shopping</a>
+                    <a href="{{ route('front.product') }}" class="bg-black text-white py-3 px-6 rounded-md">Continue Shopping</a>
                 </div>
             </div>
         </div>

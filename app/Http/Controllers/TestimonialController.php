@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\ProjectClient;
 use App\Http\Requests\StoreTestimonialRequest;
 use Illuminate\Support\Facades\DB;
+use App\Models\TestimonialDetails;
+use App\Models\Transaction;
 
 class TestimonialController extends Controller
 {
@@ -23,31 +25,38 @@ class TestimonialController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($transaction_id)
     {
-        //
-        $clients = ProjectClient::orderByDesc('id')->get();
-        return view('admin.testimonials.create', compact('clients'));
+        $transaction = Transaction::with(['detailsTransaction.product'])->findOrFail($transaction_id);
+
+        return view('front.review.create', compact('transaction'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTestimonialRequest $request)
+    public function store(StoreTestimonialRequest $request, $transaction_id)
     {
-        //
-        DB::transaction(function () use ($request) {
+        DB::transaction(function () use ($request, $transaction_id) {
             $validated = $request->validated();
 
-            if ($request->hasFile('thumbnail')) {
-                $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
-                $validated['thumbnail'] = $thumbnailPath;
-            }
+            $testimonial = Testimonial::create([
+                'transaction_id' => $transaction_id,
+                'rating' => $validated['transaction']['rating'],
+                'comment' => $validated['transaction']['comment'],
+            ]);
 
-            $newDataRecord = Testimonial::create($validated);
+            foreach ($validated['products'] as $productId => $feedback) {
+                TestimonialDetails::create([
+                    'testimonial_id' => $testimonial->id,
+                    'details_transaction_id' => $feedback['details_transaction_id'],
+                    'rating' => $feedback['rating'],
+                    'comment' => $feedback['comment'],
+                ]);
+            }
         });
 
-        return redirect()->route('admin.testimonials.index');
+        return redirect()->back()->with('success', 'All feedback submitted successfully!');
     }
 
     /**

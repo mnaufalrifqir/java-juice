@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Midtrans\Config;
 use Midtrans\Notification;
 use Midtrans\Snap;
+use Illuminate\Support\Str;
 
 class TransactionController extends Controller
 {
@@ -168,11 +169,12 @@ class TransactionController extends Controller
                 'shipping_cost' => $validated['shipping_cost'],
                 'subtotal' => 0,
                 'total' => 0,
-                'payment_status' => 'pending',
-                'shipping_status' => 'pending',
+                'payment_status' => 'Pending',
+                'shipping_status' => 'Pending',
+                'review_status' => false,
                 'payment_url' => '',
                 'snap_token' => '',
-                'order_id' => uuid(),
+                'order_id' => (string) Str::uuid(),
                 'user_id' => auth()->id(),
             ]);
 
@@ -185,7 +187,7 @@ class TransactionController extends Controller
                 ]);
                 $weight += $item->product->weight * $item->quantity;
                 $subtotal += $item->product->price * $item->quantity;
-                $item->delete();
+                // $item->delete();
             }
 
             $total = $validated['shipping_cost'] + $subtotal;
@@ -265,21 +267,21 @@ class TransactionController extends Controller
         if ($transactionStatus == 'capture') {
             if ($paymentType == 'credit_card') {
                 if ($fraudStatus == 'challenge') {
-                    $transaction->update(['payment_status' => 'pending']);
+                    $transaction->update(['payment_status' => 'Pending']);
                 } else {
-                    $transaction->update(['payment_status' => 'success']);
+                    $transaction->update(['payment_status' => 'Success']);  
                 }
             }
         } elseif ($transactionStatus == 'settlement') {
-            $transaction->update(['payment_status' => 'success']);
+            $transaction->update(['payment_status' => 'Success', 'shipping_status' => 'In Progress']);
         } elseif ($transactionStatus == 'pending') {
-            $transaction->update(['payment_status' => 'pending']);
+            $transaction->update(['payment_status' => 'Pending']);
         } elseif ($transactionStatus == 'deny') {
-            $transaction->update(['payment_status' => 'failed']);
+            $transaction->update(['payment_status' => 'Failed']);
         } elseif ($transactionStatus == 'expire') {
-            $transaction->update(['payment_status' => 'expired']);
+            $transaction->update(['payment_status' => 'Expired']);
         } elseif ($transactionStatus == 'cancel') {
-            $transaction->update(['payment_status' => 'failed']);
+            $transaction->update(['payment_status' => 'Failed']);
         }
 
         return response()->json([

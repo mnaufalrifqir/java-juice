@@ -26,4 +26,9 @@ class DetailsTransaction extends Model
     {
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
+
+    public function testimonialDetails()
+    {
+        return $this->hasOne(TestimonialDetails::class);
+    }
 }

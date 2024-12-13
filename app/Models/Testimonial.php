@@ -12,13 +12,18 @@ class Testimonial extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'message',
+        'comment',
         'rating',
         'transaction_id',
     ];
 
     public function trasanction()
     {
-        return $this->hasOne(Transaction::class, 'transaction_id', 'id');
+        return $this->belongsTo(Transaction::class);
+    }
+
+    public function testimonialDetails()
+    {
+        return $this->hasMany(TestimonialDetails::class);
     }
 }

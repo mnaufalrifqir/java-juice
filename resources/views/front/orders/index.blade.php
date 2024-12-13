@@ -18,17 +18,17 @@
                     <div class="flex items-center">
                         @php
                             $bgColor = match($transaction->shipping_status) {
-                                'pending' => 'bg-gray-200 text-gray-600',
-                                'in progress' => 'bg-orange-200 text-orange-600',
-                                'delivered' => 'bg-green-200 text-green-600',
-                                'cancelled' => 'bg-red-200 text-red-600',
+                                'Pending' => 'bg-gray-200 text-gray-600',
+                                'In Progress' => 'bg-orange-200 text-orange-600',
+                                'Delivered' => 'bg-green-200 text-green-600',
+                                'Cancelled' => 'bg-red-200 text-red-600',
                                 default => 'bg-gray-200 text-gray-600',
                             };
                         @endphp
                         <span class="rounded-full px-3 py-1 text-sm {{ $bgColor }}">
                             {{ $transaction->shipping_status }}
                         </span>
-                        <span class="text-gray-600 ml-4">{{ $transaction->created_at }}</span>
+                        <span class="text-gray-600 ml-4">{{ $transaction->created_at->format('l, F d, Y (T)') }}</span>
                     </div>
                     <i class="fas fa-chevron-right text-gray-600"></i>
                 </div>

@@ -146,7 +146,6 @@ document.getElementById("pay-button").addEventListener("click", function () {
     })
         .then((response) => response.json())
         .then((result) => {
-            console.log(result);
             window.snap.pay(result.snap_token, {
                 onSuccess: function () {
                     window.location.href = "/success";

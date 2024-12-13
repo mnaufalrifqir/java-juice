@@ -24,9 +24,15 @@
     <main class="container mx-auto my-10">
         <div class="bg-white p-10 rounded-lg shadow-md">
             <div class="text-center mb-6">
-                <i class="fas fa-check-circle text-green-500 text-4xl"></i>
-                <h1 class="text-2xl font-semibold mt-2">Thanks for your order!</h1>
-                <p class="text-gray-600">The order confirmation has been sent to <?php echo e($transaction->customer_email); ?></p>
+                <?php if($transaction->payment_status == 'pending'): ?>
+                    <i class="fas fa-exclamation-circle text-red-500 text-4xl"></i>
+                    <h1 class="text-2xl font-semibold mt-2 text-red-500">Payment Pending</h1>
+                    <p class="text-gray-600 mt-2">Please complete your payment to process your order.</p>
+                <?php else: ?>
+                    <i class="fas fa-check-circle text-green-500 text-4xl"></i>
+                    <h1 class="text-2xl font-semibold mt-2">Thanks for your order!</h1>
+                    <p class="text-gray-600 mt-2">Thank you for shopping with us. Your order is being processed. Please wait until it arrives, and don't forget to give us a rating!</p>
+                <?php endif; ?>
             </div>
             
             <div class="space-y-6">
@@ -40,7 +46,6 @@
                 <div class="border-t border-gray-200 pt-4">
                     <h2 class="font-semibold text-gray-700">Shipping Method</h2>
                     <p class="text-gray-600"><?php echo e($transaction->courier); ?></p>
-                    <a href="#" class="text-blue-500 underline">TRACK ORDER</a>
                 </div>
 
                 <!-- Order Items -->
@@ -75,9 +80,13 @@
                     </div>
                 </div>
 
-                <!-- Continue Shopping Button -->
-                <div class="text-center mt-6">
-                    <a href="<?php echo e(route('front.product')); ?>" class="bg-black text-white py-3 px-6 rounded-full">Continue shopping</a>
+                <div class="flex justify-center space-x-4 mt-6">
+                <?php if($transaction->payment_status == 'Pending'): ?>
+                    <button id="pay-button" class="w-full bg-orange-500 text-white font-bold py-2 rounded-md">Pay Now!</button>
+                <?php else: ?>
+                    <a href="<?php echo e(route('front.review.create', ['transaction_id' => $transaction->id])); ?>" class="bg-black text-white py-3 px-6 rounded-md">Rate Now</a>
+                <?php endif; ?>
+                    <a href="<?php echo e(route('front.product')); ?>" class="bg-black text-white py-3 px-6 rounded-md">Continue Shopping</a>
                 </div>
             </div>
         </div>
@@ -105,5 +114,10 @@
 <?php unset($__componentOriginal8a8716efb3c62a45938aca52e78e0322); ?>
 <?php endif; ?>
 <?php $__env->stopSection(); ?>
+
+<?php $__env->startPush('before-scripts'); ?>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?php echo e(env('MIDTRANS_CLIENT_KEY')); ?>"></script>
+    <script src="<?php echo e(asset('js/payment.js')); ?>"></script>
+<?php $__env->stopPush(); ?>
 
 <?php echo $__env->make('front.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Project\Backend\Laravel\java-juice\resources\views/front/orders/show.blade.php ENDPATH**/ ?>

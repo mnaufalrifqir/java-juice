@@ -14,7 +14,7 @@
             Your transaction has been processed successfully. Thank you for shopping with us!
         </p>
         <div class="space-y-4">
-            <a href="<?php echo e(route('front.orders')); ?>" class="bg-green-500 text-white py-2 px-4 rounded">My Order</a>
+            <a href="<?php echo e(route('front.orders.index')); ?>" class="bg-green-500 text-white py-2 px-4 rounded">My Order</a>
             <a href="<?php echo e(route('front.product')); ?>" class="bg-gray-300 text-gray-600 py-2 px-4 rounded">Go To Shopping</a>
         </div>
     </div>
