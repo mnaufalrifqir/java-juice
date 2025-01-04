@@ -22,8 +22,10 @@
                         <p class="mt-2 text-gray-600"><strong>{{ __('Description:') }}</strong> {{ $product->description }}</p>
                         <p class="mt-2 text-gray-600"><strong>{{ __('Weight:') }}</strong> {{ $product->weight }} gram</p>
                         <p class="mt-2 text-gray-600"><strong>{{ __('Price:') }}</strong> Rp. {{ number_format($product->price, 2, ',', '.') }}</p>
-                        <p class="mt-2 text-gray-600"><strong>{{ __('Stock:') }}</strong> {{ $product->stock }} pcs</p>
                         <p class="mt-2 text-gray-600"><strong>{{ __('Discount:') }}</strong> {{ $product->discount }} %</p>
+                        <p class="mt-2 text-gray-600"><strong>{{ __('Current Price:') }}</strong> Rp. {{ number_format($product->current_price, 2, ',', '.') }}</p>
+                        <p class="mt-2 text-gray-600"><strong>{{ __('Stock:') }}</strong> {{ $product->stock }} pcs</p>
+                        <p class="mt-2 text-gray-600"><strong>{{ __('Sold:') }}</strong> {{ $product->sold }} pcs</p>
                     </div>
                     <div class="flex items-center justify-end mt-4">
                         <a href="{{ route('admin.products.edit', $product->id) }}" class="font-bold py-2 px-4 bg-[#FAF3EA] text-gray-800 rounded-full mr-2">

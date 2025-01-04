@@ -18,6 +18,7 @@
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Total</th>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Payment Status</th>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Shipping Status</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Review Status</th>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Actions</th>
                         </tr>
                     </thead>
@@ -30,14 +31,25 @@
                                 </td>
                                 <td class="py-2 px-4 border-b text-center">Rp {{ number_format($transaction->total, 0, ',', '.') }}</td>
                                 <td class="py-2 px-4 border-b text-center">
-                                    <span class="{{ $transaction->payment_status === 'Paid' ? 'text-green-500' : 'text-red-500' }}">
+                                    <span class="{{ $transaction->payment_status === 'Success' ? 'text-green-500' : 'text-red-500' }}">
                                         {{ ucfirst($transaction->payment_status) }}
                                     </span>
                                 </td>
                                 <td class="py-2 px-4 border-b text-center">
-                                    <span class="{{ $transaction->shipping_status === 'Delivered' ? 'text-green-500' : 'text-yellow-500' }}">
+                                    <span class="{{ $transaction->shipping_status === 'Received' ? 'text-green-500' : 'text-yellow-500' }}">
                                         {{ ucfirst($transaction->shipping_status) }}
                                     </span>
+                                </td>
+                                <td class="py-2 px-4 border-b text-center">
+                                    @if ($transaction->review_status === true)
+                                        <span class="text-green-500">
+                                            Reviewed
+                                        </span>
+                                    @else
+                                        <span class="text-red-500">
+                                            Not Reviewed
+                                        </span>
+                                    @endif
                                 </td>
                                 <td class="py-2 px-4 border-b">
                                     <div class="flex justify-center items-center space-x-4">

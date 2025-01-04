@@ -37,7 +37,7 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        //
+        return view('admin.transactions.edit', compact('transaction'));
     }
 
     /**
@@ -45,7 +45,7 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        //
+        return redirect()->route('admin.transactions.index')->with('success', 'Transaction status updated successfully');
     }
 
     /**
@@ -91,7 +91,7 @@ class TransactionController extends Controller
         $totalWeight = 0;
 
         foreach ($cartItems as $item) {
-            $itemAmount = $item->product->price * $item->quantity;
+            $itemAmount = $item->product->current_price * $item->quantity;
             $totalAmount += $itemAmount;
             $totalWeight += $item->product->weight * $item->quantity;
         }
@@ -183,10 +183,10 @@ class TransactionController extends Controller
                 $transaction->detailsTransaction()->create([
                     'product_id' => $item->product_id,
                     'quantity' => $item->quantity,
-                    'total_price' => $item->product->price * $item->quantity,
+                    'total_price' => $item->product->current_price * $item->quantity,
                 ]);
                 $weight += $item->product->weight * $item->quantity;
-                $subtotal += $item->product->price * $item->quantity;
+                $subtotal += $item->product->current_price * $item->quantity;
                 // $item->delete();
             }
 
@@ -262,6 +262,11 @@ class TransactionController extends Controller
                 'status' => 'error',
                 'message' => 'Order ID not found',
             ], 404);
+        }
+
+        foreach ($transaction->detailsTransaction as $detail) {
+            $product = $detail->product;
+            $product->update(['sold' => $product->sold + $detail->quantity, 'stock' => $product->stock - $detail->quantity]);
         }
 
         if ($transactionStatus == 'capture') {

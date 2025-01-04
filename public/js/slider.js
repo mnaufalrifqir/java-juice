@@ -29,13 +29,8 @@ $(".responsive").slick({
                 slidesToScroll: 1,
             },
         },
-        // You can unslick at a given breakpoint now by adding:
-        // settings: "unslick"
-        // instead of a settings object
     ],
 });
-
-$(".single-item").slick();
 
 $(".center").slick({
     centerMode: true,
@@ -61,4 +56,11 @@ $(".center").slick({
             },
         },
     ],
+});
+
+$('.slider').slick({
+    autoplay: true,
+    autoplaySpeed: 2500,
+    dots: true,
+    fade: true,
 });

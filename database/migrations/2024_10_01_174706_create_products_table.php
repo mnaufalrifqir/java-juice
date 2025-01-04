@@ -17,7 +17,9 @@ return new class extends Migration
             $table->text('description');
             $table->float('weight');
             $table->float('price');
+            $table->float('current_price');
             $table->integer('stock');
+            $table->integer('sold')->default(0);
             $table->integer('discount');
             $table->string('image');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');

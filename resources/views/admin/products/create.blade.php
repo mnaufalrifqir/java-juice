@@ -19,12 +19,18 @@
                 <form method="POST" action="{{route('admin.products.store')}}" enctype="multipart/form-data">
                     @csrf
                     <div>
-                        <x-input-label for="name" :value="__('Name')" />
+                        <div class="flex items-center">
+                            <x-input-label for="name" :value="__('Name')" />
+                            <span class="text-red-500">*</span>
+                        </div>
                         <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
                     <div class="mt-4">
-                        <x-input-label for="category" :value="__('Category')" />
+                        <div class="flex items-center">
+                            <x-input-label for="category" :value="__('Category')" />
+                            <span class="text-red-500">*</span>
+                        </div>
                         <select name="category_id" id="category_id" class="py-3 rounded-lg pl-3 w-full bg-gray-50 text-[#9ca3af]">
                             <option value="">Choose Product Category</option>
                             @foreach($categories as $category)
@@ -35,38 +41,57 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="description" :value="__('Description')" />
+                        <div class="flex items-center">
+                            <x-input-label for="description" :value="__('Description')" />
+                            <span class="text-red-500">*</span>
+                        </div>
                         <textarea name="description" id="description" cols="30" rows="5" class="border border-slate-300 rounded-xl w-full"></textarea>
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="weight" :value="__('Weight')" />
+                        <div class="flex items-center">
+                            <x-input-label for="weight" :value="__('Weight (gram)')" />
+                            <span class="text-red-500">*</span>
+                        </div>
                         <x-text-input id="weight" class="block mt-1 w-full" type="text" name="weight" :value="old('weight')" required autofocus autocomplete="weight" />
                         <x-input-error :messages="$errors->get('weight')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="price" :value="__('Price')" />
+                        <div class="flex items-center">
+                            <x-input-label for="price" :value="__('Price (Rupiah)')" />
+                            <span class="text-red-500">*</span>
+                        </div>
                         <x-text-input id="price" class="block mt-1 w-full" type="text" name="price" :value="old('price')" required autofocus autocomplete="price" />
                         <x-input-error :messages="$errors->get('price')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="stock" :value="__('Stock')" />
+                        <div class="flex items-center">
+                            <x-input-label for="stock" :value="__('Stock')" />
+                            <span class="text-red-500">*</span>
+                        </div>
                         <x-text-input id="stock" class="block mt-1 w-full" type="text" name="stock" :value="old('stock')" required autofocus autocomplete="stock" />
                         <x-input-error :messages="$errors->get('stock')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="discount" :value="__('Discount')" />
+                        <div class="flex items-center">
+                            <x-input-label for="discount" :value="__('Discount (%)')" />
+                            <span class="text-red-500">*</span>
+                        </div>
                         <x-text-input id="discount" class="block mt-1 w-full" type="text" name="discount" :value="old('discount')" required autofocus autocomplete="discount" />
                         <x-input-error :messages="$errors->get('discount')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="image" :value="__('Image')" />
+                        <div class="flex items-center">
+                            <x-input-label for="image" :value="__('Image')" />
+                            <span class="text-red-500">*</span>
+                        </div>
                         <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" accept=".jpeg, .jpg, .png" required autofocus autocomplete="image" />
+                        <p class="text-xs text-gray-500 mt-2">Only .jpeg, .jpg, and .png file types are accepted.</p>
                         <x-input-error :messages="$errors->get('image')" class="mt-2" />
                     </div>
 

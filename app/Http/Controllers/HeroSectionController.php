@@ -55,31 +55,6 @@ class HeroSectionController extends Controller
         return redirect()->route('admin.hero_sections.index')->with('success', 'Hero section created successfully.');
     }
 
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(HeroSection $heroSection)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(HeroSection $hero_section)
-    {
-        return view('admin.hero_sections.edit', compact('hero_section'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, HeroSection $heroSection)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      */

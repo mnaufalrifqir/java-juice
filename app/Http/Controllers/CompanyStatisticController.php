@@ -6,6 +6,7 @@ use App\Models\CompanyStatistic;
 use App\Http\Requests\StoreStatisticRequest;
 use App\Http\Requests\UpdateStatisticRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyStatisticController extends Controller
 {
@@ -33,6 +34,12 @@ class CompanyStatisticController extends Controller
     {
         DB::transaction(function () use ($request) {
             $validated = $request->validated();
+
+            if ($request->hasFile('icon')) {
+                $iconPath = $request->file('icon')->store('statistics', 'public');
+                $validated['icon'] = $iconPath;
+            }
+
             CompanyStatistic::create($validated);
         });
 
@@ -54,6 +61,16 @@ class CompanyStatisticController extends Controller
     {
         DB::transaction(function () use ($request, $statistic) {
             $validated = $request->validated();
+
+            if ($request->hasFile('icon')) {
+                if ($statistic->icon) {
+                    Storage::disk('public')->delete($statistic->icon);
+                }
+                
+                $iconPath = $request->file('icon')->store('statistics', 'public');
+                $validated['icon'] = $iconPath;
+            }
+
             $statistic->update($validated);
         });
 

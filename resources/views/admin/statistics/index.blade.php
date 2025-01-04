@@ -36,7 +36,7 @@
                                 <td class="py-2 px-4 border-b text-center">{{ $statistic->title }}</td>
                                 <td class="py-2 px-4 border-b text-center">{{ $statistic->description }}</td>
                                 <td class="py-2 px-4 border-b text-center">
-                                    <img src="{{ $statistic->icon }}" alt="Icon" class="h-10 mx-auto">
+                                    <img src="{{ Storage::url($statistic->icon) }}" alt="Icon" class="h-10 mx-auto">
                                 </td>
                                 <td class="py-2 px-4 border-b">
                                     <div class="flex justify-center items-center space-x-4">

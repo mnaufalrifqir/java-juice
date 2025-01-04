@@ -12,6 +12,12 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            @if (session('success'))
+                <div class="mb-4 p-4 bg-green-100 text-green-800 border border-green-300 rounded-lg">
+                    {{ session('success') }}
+                </div>
+            @endif
+            
             <div class="bg-white shadow rounded-lg overflow-hidden">
                 <table class="min-w-full bg-white">
                     <thead class="bg-gray-50">
@@ -20,9 +26,10 @@
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Image</th>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Name</th>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Category</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Price</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Current Price</th>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Weight</th>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Stock</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Sold</th>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Actions</th>
                         </tr>
                     </thead>
@@ -43,9 +50,10 @@
                                 @else
                                     <td class="py-2 px-4 border-b text-center text-gray-500">{{ __('No category') }}</td>
                                 @endif
-                                <td class="py-2 px-4 border-b text-center">Rp. {{ number_format($product->price, 2, ',', '.') }}</td>
+                                <td class="py-2 px-4 border-b text-center">Rp. {{ number_format($product->current_price, 2, ',', '.') }}</td>
                                 <td class="py-2 px-4 border-b text-center">{{ $product->weight }} gram</td>
                                 <td class="py-2 px-4 border-b text-center">{{ $product->stock }} pcs</td>
+                                <td class="py-2 px-4 border-b text-center">{{ $product->sold }} pcs</td>
                                 <td class="py-2 px-4 border-b">
                                     <div class="flex justify-center items-center space-x-4">
                                         <span title="View">

@@ -11,6 +11,7 @@ use App\Http\Controllers\HeroSectionController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PartnersController;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 
@@ -31,7 +32,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -61,11 +62,6 @@ Route::middleware('auth')->group(function () {
         Route::middleware('can:manage products')->group(function () {
             Route::resource('products', ProductController::class);
         });
-
-        Route::middleware('can:manage testimonials')->group(function () {
-            Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
-            
-        });
     
         Route::middleware('can:manage teams')->group(function () {
             Route::resource('teams', OurTeamController::class);
@@ -82,6 +78,10 @@ Route::middleware('auth')->group(function () {
 
         Route::middleware('can:manage categories')->group(function () {
             Route::resource('categories', CategoryController::class);
+        });
+
+        Route::middleware('can:manage partners')->group(function () {
+            Route::resource('partners', PartnersController::class);
         });
     });
 });

@@ -50,6 +50,7 @@ class TestimonialController extends Controller
                 TestimonialDetails::create([
                     'testimonial_id' => $testimonial->id,
                     'details_transaction_id' => $feedback['details_transaction_id'],
+                    'product_id' => $productId,
                     'rating' => $feedback['rating'],
                     'comment' => $feedback['comment'],
                 ]);

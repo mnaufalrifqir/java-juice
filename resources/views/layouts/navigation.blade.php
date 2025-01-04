@@ -37,6 +37,9 @@
                                 <x-dropdown-link :href="route('admin.statistics.index')">
                                     {{ __('Company Stats') }}
                                 </x-dropdown-link>
+                                <x-dropdown-link :href="route('admin.partners.index')">
+                                    {{ __('Our Partners') }}
+                                </x-dropdown-link>
                             </x-slot>
                         </x-dropdown>
                     </div>

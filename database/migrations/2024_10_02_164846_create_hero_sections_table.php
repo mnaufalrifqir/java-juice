@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('image');
             $table->boolean('isPrimary')->default(false);
-            $table->softDeletes();
             $table->timestamps();
         });
     }

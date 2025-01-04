@@ -21,21 +21,28 @@
                     @method('PUT')
 
                     <div>
-                        <x-input-label for="title" :value="__('Title')" />
+                        <div class="flex items-center">
+                            <x-input-label for="title" :value="__('Title')" />
+                            <span class="text-red-500">*</span>
+                        </div>
                         <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title', $statistic->title)" required autofocus autocomplete="title" />
                         <x-input-error :messages="$errors->get('title')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="description" :value="__('Description')" />
+                        <div class="flex items-center">
+                            <x-input-label for="description" :value="__('Description')" />
+                            <span class="text-red-500">*</span>
+                        </div>
                         <textarea id="description" class="block mt-1 w-full rounded-md shadow-sm border-gray-300" name="description" required>{{ old('description', $statistic->description) }}</textarea>
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
                         <x-input-label for="icon" :value="__('Icon (Upload New Image)')" />
-                        <input id="icon" type="file" name="icon" class="block mt-1 w-full">
-                        <p class="text-sm text-gray-500 mt-2">Current Icon: <img src="{{ $statistic->icon }}" alt="Icon" class="h-10 inline-block"></p>
+                        <x-text-input id="icon" type="file" name="icon" class="block mt-1 w-full" accept=".jpeg, .jpg, .png">
+                        <p class="text-xs text-gray-500 mt-2">Only .jpeg, .jpg, and .png file types are accepted.</p>
+                        <p class="text-sm text-gray-500 mt-2">Current Icon: <img src="{{ Storage::url($statistic->icon) }}" alt="Icon" class="h-10 inline-block"></p>
                         <x-input-error :messages="$errors->get('icon')" class="mt-2" />
                     </div>
 

@@ -23,6 +23,17 @@
     <!-- Main Content -->
     <main class="bg-gray-50 py-10 min-h-screen">
         <div class="container mx-auto px-4 py-8">
+            <?php if(session('success')): ?>
+            <div class="bg-green-500 text-white p-4 rounded mb-4">
+                <?php echo e(session('success')); ?>
+
+            </div>
+            <?php elseif(session('error')): ?>
+            <div class="bg-red-500 text-white p-4 rounded mb-4">
+                <?php echo e(session('error')); ?>
+
+            </div>
+            <?php endif; ?>
             <div class="flex flex-col lg:flex-row lg:space-x-8">
                 <!-- Card untuk Cart Items -->
                 <div class="flex-1 bg-white shadow-md rounded-lg overflow-hidden">
@@ -39,34 +50,34 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $__currentLoopData = $cartItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <tr>
-                                        <td class="py-4 px-4 flex items-center">
-                                            <img
-                                            alt="<?php echo e($item->product->name); ?>"
-                                            src="<?php echo e(Storage::url($item->product->image)); ?>"
-                                            class="h-12 w-12 rounded-md"
-                                            height="50"
-                                            width="50"
-                                            />
-                                            <span class="ml-4 text-gray-700"><?php echo e($item->product->name); ?></span>
-                                        </td>
-                                        <td class="py-4 px-4 text-gray-700">Rp. <?php echo e(number_format($item->product->price, 2)); ?></td>
-                                        <td class="py-4 px-4">
-                                            <div class="flex items-center">
-                                                <form action="<?php echo e(route('cart.updateQuantity', $item->id)); ?>" method="POST">
-                                                    <?php echo csrf_field(); ?>
-                                                    <button type="submit" name="quantity" value="<?php echo e($item->quantity - 1); ?>" class="text-gray-700 border border-gray-300 px-3 py-1" <?php echo e($item->quantity <= 1 ? 'disabled' : ''); ?>>-</button>
-                                                </form>
-                                                <input type="text" name="quantity" value="<?php echo e($item->quantity); ?>" class="w-12 text-center border-t border-b border-gray-300" readonly />
-                                                <form action="<?php echo e(route('cart.updateQuantity', $item->id)); ?>" method="POST">
-                                                    <?php echo csrf_field(); ?>
-                                                    <button type="submit" name="quantity" value="<?php echo e($item->quantity + 1); ?>" class="text-gray-700 border border-gray-300 px-3 py-1">+</button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                        <td class="py-4 px-4 text-gray-700">Rp. <?php echo e(number_format($item->product->price * $item->quantity, 2)); ?></td>
-                                        <td class="py-4 px-4">
+                                <?php $__empty_1 = true; $__currentLoopData = $cartItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                <tr>
+                                    <td class="py-4 px-4 flex items-center">
+                                        <img
+                                        alt="<?php echo e($item->product->name); ?>"
+                                        src="<?php echo e(Storage::url($item->product->image)); ?>"
+                                        class="h-12 w-12 rounded-md"
+                                        height="50"
+                                        width="50"
+                                        />
+                                        <span class="ml-4 text-gray-700"><?php echo e($item->product->name); ?></span>
+                                    </td>
+                                    <td class="py-4 px-4 text-gray-700">Rp. <?php echo e(number_format($item->product->current_price, 2)); ?></td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center">
+                                            <form action="<?php echo e(route('cart.updateQuantity', $item->id)); ?>" method="POST">
+                                                <?php echo csrf_field(); ?>
+                                                <button type="submit" name="quantity" value="<?php echo e($item->quantity - 1); ?>" class="text-gray-700 border border-gray-300 px-3 py-1" <?php echo e($item->quantity <= 1 ? 'disabled' : ''); ?>>-</button>
+                                            </form>
+                                            <input type="text" name="quantity" value="<?php echo e($item->quantity); ?>" class="w-12 text-center border-t border-b border-gray-300" readonly />
+                                            <form action="<?php echo e(route('cart.updateQuantity', $item->id)); ?>" method="POST">
+                                                <?php echo csrf_field(); ?>
+                                                <button type="submit" name="quantity" value="<?php echo e($item->quantity + 1); ?>" class="text-gray-700 border border-gray-300 px-3 py-1">+</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4 text-gray-700">Rp. <?php echo e(number_format($item->product->current_price * $item->quantity, 2)); ?></td>
+                                    <td class="py-4 px-4">
                                         <form action="<?php echo e(route('cart.removeFromCart', $item->id)); ?>" method="POST">
                                             <?php echo csrf_field(); ?>
                                             <?php echo method_field('DELETE'); ?>
@@ -76,7 +87,16 @@
                                         </form>
                                     </td>
                                 </tr>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                <tr>
+                                    <td class="py-4 px-4 text-center" colspan="5">No items in cart</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-4 text-center" colspan="5">
+                                        <a href="<?php echo e(route('front.product')); ?>" class="bg-yellow-500 text-white px-6 py-2 rounded">Shop Now</a>
+                                    </td>
+                                </tr>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>

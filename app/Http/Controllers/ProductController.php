@@ -43,7 +43,18 @@ class ProductController extends Controller
                 $validated['image'] = $imagePath;
             }
 
-            Product::create($validated);
+            Product::create([
+                'name' => $validated['name'],
+                'category_id' => $validated['category_id'],
+                'description' => $validated['description'],
+                'weight' => $validated['weight'],
+                'price' => $validated['price'],
+                'current_price' => $validated['price'] - ($validated['price'] * $validated['discount'] / 100),
+                'stock' => $validated['stock'],
+                'sold' => 0,
+                'discount' => $validated['discount'],
+                'image' => $validated['image'],
+            ]);
         });
 
         return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
@@ -83,7 +94,17 @@ class ProductController extends Controller
                 $validated['image'] = $imagePath;
             }
 
-            $product->update($validated);
+            $product->update([
+                'name' => $validated['name'],
+                'category_id' => $validated['category_id'],
+                'description' => $validated['description'],
+                'weight' => $validated['weight'],
+                'price' => $validated['price'],
+                'current_price' => $validated['price'] - ($validated['price'] * $validated['discount'] / 100),
+                'stock' => $validated['stock'],
+                'discount' => $validated['discount'],
+                'image' => $validated['image'],
+            ]);
         });
 
         return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');

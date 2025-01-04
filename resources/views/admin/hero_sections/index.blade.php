@@ -12,6 +12,12 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            @if (session('success'))
+                <div class="mb-4 p-4 bg-green-100 text-green-800 border border-green-300 rounded-lg">
+                    {{ session('success') }}
+                </div>
+            @endif
+            
             <div class="bg-white shadow rounded-lg overflow-hidden">
                 <table class="min-w-full bg-white">
                     <thead class="bg-gray-50">

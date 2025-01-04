@@ -19,311 +19,131 @@
 <?php $component = $__componentOriginala591787d01fe92c5706972626cdf7231; ?>
 <?php unset($__componentOriginala591787d01fe92c5706972626cdf7231); ?>
 <?php endif; ?>
-  <?php if (isset($component)) { $__componentOriginala038281ce129721dd88a49670137597b = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginala038281ce129721dd88a49670137597b = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.hero-section','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('hero-section'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginala038281ce129721dd88a49670137597b)): ?>
-<?php $attributes = $__attributesOriginala038281ce129721dd88a49670137597b; ?>
-<?php unset($__attributesOriginala038281ce129721dd88a49670137597b); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginala038281ce129721dd88a49670137597b)): ?>
-<?php $component = $__componentOriginala038281ce129721dd88a49670137597b; ?>
-<?php unset($__componentOriginala038281ce129721dd88a49670137597b); ?>
-<?php endif; ?>
-  <div id="BestSeller" class="content w-full flex flex-col gap-[30px] justify-center mt-20">
+  <div class="content">
+    <div class="slider">
+      <?php $__currentLoopData = $hero_sections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $hero_section): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <div>
+          <img src="<?php echo e(Storage::url($hero_section->image)); ?>" alt="Banner Image" class="w-full h-auto">
+        </div>
+      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </div>
+  </div>
+  <div id="BestSeller" class="content w-full flex flex-col gap-[30px] justify-center mt-10">
     <div class="flex items-center text-center justify-center">
       <div class="flex flex-col gap-[14px]">
-        <h2 class="font-bold text-4xl leading-[45px]">Best Seller</h2>
-        <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <h2 class="font-bold text-4xl leading-[45px]">Produk Terlaris</h2>
+        <p>Pilihan Terbaik yang Paling Dicintai oleh Pelanggan!</p>
       </div>
     </div>
     <div class="relative">
       <div id="slider" class="center flex justify-center gap-[100px] overflow-hidden">
-        <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-1.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-2.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-3.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-4.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-5.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex-shrink-0 flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
+        <?php $__currentLoopData = $best_sellers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $best_seller): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <a href="<?php echo e(route('front.details', ['product' => $best_seller->id])); ?>" class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
+            <img src="<?php echo e(Storage::url($best_seller->image)); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
+            <div class="p-4">
+              <h2 class="text-xl font-bold"><?php echo e($best_seller->name); ?></h2>
+              <p class="text-gray-500"><?php echo e($best_seller->category->name); ?></p>
+              <?php if($best_seller->discount): ?>
+                <p class="text-sm text-gray-400 line-through">Rp <?php echo e(number_format($best_seller->price, 0, ',', '.')); ?></p>
+                <p class="text-xl font-bold text-gray-900">Rp <?php echo e(number_format($best_seller->current_price, 0, ',', '.')); ?></p>
+              <?php else: ?>
+                <p class="text-xl font-bold text-gray-900">Rp <?php echo e(number_format($best_seller->price, 0, ',', '.')); ?></p>
+                <br>
+              <?php endif; ?>
+            </div>
+          </a>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </div>
     </div>
   </div>
-  <div id="NewProducts" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
+  <div id="NewProducts" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-10">
     <div class="flex items-center text-center justify-center">
       <div class="flex flex-col gap-[14px]">
-        <h2 class="font-bold text-4xl leading-[45px]">New Products</h2>
-        <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <h2 class="font-bold text-4xl leading-[45px]">Produk Terbaru</h2>
+        <p>Nikmati Sensasi Rasa Baru dari Koleksi Liquid Vape Kami!</p>
       </div>
     </div>
     <div class="relative">
       <div id="slider" class="responsive flex flex-wrap items-center gap-[30px] justify-center">
-        <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-1.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-2.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-3.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-4.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-5.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
+        <?php $__currentLoopData = $new_products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $new_product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <a href="<?php echo e(route('front.details', ['product' => $new_product->id])); ?>" class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
+            <img src="<?php echo e(Storage::url($new_product->image)); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
+            <div class="p-4">
+              <h2 class="text-xl font-bold"><?php echo e($new_product->name); ?></h2>
+              <p class="text-gray-500"><?php echo e($new_product->category->name); ?></p>
+              <?php if($new_product->discount): ?>
+                <p class="text-sm text-gray-400 line-through">Rp <?php echo e(number_format($new_product->price, 0, ',', '.')); ?></p>
+                <p class="text-xl font-bold text-gray-900">Rp <?php echo e(number_format($new_product->current_price, 0, ',', '.')); ?></p>
+              <?php else: ?>
+                <p class="text-xl font-bold text-gray-900">Rp <?php echo e(number_format($new_product->price, 0, ',', '.')); ?></p>
+                <br>
+              <?php endif; ?>
+            </div>
+          </a>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </div>
     </div>
   </div>
-  <div id="Sale" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
+  <div id="Sale" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-10">
     <div class="flex items-center text-center justify-center">
       <div class="flex flex-col gap-[14px]">
-        <h2 class="font-bold text-4xl leading-[45px]">Sale</h2>
-        <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <h2 class="font-bold text-4xl leading-[45px]">Penawaran Spesial</h2>
+        <p>Cita rasa premium, kini lebih terjangkau dari sebelumnya. Jangan sampai ketinggalan!</p>
       </div>
     </div>
     <div class="relative">
       <div id="slider" class="responsive flex flex-wrap items-center gap-[30px] justify-center">
-        <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-1.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-2.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-3.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-4.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-5.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
-        <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="<?php echo e(asset('assets/best-products/product-6.jpg')); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
-        </div>
+        <?php $__currentLoopData = $sale_products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sale_product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <a href="<?php echo e(route('front.details', ['product' => $sale_product->id])); ?>" class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[30px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
+            <img src="<?php echo e(Storage::url($sale_product->image)); ?>" class="object-cover object-center w-full h-full" alt="thumbnails">
+            <div class="p-4">
+              <h2 class="text-xl font-bold"><?php echo e($sale_product->name); ?></h2>
+              <p class="text-gray-500"><?php echo e($sale_product->category->name); ?></p>
+              <p class="text-sm text-gray-400 line-through">Rp <?php echo e(number_format($sale_product->price, 0, ',', '.')); ?></p>
+              <p class="text-xl font-bold text-gray-900">Rp <?php echo e(number_format($sale_product->current_price, 0, ',', '.')); ?></p>
+            </div>
+          </a>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </div>
     </div>
   </div>
-  <div id="OurPartners" class="bg-[#FAF3EA] w-full mt-20">
-    <div class="content mx-auto py-10 px-20">
-      <h2 class="font-bold text-4xl leading-[45px] text-[#3a3a3a] text-center mb-10">Our Partners</h2>
+  <div id="OurPartners" class="bg-[#FAF3EA] w-full mt-10">
+    <div class="container max-w-[1130px] mx-auto py-10">
+      <div class="flex flex-col gap-[14px] items-center text-center mb-10">
+        <h2 class="font-bold text-4xl leading-[45px] text-[#3a3a3a] text-center">Mitra Kami</h2>
+        <p>Bersama Mitra Terpercaya untuk Memberikan Kualitas Terbaik!</p>
+      </div>
       <div class="flex flex-wrap items-center justify-between">
-        <div class="card w-[200px] flex flex-col items-center p-4 text-center">
-            <img src="<?php echo e(asset('assets/partners/adhimix-logo.png')); ?>" class="object-contain w-full h-full" alt="icon">
-        </div>
-        <div class="card w-[200px] flex flex-col items-center p-4 text-center">
-            <img src="<?php echo e(asset('assets/partners/adira-logo.png')); ?>" class="object-contain w-full h-full" alt="icon">
-        </div>
-        <div class="card w-[200px] flex flex-col items-center p-4 text-center">
-            <img src="<?php echo e(asset('assets/partners/holcim-logo.png')); ?>" class="object-contain w-full h-full" alt="icon">
-        </div>
-        <div class="card w-[200px] flex flex-col items-center p-4 text-center">
-            <img src="<?php echo e(asset('assets/partners/mnc-logo.png')); ?>" class="object-contain w-full h-full" alt="icon">
-        </div>
-        <div class="card w-[200px] flex flex-col items-center p-4 text-center">
-          <img src="<?php echo e(asset('assets/partners/telkomsel-logo.png')); ?>" class="object-contain w-full h-full" alt="icon">
-        </div>
+        <?php $__currentLoopData = $partners; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $partner): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <div class="card w-[200px] h-[100px] flex items-center justify-center p-4">
+            <img src="<?php echo e(Storage::url($partner->logo)); ?>" class="object-contain w-full h-full" alt="Partner Logo">
+          </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </div>
     </div>
   </div>
-  <div id="Testimonials" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-20">
+  <div id="Testimonials" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-10">
     <div class="flex justify-between">
       <div class="flex flex-col gap-[14px] items-start p-4">
-        <h2 class="font-bold text-2xl leading-[45px] text-black">Our Customer Feedback</h2>
-        <p class="text-lg">Don't take our word for it. Trust our customers</p>
-      </div>
-      <div class="space-x-2 my-7 hidden sm:block p-4">
-        <button class="px-4 py-2 text-gray-500 bg-gray-200 rounded-lg hover:bg-gray-300">
-          <span class="mr-1"><</span> Previous
-        </button>
-        <button class="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600">
-          Next <span class="ml-1">></span>
-        </button>
-      </div>
-    </div>
-    <div class="relative">
-      <div id="slider" data-slick='{"slidesToScroll": 3}' class="responsive flex flex-wrap items-center justify-between p-[10px]">
-        <div class="card flex flex-col p-4 space-x-4 border rounded-lg shadow-md">
-          <div class="flex items-center mb-2">
-            <img class="w-12 h-12 rounded-full" src="https://via.placeholder.com/48" alt="Customer 1">
-            <div class="ml-3">
-              <h3 class="font-bold text-gray-800">Floyd Miles</h3>
-              <div class="flex">
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-              </div>
-            </div>
-          </div>
-          <p class="text-sm text-gray-500">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
-        </div>
-        <div class="card flex flex-col p-4 mx-auto border rounded-lg shadow-md">
-          <div class="flex items-center mb-2">
-            <img class="w-12 h-12 rounded-full" src="https://via.placeholder.com/48" alt="Customer 2">
-            <div class="ml-3">
-              <h3 class="font-bold text-gray-800">Ronald Richards</h3>
-              <div class="flex">
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-              </div>
-            </div>
-          </div>
-          <p class="text-sm text-gray-500">ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
-        </div>
-        <div class="card flex flex-col p-4 mx-auto border rounded-lg shadow-md">
-          <div class="flex items-center mb-2">
-            <img class="w-12 h-12 rounded-full" src="https://via.placeholder.com/48" alt="Customer 3">
-            <div class="ml-3">
-              <h3 class="font-bold text-gray-800">Savannah Nguyen</h3>
-              <div class="flex">
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-              </div>
-            </div>
-          </div>
-          <p class="text-sm text-gray-500">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
-        </div>
-        <div class="card flex flex-col p-4 mx-auto border rounded-lg shadow-md">
-          <div class="flex items-center mb-2">
-            <img class="w-12 h-12 rounded-full" src="https://via.placeholder.com/48" alt="Customer 1">
-            <div class="ml-3">
-              <h3 class="font-bold text-gray-800">Floyd Miles</h3>
-              <div class="flex">
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-              </div>
-            </div>
-          </div>
-          <p class="text-sm text-gray-500">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
-        </div>
-        <div class="card flex flex-col p-4 mx-auto border rounded-lg shadow-md">
-          <div class="flex items-center mb-2">
-            <img class="w-12 h-12 rounded-full" src="https://via.placeholder.com/48" alt="Customer 2">
-            <div class="ml-3">
-              <h3 class="font-bold text-gray-800">Ronald Richards</h3>
-              <div class="flex">
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-              </div>
-            </div>
-          </div>
-          <p class="text-sm text-gray-500">ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
-        </div>
-        <div class="card flex flex-col p-4 mx-auto border rounded-lg shadow-md">
-          <div class="flex items-center mb-2">
-            <img class="w-12 h-12 rounded-full" src="https://via.placeholder.com/48" alt="Customer 3">
-            <div class="ml-3">
-              <h3 class="font-bold text-gray-800">Savannah Nguyen</h3>
-              <div class="flex">
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-                <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l5.09 3.18L13.82 12l5.18-4H9.64l-1.82-5L10 15z"/></svg>
-              </div>
-            </div>
-          </div>
-          <p class="text-sm text-gray-500">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
-        </div>
+        <h2 class="font-bold text-2xl leading-[45px] text-black">Ulasan Pelanggan Kami</h2>
+        <p class="text-lg">Dengarkan Cerita Mereka Tentang Pengalaman Luar Biasa dengan Produk Kami!</p>
       </div>
     </div>
   </div>
-  <div id="Stats" class="bg-[#FAF3EA] w-full mt-20">
+  <div id="Stats" class="bg-[#FAF3EA] w-full mt-10">
     <div class="container max-w-[1130px] mx-auto py-10">
       <div class="flex flex-wrap items-center justify-between p-[10px]">
-        <div class="flex items-center p-4">
-          <div class="card w-[50px] flex shrink-0 overflow-hidden mr-2">
-              <img src="<?php echo e(asset('assets/icons/trophy-1.png')); ?>" class="object-contain w-full h-full" alt="icon">
+        <?php $__currentLoopData = $statistics; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $statistic): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <div class="flex items-center p-4 max-w-[300px]">
+            <div class="card w-[50px] flex shrink-0 overflow-hidden mr-2">
+                <img src="<?php echo e(Storage::url($statistic->icon)); ?>" class="object-contain w-full h-full" alt="icon">
+            </div>
+            <div class="flex flex-col">
+              <p class="font-extrabold text-xl leading-[30px] text-black"><?php echo e($statistic->title); ?></p>
+              <p class="text-sm text-[#3a3a3a]"><?php echo e($statistic->description); ?></p>
+            </div>
           </div>
-          <div class="flex flex-col">
-            <p class="font-extrabold text-xl leading-[30px] text-black">High Quality</p>
-            <p class="text-sm text-[#3a3a3a]">crafted from top materials</p>
-          </div>
-        </div>
-        <div class="flex items-center p-4">
-          <div class="card w-[50px] flex shrink-0 overflow-hidden mr-2">
-              <img src="<?php echo e(asset('assets/icons/guarantee.png')); ?>" class="object-contain w-full h-full" alt="icon">
-          </div>
-          <div class="flex flex-col">
-            <p class="font-extrabold text-xl leading-[30px] text-black">Warranty Protection</p>
-            <p class="text-sm text-[#3a3a3a]">Over 2 years</p>
-          </div>
-        </div>
-        <div class="flex items-center p-4">
-          <div class="card w-[50px] flex shrink-0 overflow-hidden mr-2">
-              <img src="<?php echo e(asset('assets/icons/shipping.png')); ?>" class="object-contain w-full h-full" alt="icon">
-          </div>
-          <div class="flex flex-col">
-            <p class="font-extrabold text-xl leading-[30px] text-black">Free Shipping</p>
-            <p class="text-sm text-[#3a3a3a]">Order over 150 $</p>
-          </div>
-        </div>
-        <div class="flex items-center p-4">
-          <div class="card w-[50px] flex shrink-0 overflow-hidden mr-2">
-              <img src="<?php echo e(asset('assets/icons/customer-support.png')); ?>" class="object-contain w-full h-full" alt="icon">
-          </div>
-          <div class="flex flex-col">
-            <p class="font-extrabold text-xl leading-[30px] text-black">24 / 7 Support</p>
-            <p class="text-sm text-[#3a3a3a]">Dedicated support</p>
-          </div>
-        </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </div>
     </div>
   </div>

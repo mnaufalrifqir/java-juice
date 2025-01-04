@@ -83,7 +83,7 @@
                         <div class="mb-4">
                             <div class="flex justify-between">
                                 <span>{{ $item->product->name }} <span class="text-gray-500">x {{ $item->quantity }} pcs</span></span>
-                                <span>Rp. {{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}</span>
+                                <span>Rp. {{ number_format($item->product->current_price * $item->quantity, 0, ',', '.') }}</span>
                             </div>
                         </div>
                     @endforeach

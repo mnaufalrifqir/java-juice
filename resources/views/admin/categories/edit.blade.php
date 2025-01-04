@@ -21,7 +21,10 @@
                     @method('PUT')
 
                     <div>
-                        <x-input-label for="name" :value="__('Name')" />
+                        <div class="flex items-center">
+                            <x-input-label for="name" :value="__('Name')" />
+                            <span class="text-red-500">*</span>
+                        </div>
                         <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name', $category->name)" required autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>

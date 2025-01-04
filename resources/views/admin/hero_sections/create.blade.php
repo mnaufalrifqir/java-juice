@@ -19,13 +19,20 @@
                 <form method="POST" action="{{ route('admin.hero_sections.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-4">
-                        <x-input-label for="image" :value="__('Hero Image')" />
-                        <input id="image" class="block mt-1 w-full" type="file" name="image" accept=".jpeg, .jpg, .png" required />
+                        <div class="flex items-center">
+                            <x-input-label for="image" :value="__('Hero Image')" />
+                            <span class="text-red-500">*</span>
+                        </div>
+                        <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" accept=".jpeg, .jpg, .png" required />
+                        <p class="text-xs text-gray-500 mt-2">Only .jpeg, .jpg, and .png file types are accepted.</p>
                         <x-input-error :messages="$errors->get('image')" class="mt-2" />
                     </div>
 
                     <div class="mb-4">
-                        <x-input-label for="isPrimary" :value="__('Is Primary?')" />
+                        <div class="flex items-center">
+                            <x-input-label for="isPrimary" :value="__('Is Primary?')" />
+                            <span class="text-red-500">*</span>
+                        </div>
                         <select id="isPrimary" name="isPrimary" class="block mt-1 w-full">
                             <option value="0" {{ old('isPrimary') == '0' ? 'selected' : '' }}>No</option>
                             <option value="1" {{ old('isPrimary') == '1' ? 'selected' : '' }}>Yes</option>

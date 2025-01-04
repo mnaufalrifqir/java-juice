@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCartRequest;
 use Illuminate\Support\Facades\DB;
@@ -15,21 +16,31 @@ class CartController extends Controller
     public function index()
     {
         $cartItems = auth()->user()->carts()->with('product')->get();
-        $total = $cartItems->sum(fn($item) => $item->product->price * $item->quantity);
+        $total = $cartItems->sum(fn($item) => $item->product->current_price * $item->quantity);
         return view('front.cart', compact('cartItems', 'total'));
     }
 
     public function addToCart(StoreCartRequest $request)
     {
-        DB::transaction(function () use ($request) {
+        $isFailed = false;
+        DB::transaction(function () use ($request, &$isFailed) {
             $validated = $request->validated();
             $user = auth()->user();
             $cartItem = $user->carts()->where('product_id', $validated['product_id'])->first();
+            $product = Product::findOrFail($validated['product_id']);
 
             if ($cartItem) {
+                if ($cartItem->quantity + $validated['quantity'] > $product->stock) {
+                    $isFailed = true;
+                    return;
+                }
                 $cartItem->quantity += $validated['quantity'];
                 $cartItem->save();
             } else {
+                if ($validated['quantity'] > $product->stock) {
+                    $isFailed = true;
+                    return;
+                }
                 $user->carts()->create([
                     'product_id' => $validated['product_id'],
                     'quantity' => $validated['quantity'],
@@ -37,7 +48,11 @@ class CartController extends Controller
             }
         });
 
-        return redirect()->back()->with('success', 'Product added to cart!');
+        if ($isFailed) {
+            return redirect()->back()->with('error', 'Stock is not enough.');
+        } else {
+            return redirect()->back()->with('success', 'Product added to cart!');
+        }
     }
 
     public function updateQuantity(Request $request, $cartId)
@@ -48,18 +63,22 @@ class CartController extends Controller
             return redirect()->back()->withErrors('Unauthorized action.');
         }
 
-        // Update kuantitas, sesuai permintaan pengguna
         $quantity = $request->input('quantity');
+
+        if ($cartItem->product->stock < $quantity) {
+            $quantity = $cartItem->product->stock;
+            return redirect()->back()->with('error', 'Stock is not enough.');
+        }
+
         if ($quantity > 0) {
             $cartItem->update(['quantity' => $quantity]);
         } else {
             $cartItem->delete();
         }
 
-        return redirect()->route('cart.index');
+        return redirect()->back()->with('success', 'Cart updated.');
     }
 
-    // Fungsi untuk menghapus produk dari keranjang
     public function removeFromCart($cartId)
     {
         $cartItem = Cart::findOrFail($cartId);
@@ -70,6 +89,6 @@ class CartController extends Controller
 
         $cartItem->delete();
 
-        return redirect()->route('cart.index');
+        return redirect()->back()->with('success', 'Cart updated.');
     }
 }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->float('rating');
             $table->foreignId('testimonial_id')->constrained()->onDelete('cascade');
             $table->foreignId('details_transaction_id')->constrained()->onDelete('cascade');
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

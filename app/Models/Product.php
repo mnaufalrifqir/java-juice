@@ -16,7 +16,9 @@ class Product extends Model
         'description',
         'weight',
         'price',
+        'current_price',
         'stock',
+        'sold',
         'discount',
         'image',
     ];
@@ -34,5 +36,10 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    public function testimonialDetails()
+    {
+        return $this->hasMany(TestimonialDetails::class, 'product_id', 'id');
     }
 }

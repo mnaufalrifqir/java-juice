@@ -20,11 +20,11 @@ class RolePermissionSeeder extends Seeder
         $permissions = [
             'manage statistics',
             'manage products',
-            'manage testimonials',
             'manage teams',
             'manage hero sections',
             'manage transactions',
             'manage categories',
+            'manage partners',
         ];
 
         foreach ($permissions as $permission) {
@@ -44,7 +44,8 @@ class RolePermissionSeeder extends Seeder
         $user = User::create([
             'name' => 'Java Juice',
             'email' => env('EMAIL_SUPER_ADMIN'),
-            'password' => bcrypt(env('PASSWORD_SUPER_ADMIN'))
+            'password' => bcrypt(env('PASSWORD_SUPER_ADMIN')),
+            'email_verified_at' => now()
         ]);
 
         $user->assignRole($superAdminRole);

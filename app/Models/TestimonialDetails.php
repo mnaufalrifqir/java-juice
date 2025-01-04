@@ -15,6 +15,7 @@ class TestimonialDetails extends Model
         'rating',
         'details_transaction_id',
         'testimonial_id',
+        'product_id',
     ];
 
     public function transactionDetails()
@@ -25,5 +26,10 @@ class TestimonialDetails extends Model
     public function testimonial()
     {
         return $this->belongsTo(Testimonial::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }
