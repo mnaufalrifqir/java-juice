@@ -2,10 +2,10 @@
     <x-slot name="header">
         <div class="flex flex-row justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Manage Products') }}
+                {{ __('Kelola Produk') }}
             </h2>
             <a href="{{ route('admin.products.create') }}" class="font-bold py-2 px-6 bg-white text-gray-800 border rounded-full">
-                Add New
+                Tambah Baru
             </a>
         </div>
     </x-slot>
@@ -23,14 +23,14 @@
                     <thead class="bg-gray-50">
                         <tr>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">ID</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Image</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Name</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Category</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Current Price</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Weight</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Stock</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Sold</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Actions</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Gambar</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Nama</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Kategori</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Harga Saat Ini</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Berat</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Stok</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Terjual</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,14 +41,14 @@
                                     @if($product->image)
                                         <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" class="h-16 w-16 object-cover rounded" width="100" height="100">
                                     @else
-                                        <span class="text-gray-500">{{ __('No image') }}</span>
+                                        <span class="text-gray-500">{{ __('Tidak ada gambar') }}</span>
                                     @endif
                                 </td>
                                 <td class="py-2 px-4 border-b text-center">{{ $product->name }}</td>
                                 @if($product->category)
                                     <td class="py-2 px-4 border-b text-center">{{ $product->category->name }}</td>
                                 @else
-                                    <td class="py-2 px-4 border-b text-center text-gray-500">{{ __('No category') }}</td>
+                                    <td class="py-2 px-4 border-b text-center text-gray-500">{{ __('Tidak ada kategori') }}</td>
                                 @endif
                                 <td class="py-2 px-4 border-b text-center">Rp. {{ number_format($product->current_price, 2, ',', '.') }}</td>
                                 <td class="py-2 px-4 border-b text-center">{{ $product->weight }} gram</td>
@@ -56,7 +56,7 @@
                                 <td class="py-2 px-4 border-b text-center">{{ $product->sold }} pcs</td>
                                 <td class="py-2 px-4 border-b">
                                     <div class="flex justify-center items-center space-x-4">
-                                        <span title="View">
+                                        <span title="Lihat">
                                             <a href="{{ route('admin.products.show', $product->id) }}">
                                                 <ion-icon name="eye-outline" class="text-2xl"></ion-icon>
                                             </a>
@@ -66,11 +66,11 @@
                                                 <ion-icon name="create-outline" class="text-2xl"></ion-icon>
                                             </a>
                                         </span>
-                                        <span title="Delete">
-                                            <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                                        <span title="Hapus">
+                                            <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus produk ini?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" title="Delete" class="focus:outline-none">
+                                                <button type="submit" title="Hapus" class="focus:outline-none">
                                                     <ion-icon name="trash-outline" class="text-2xl text-red-500"></ion-icon>
                                                 </button>
                                             </form>
@@ -81,7 +81,7 @@
                         @empty
                             <tr>
                                 <td colspan="8" class="py-3 text-center bg-red-500 text-white">
-                                    No products found
+                                    Tidak ada produk ditemukan
                                 </td>
                             </tr>
                         @endforelse
@@ -92,17 +92,17 @@
                         @if($products->onFirstPage())
                             <span></span>
                         @else
-                            <a href="{{ $products->previousPageUrl() }}" class="text-gray-500 hover:underline">Previous</a>
+                            <a href="{{ $products->previousPageUrl() }}" class="text-gray-500 hover:underline">Sebelumnya</a>
                         @endif
                     </div>
 
                     <span class="text-gray-500">
-                        Showing {{ $products->firstItem() }} - {{ $products->lastItem() }} of {{ $products->total() }}
+                        Menampilkan {{ $products->firstItem() }} - {{ $products->lastItem() }} dari {{ $products->total() }}
                     </span>
 
                     <div>
                         @if($products->hasMorePages())
-                            <a href="{{ $products->nextPageUrl() }}" class="text-gray-500 hover:underline">Next</a>
+                            <a href="{{ $products->nextPageUrl() }}" class="text-gray-500 hover:underline">Selanjutnya</a>
                         @else
                             <span></span>
                         @endif

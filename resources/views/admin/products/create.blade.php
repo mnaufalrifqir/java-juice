@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight py-2">
-            {{ __('Create New Product') }}
+            {{ __('Buat Produk Baru') }}
         </h2>
     </x-slot>
 
@@ -20,7 +20,7 @@
                     @csrf
                     <div>
                         <div class="flex items-center">
-                            <x-input-label for="name" :value="__('Name')" />
+                            <x-input-label for="name" :value="__('Nama')" />
                             <span class="text-red-500">*</span>
                         </div>
                         <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
@@ -28,11 +28,11 @@
                     </div>
                     <div class="mt-4">
                         <div class="flex items-center">
-                            <x-input-label for="category" :value="__('Category')" />
+                            <x-input-label for="category" :value="__('Kategori')" />
                             <span class="text-red-500">*</span>
                         </div>
                         <select name="category_id" id="category_id" class="py-3 rounded-lg pl-3 w-full bg-gray-50 text-[#9ca3af]">
-                            <option value="">Choose Product Category</option>
+                            <option value="">Pilih Kategori Produk</option>
                             @foreach($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
@@ -42,7 +42,7 @@
 
                     <div class="mt-4">
                         <div class="flex items-center">
-                            <x-input-label for="description" :value="__('Description')" />
+                            <x-input-label for="description" :value="__('Deskripsi')" />
                             <span class="text-red-500">*</span>
                         </div>
                         <textarea name="description" id="description" cols="30" rows="5" class="border border-slate-300 rounded-xl w-full"></textarea>
@@ -51,7 +51,7 @@
 
                     <div class="mt-4">
                         <div class="flex items-center">
-                            <x-input-label for="weight" :value="__('Weight (gram)')" />
+                            <x-input-label for="weight" :value="__('Berat (gram)')" />
                             <span class="text-red-500">*</span>
                         </div>
                         <x-text-input id="weight" class="block mt-1 w-full" type="text" name="weight" :value="old('weight')" required autofocus autocomplete="weight" />
@@ -60,7 +60,7 @@
 
                     <div class="mt-4">
                         <div class="flex items-center">
-                            <x-input-label for="price" :value="__('Price (Rupiah)')" />
+                            <x-input-label for="price" :value="__('Harga (Rupiah)')" />
                             <span class="text-red-500">*</span>
                         </div>
                         <x-text-input id="price" class="block mt-1 w-full" type="text" name="price" :value="old('price')" required autofocus autocomplete="price" />
@@ -69,7 +69,7 @@
 
                     <div class="mt-4">
                         <div class="flex items-center">
-                            <x-input-label for="stock" :value="__('Stock')" />
+                            <x-input-label for="stock" :value="__('Stok')" />
                             <span class="text-red-500">*</span>
                         </div>
                         <x-text-input id="stock" class="block mt-1 w-full" type="text" name="stock" :value="old('stock')" required autofocus autocomplete="stock" />
@@ -78,7 +78,7 @@
 
                     <div class="mt-4">
                         <div class="flex items-center">
-                            <x-input-label for="discount" :value="__('Discount (%)')" />
+                            <x-input-label for="discount" :value="__('Diskon (%)')" />
                             <span class="text-red-500">*</span>
                         </div>
                         <x-text-input id="discount" class="block mt-1 w-full" type="text" name="discount" :value="old('discount')" required autofocus autocomplete="discount" />
@@ -87,17 +87,17 @@
 
                     <div class="mt-4">
                         <div class="flex items-center">
-                            <x-input-label for="image" :value="__('Image')" />
+                            <x-input-label for="image" :value="__('Gambar')" />
                             <span class="text-red-500">*</span>
                         </div>
                         <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" accept=".jpeg, .jpg, .png" required autofocus autocomplete="image" />
-                        <p class="text-xs text-gray-500 mt-2">Only .jpeg, .jpg, and .png file types are accepted.</p>
+                        <p class="text-xs text-gray-500 mt-2">Hanya file dengan format .jpeg, .jpg, dan .png yang diperbolehkan.</p>
                         <x-input-error :messages="$errors->get('image')" class="mt-2" />
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
                         <button type="submit" class="font-bold py-4 px-6 bg-[#FAF3EA] text-gray-800 rounded-full">
-                            Add New Product
+                            Tambahkan Produk Baru
                         </button>
                     </div>
                 </form>

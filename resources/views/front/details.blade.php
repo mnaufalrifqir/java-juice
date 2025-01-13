@@ -35,7 +35,7 @@
             <p class="text-2xl text-gray-600">0</p>
           @endif
           <i class="fas fa-star text-yellow-500 text-xl"></i>
-          <span class="text-gray-600 ml-4">{{ $testimonials_details->count() }} Customer Review</span>
+          <span class="text-gray-600 ml-4">{{ $testimonials_details->count() }} Ulasan Pelanggan</span>
         </div>
         <p class="text-gray-600 mt-4">{{ $product->description }}</p>
         <div class="flex items-center mt-6">
@@ -48,21 +48,21 @@
               <input type="hidden" name="product_id" value="{{ $product->id }}">
               <input type="hidden" name="quantity" id="form-quantity" value="1">
               <button type="submit" onclick="updateFormQuantity()" class="bg-yellow-500 text-white px-6 py-2 rounded">
-                Add To Cart
+                Tambah ke Keranjang
               </button>
             </form>
           @else
             <a href="{{ route('login') }}" class="ml-4 bg-yellow-500 text-white px-6 py-2 rounded">
-              Add To Cart
+              Tambah ke Keranjang
             </a>
           @endauth
         </div>
       </div>
     </div>
 
-    <!-- Customer Review -->
+    <!-- Ulasan Pelanggan -->
     <section class="mt-12">
-      <h2 class="text-2xl font-bold mb-6">Customer Review</h2>
+      <h2 class="text-2xl font-bold mb-6">Ulasan Pelanggan</h2>
       @if($testimonials_details->count() > 0)
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           @foreach($testimonials_details as $testimonial)
@@ -89,14 +89,14 @@
         </div>
       @else
         <div class="text-center">
-          <p class="text-gray-600">No review yet</p>
+          <p class="text-gray-600">Belum ada ulasan</p>
         </div>
       @endif
     </section>
     
-    <!-- You may also like -->
+    <!-- Anda mungkin juga suka -->
     <section class="mt-12">
-      <h2 class="text-2xl font-bold mb-6">You may also like</h2>
+      <h2 class="text-2xl font-bold mb-6">Anda mungkin juga suka</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         @foreach($related_products as $related_product)
           <a href="{{ route('front.details', ['product' => $related_product->id]) }}" class="bg-white shadow-lg rounded-lg p-4">

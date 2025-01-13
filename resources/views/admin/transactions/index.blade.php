@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex flex-row justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Manage Transactions') }}
+                {{ __('Kelola Transaksi') }}
             </h2>
         </div>
     </x-slot>
@@ -14,12 +14,12 @@
                     <thead class="bg-gray-50">
                         <tr>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">ID</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Customer</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Pelanggan</th>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Total</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Payment Status</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Shipping Status</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Review Status</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Actions</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Status Pembayaran</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Status Pengiriman</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Status Ulasan</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,11 +43,11 @@
                                 <td class="py-2 px-4 border-b text-center">
                                     @if ($transaction->review_status === true)
                                         <span class="text-green-500">
-                                            Reviewed
+                                            Sudah Diulas
                                         </span>
                                     @else
                                         <span class="text-red-500">
-                                            Not Reviewed
+                                            Belum Diulas
                                         </span>
                                     @endif
                                 </td>
@@ -58,11 +58,11 @@
                                                 <ion-icon name="create-outline" class="text-2xl"></ion-icon>
                                             </a>
                                         </span>
-                                        <span title="Delete">
-                                            <form action="{{ route('admin.transactions.destroy', $transaction->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this transaction?');">
+                                        <span title="Hapus">
+                                            <form action="{{ route('admin.transactions.destroy', $transaction->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus transaksi ini?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" title="Delete" class="focus:outline-none">
+                                                <button type="submit" title="Hapus" class="focus:outline-none">
                                                     <ion-icon name="trash-outline" class="text-2xl text-red-500"></ion-icon>
                                                 </button>
                                             </form>
@@ -73,7 +73,7 @@
                         @empty
                             <tr>
                                 <td colspan="6" class="py-3 text-center bg-red-500 text-white">
-                                    No transactions found
+                                    Tidak ada transaksi ditemukan
                                 </td>
                             </tr>
                         @endforelse
@@ -83,15 +83,15 @@
                     @if($transactions->onFirstPage())
                         <span></span>
                     @else
-                        <a href="{{ $transactions->previousPageUrl() }}" class="text-gray-500 hover:underline">Previous</a>
+                        <a href="{{ $transactions->previousPageUrl() }}" class="text-gray-500 hover:underline">Sebelumnya</a>
                     @endif
 
                     <span class="text-gray-500">
-                        Showing {{ $transactions->firstItem() }} - {{ $transactions->lastItem() }} of {{ $transactions->total() }}
+                        Menampilkan {{ $transactions->firstItem() }} - {{ $transactions->lastItem() }} dari {{ $transactions->total() }}
                     </span>
 
                     @if($transactions->hasMorePages())
-                        <a href="{{ $transactions->nextPageUrl() }}" class="text-gray-500 hover:underline">Next</a>
+                        <a href="{{ $transactions->nextPageUrl() }}" class="text-gray-500 hover:underline">Selanjutnya</a>
                     @else
                         <span></span>
                     @endif

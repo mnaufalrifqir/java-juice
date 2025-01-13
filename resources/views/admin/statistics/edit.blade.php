@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight py-2">
-            {{ __('Edit Statistic') }}
+            {{ __('Edit Statistik') }}
         </h2>
     </x-slot>
 
@@ -22,7 +22,7 @@
 
                     <div>
                         <div class="flex items-center">
-                            <x-input-label for="title" :value="__('Title')" />
+                            <x-input-label for="title" :value="__('Judul')" />
                             <span class="text-red-500">*</span>
                         </div>
                         <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title', $statistic->title)" required autofocus autocomplete="title" />
@@ -31,7 +31,7 @@
 
                     <div class="mt-4">
                         <div class="flex items-center">
-                            <x-input-label for="description" :value="__('Description')" />
+                            <x-input-label for="description" :value="__('Deskripsi')" />
                             <span class="text-red-500">*</span>
                         </div>
                         <textarea id="description" class="block mt-1 w-full rounded-md shadow-sm border-gray-300" name="description" required>{{ old('description', $statistic->description) }}</textarea>
@@ -39,16 +39,16 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="icon" :value="__('Icon (Upload New Image)')" />
+                        <x-input-label for="icon" :value="__('Ikon (Unggah Gambar Baru)')" />
                         <x-text-input id="icon" type="file" name="icon" class="block mt-1 w-full" accept=".jpeg, .jpg, .png">
-                        <p class="text-xs text-gray-500 mt-2">Only .jpeg, .jpg, and .png file types are accepted.</p>
-                        <p class="text-sm text-gray-500 mt-2">Current Icon: <img src="{{ Storage::url($statistic->icon) }}" alt="Icon" class="h-10 inline-block"></p>
+                        <p class="text-xs text-gray-500 mt-2">Hanya tipe file .jpeg, .jpg, dan .png yang diterima.</p>
+                        <p class="text-sm text-gray-500 mt-2">Ikon Saat Ini: <img src="{{ Storage::url($statistic->icon) }}" alt="Ikon" class="h-10 inline-block"></p>
                         <x-input-error :messages="$errors->get('icon')" class="mt-2" />
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
                         <button type="submit" class="font-bold py-4 px-6 bg-[#FAF3EA] text-gray-800 rounded-full">
-                            Update Statistic
+                            Perbarui Statistik
                         </button>
                     </div>
                 </form>

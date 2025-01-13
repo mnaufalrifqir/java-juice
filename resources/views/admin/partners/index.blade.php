@@ -2,10 +2,10 @@
     <x-slot name="header">
         <div class="flex flex-row justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Manage Partners') }}
+                {{ __('Kelola Mitra') }}
             </h2>
             <a href="{{ route('admin.partners.create') }}" class="font-bold py-2 px-6 bg-white text-gray-800 border rounded-full">
-                Add New
+                Tambah Baru
             </a>
         </div>
     </x-slot>
@@ -23,9 +23,9 @@
                     <thead class="bg-gray-50">
                         <tr>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">ID</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Name</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Nama</th>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Logo</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Actions</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,7 +34,7 @@
                                 <td class="py-2 px-4 border-b text-center">{{ $partner->id }}</td>
                                 <td class="py-2 px-4 border-b text-center">{{ $partner->name }}</td>
                                 <td class="py-2 px-4 border-b text-center">
-                                    <img src="{{ asset('storage/' . $partner->logo) }}" alt="{{ $partner->name }} Logo" class="w-16 h-16 object-cover mx-auto" />
+                                    <img src="{{ asset('storage/' . $partner->logo) }}" alt="Logo {{ $partner->name }}" class="w-16 h-16 object-cover mx-auto" />
                                 </td>
                                 <td class="py-2 px-4 border-b">
                                     <div class="flex justify-center items-center space-x-4">
@@ -43,11 +43,11 @@
                                                 <ion-icon name="create-outline" class="text-2xl"></ion-icon>
                                             </a>
                                         </span>
-                                        <span title="Delete">
-                                            <form action="{{ route('admin.partners.destroy', $partner->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this partner?');">
+                                        <span title="Hapus">
+                                            <form action="{{ route('admin.partners.destroy', $partner->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus mitra ini?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" title="Delete" class="focus:outline-none">
+                                                <button type="submit" title="Hapus" class="focus:outline-none">
                                                     <ion-icon name="trash-outline" class="text-2xl text-red-500"></ion-icon>
                                                 </button>
                                             </form>
@@ -58,7 +58,7 @@
                         @empty
                             <tr>
                                 <td colspan="4" class="py-3 text-center bg-red-500 text-white">
-                                    No partners found
+                                    Tidak ada mitra yang ditemukan
                                 </td>
                             </tr>
                         @endforelse
@@ -68,15 +68,15 @@
                     @if($partners->onFirstPage())
                         <span></span>
                     @else
-                        <a href="{{ $partners->previousPageUrl() }}" class="text-gray-500 hover:underline">Previous</a>
+                        <a href="{{ $partners->previousPageUrl() }}" class="text-gray-500 hover:underline">Sebelumnya</a>
                     @endif
 
                     <span class="text-gray-500">
-                        Showing {{ $partners->firstItem() }} - {{ $partners->lastItem() }} of {{ $partners->total() }}
+                        Menampilkan {{ $partners->firstItem() }} - {{ $partners->lastItem() }} dari {{ $partners->total() }}
                     </span>
 
                     @if($partners->hasMorePages())
-                        <a href="{{ $partners->nextPageUrl() }}" class="text-gray-500 hover:underline">Next</a>
+                        <a href="{{ $partners->nextPageUrl() }}" class="text-gray-500 hover:underline">Selanjutnya</a>
                     @else
                         <span></span>
                     @endif

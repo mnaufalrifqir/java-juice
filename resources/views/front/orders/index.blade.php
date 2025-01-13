@@ -1,17 +1,17 @@
 @extends('front.layouts.app')
 @section('content')
     <x-navbar/>
-    <!-- Main Content -->
+    <!-- Konten Utama -->
     <div class="container mx-auto px-4 py-8">
         <div class="flex items-center mb-6">
-            <button class="border border-red-600 text-red-600 rounded-full px-4 py-2 mr-2">All</button>
-            <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">To Pay</button>
-            <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">In Progress</button>
-            <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Delivered</button>
-            <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2">Cancelled</button>
+            <button class="border border-red-600 text-red-600 rounded-full px-4 py-2 mr-2">Semua</button>
+            <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Pembayaran</button>
+            <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Sedang Diproses</button>
+            <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Dikirim</button>
+            <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2">Dibatalkan</button>
         </div>
 
-        <!-- Order Cards -->
+        <!-- Kartu Pesanan -->
         @foreach($transactions as $transaction)
             <a href="{{ route('front.orders.show', $transaction->id) }}" class="block bg-white p-6 rounded-lg shadow mb-6 hover:bg-gray-100 transition">
                 <div class="flex justify-between items-center mb-4">
@@ -28,7 +28,7 @@
                         <span class="rounded-full px-3 py-1 text-sm {{ $bgColor }}">
                             {{ $transaction->shipping_status }}
                         </span>
-                        <span class="text-gray-600 ml-4">{{ $transaction->created_at->format('l, F d, Y (T)') }}</span>
+                        <span class="text-gray-600 ml-4">{{ $transaction->created_at->format('l, d F Y (T)') }}</span>
                     </div>
                     <i class="fas fa-chevron-right text-gray-600"></i>
                 </div>
@@ -36,12 +36,12 @@
                     @if($transaction->detailsTransaction->isNotEmpty())
                         <img src="{{ Storage::url($transaction->detailsTransaction[0]->product->image) }}" alt="{{ $transaction->detailsTransaction[0]->product->description }}" class="w-16 h-16 rounded mr-4"/>
                         <div>
-                            <div class="text-red-600 font-bold mb-2">Order ID: {{ $transaction->order_id }}</div>
+                            <div class="text-red-600 font-bold mb-2">ID Pesanan: {{ $transaction->order_id }}</div>
                             
                             <div class="text-gray-600 mb-2">
                                 {{ $transaction->detailsTransaction[0]->product->name }}
                                 @if($transaction->detailsTransaction->count() > 1)
-                                    & {{ $transaction->detailsTransaction->count() - 1 }} more items
+                                    & {{ $transaction->detailsTransaction->count() - 1 }} item lainnya
                                 @endif
                             </div>
                             

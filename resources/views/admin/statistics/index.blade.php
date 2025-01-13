@@ -2,10 +2,10 @@
     <x-slot name="header">
         <div class="flex flex-row justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Manage Statistics') }}
+                {{ __('Kelola Statistik') }}
             </h2>
             <a href="{{ route('admin.statistics.create') }}" class="font-bold py-2 px-6 bg-white text-gray-800 border rounded-full">
-                Add New
+                Tambah Baru
             </a>
         </div>
     </x-slot>
@@ -23,10 +23,10 @@
                     <thead class="bg-gray-50">
                         <tr>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">ID</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Title</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Description</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Icon</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Actions</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Judul</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Deskripsi</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Ikon</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,7 +36,7 @@
                                 <td class="py-2 px-4 border-b text-center">{{ $statistic->title }}</td>
                                 <td class="py-2 px-4 border-b text-center">{{ $statistic->description }}</td>
                                 <td class="py-2 px-4 border-b text-center">
-                                    <img src="{{ Storage::url($statistic->icon) }}" alt="Icon" class="h-10 mx-auto">
+                                    <img src="{{ Storage::url($statistic->icon) }}" alt="Ikon" class="h-10 mx-auto">
                                 </td>
                                 <td class="py-2 px-4 border-b">
                                     <div class="flex justify-center items-center space-x-4">
@@ -45,11 +45,11 @@
                                                 <ion-icon name="create-outline" class="text-2xl"></ion-icon>
                                             </a>
                                         </span>
-                                        <span title="Delete">
-                                            <form action="{{ route('admin.statistics.destroy', $statistic->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this statistic?');">
+                                        <span title="Hapus">
+                                            <form action="{{ route('admin.statistics.destroy', $statistic->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus statistik ini?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" title="Delete" class="focus:outline-none">
+                                                <button type="submit" title="Hapus" class="focus:outline-none">
                                                     <ion-icon name="trash-outline" class="text-2xl text-red-500"></ion-icon>
                                                 </button>
                                             </form>
@@ -60,7 +60,7 @@
                         @empty
                             <tr>
                                 <td colspan="5" class="py-3 text-center bg-red-500 text-white">
-                                    No statistics found
+                                    Tidak ada statistik yang ditemukan
                                 </td>
                             </tr>
                         @endforelse
@@ -70,15 +70,15 @@
                     @if($statistics->onFirstPage())
                         <span></span>
                     @else
-                        <a href="{{ $statistics->previousPageUrl() }}" class="text-gray-500 hover:underline">Previous</a>
+                        <a href="{{ $statistics->previousPageUrl() }}" class="text-gray-500 hover:underline">Sebelumnya</a>
                     @endif
 
                     <span class="text-gray-500">
-                        Showing {{ $statistics->firstItem() }} - {{ $statistics->lastItem() }} of {{ $statistics->total() }}
+                        Menampilkan {{ $statistics->firstItem() }} - {{ $statistics->lastItem() }} dari {{ $statistics->total() }}
                     </span>
 
                     @if($statistics->hasMorePages())
-                        <a href="{{ $statistics->nextPageUrl() }}" class="text-gray-500 hover:underline">Next</a>
+                        <a href="{{ $statistics->nextPageUrl() }}" class="text-gray-500 hover:underline">Selanjutnya</a>
                     @else
                         <span></span>
                     @endif

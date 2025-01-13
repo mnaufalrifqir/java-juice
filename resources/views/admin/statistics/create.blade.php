@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight py-2">
-            {{ __('Create New Statistic') }}
+            {{ __('Buat Statistik Baru') }}
         </h2>
     </x-slot>
 
@@ -20,7 +20,7 @@
                     @csrf
                     <div>
                         <div class="flex items-center">
-                            <x-input-label for="title" :value="__('Title')" />
+                            <x-input-label for="title" :value="__('Judul')" />
                             <span class="text-red-500">*</span>
                         </div>
                         <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title')" required autofocus autocomplete="title" />
@@ -29,7 +29,7 @@
                     
                     <div class="mt-4">
                         <div class="flex items-center">
-                            <x-input-label for="description" :value="__('Description')" />
+                            <x-input-label for="description" :value="__('Deskripsi')" />
                             <span class="text-red-500">*</span>
                         </div>
                         <textarea id="description" class="block mt-1 w-full rounded-md shadow-sm border-gray-300" name="description" required>{{ old('description') }}</textarea>
@@ -38,17 +38,17 @@
                     
                     <div class="mt-4">
                         <div class="flex items-center">
-                            <x-input-label for="icon" :value="__('Icon (Upload Image)')" />
+                            <x-input-label for="icon" :value="__('Ikon (Unggah Gambar)')" />
                             <span class="text-red-500">*</span>
                         </div>
                         <x-text-input id="icon" type="file" name="icon" class="block mt-1 w-full" accept=".jpeg, .jpg, .png" required>
-                        <p class="text-xs text-gray-500 mt-2">Only .jpeg, .jpg, and .png file types are accepted.</p>
+                        <p class="text-xs text-gray-500 mt-2">Hanya tipe file .jpeg, .jpg, dan .png yang diperbolehkan.</p>
                         <x-input-error :messages="$errors->get('icon')" class="mt-2" />
                     </div>
                     
                     <div class="flex items-center justify-end mt-4">
                         <button type="submit" class="font-bold py-4 px-6 bg-[#FAF3EA] text-gray-800 rounded-full">
-                            Add New Statistic
+                            Tambah Statistik Baru
                         </button>
                     </div>
                 </form>

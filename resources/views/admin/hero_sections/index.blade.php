@@ -2,10 +2,10 @@
     <x-slot name="header">
         <div class="flex flex-row justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Manage Hero Section') }}
+                {{ __('Kelola Hero Section') }}
             </h2>
             <a href="{{ route('admin.hero_sections.create') }}" class="font-bold py-2 px-6 bg-white text-gray-800 border rounded-full">
-                Add New Image
+                Tambahkan Gambar Baru
             </a>
         </div>
     </x-slot>
@@ -23,9 +23,9 @@
                     <thead class="bg-gray-50">
                         <tr>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">ID</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Image</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Is Primary</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Actions</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Gambar</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Apakah Utama?</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,28 +37,28 @@
                                 </td>
                                 <td class="py-2 px-4 border-b text-center">
                                     @if($hero->isPrimary)
-                                        <span class="text-green-500 font-semibold">Yes</span>
+                                        <span class="text-green-500 font-semibold">Ya</span>
                                     @else
-                                        <span class="text-gray-500">No</span>
+                                        <span class="text-gray-500">Tidak</span>
                                     @endif
                                 </td>
                                 <td class="py-2 px-4 border-b">
                                     <div class="flex justify-center items-center space-x-4">
-                                        <span title="Delete">
-                                            <form action="{{ route('admin.hero_sections.destroy', $hero->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this image?');">
+                                        <span title="Hapus">
+                                            <form action="{{ route('admin.hero_sections.destroy', $hero->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus gambar ini?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" title="Delete" class="focus:outline-none">
+                                                <button type="submit" title="Hapus" class="focus:outline-none">
                                                     <ion-icon name="trash-outline" class="text-2xl text-red-500"></ion-icon>
                                                 </button>
                                             </form>
                                         </span>
                                         @if(!$hero->isPrimary)
-                                        <span title="Set as Primary">
+                                        <span title="Setel Sebagai Utama">
                                             <form action="{{ route('admin.hero_sections.setPrimary', $hero->id) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="submit" title="Set as Primary" class="focus:outline-none">
+                                                <button type="submit" title="Setel Sebagai Utama" class="focus:outline-none">
                                                     <ion-icon name="star-outline" class="text-2xl text-yellow-500"></ion-icon>
                                                 </button>
                                             </form>
@@ -69,7 +69,7 @@
                         @empty
                             <tr>
                                 <td colspan="4" class="py-3 text-center bg-red-500 text-white">
-                                    No hero images found
+                                    Tidak ada gambar hero yang ditemukan
                                 </td>
                             </tr>
                         @endforelse
@@ -79,15 +79,15 @@
                     @if($hero_sections->onFirstPage())
                         <span></span>
                     @else
-                        <a href="{{ $hero_sections->previousPageUrl() }}" class="text-gray-500 hover:underline">Previous</a>
+                        <a href="{{ $hero_sections->previousPageUrl() }}" class="text-gray-500 hover:underline">Sebelumnya</a>
                     @endif
 
                     <span class="text-gray-500">
-                        Showing {{ $hero_sections->firstItem() }} - {{ $hero_sections->lastItem() }} of {{ $hero_sections->total() }}
+                        Menampilkan {{ $hero_sections->firstItem() }} - {{ $hero_sections->lastItem() }} dari {{ $hero_sections->total() }}
                     </span>
 
                     @if($hero_sections->hasMorePages())
-                        <a href="{{ $hero_sections->nextPageUrl() }}" class="text-gray-500 hover:underline">Next</a>
+                        <a href="{{ $hero_sections->nextPageUrl() }}" class="text-gray-500 hover:underline">Selanjutnya</a>
                     @else
                         <span></span>
                     @endif

@@ -1,7 +1,7 @@
 @extends('front.layouts.app')
 @section('content')
     <x-navbar/>
-    <!-- Main Content -->
+    <!-- Konten Utama -->
     <main class="bg-gray-50 py-10 min-h-screen">
         <div class="container mx-auto px-4 py-8">
             @if(session('success'))
@@ -14,18 +14,18 @@
             </div>
             @endif
             <div class="flex flex-col lg:flex-row lg:space-x-8">
-                <!-- Card untuk Cart Items -->
+                <!-- Kartu untuk Item Keranjang -->
                 <div class="flex-1 bg-white shadow-md rounded-lg overflow-hidden">
                     <div class="p-6">
                         <div class="overflow-x-auto">
                             <table class="min-w-full bg-white">
                                 <thead>
                                     <tr>
-                                        <th class="py-2 px-4 bg-gray-100 text-left text-sm font-medium text-gray-600">Product</th>
-                                        <th class="py-2 px-4 bg-gray-100 text-left text-sm font-medium text-gray-600">Price</th>
-                                        <th class="py-2 px-4 bg-gray-100 text-left text-sm font-medium text-gray-600">Quantity</th>
-                                        <th class="py-2 px-4 bg-gray-100 text-left text-sm font-medium text-gray-600">Amount</th>
-                                        <th class="py-2 px-4 bg-gray-100 text-left text-sm font-medium text-gray-600">Action</th>
+                                        <th class="py-2 px-4 bg-gray-100 text-left text-sm font-medium text-gray-600">Produk</th>
+                                        <th class="py-2 px-4 bg-gray-100 text-left text-sm font-medium text-gray-600">Harga</th>
+                                        <th class="py-2 px-4 bg-gray-100 text-left text-sm font-medium text-gray-600">Kuantitas</th>
+                                        <th class="py-2 px-4 bg-gray-100 text-left text-sm font-medium text-gray-600">Jumlah</th>
+                                        <th class="py-2 px-4 bg-gray-100 text-left text-sm font-medium text-gray-600">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -68,11 +68,11 @@
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td class="py-4 px-4 text-center" colspan="5">No items in cart</td>
+                                    <td class="py-4 px-4 text-center" colspan="5">Tidak ada item di keranjang</td>
                                 </tr>
                                 <tr>
                                     <td class="py-4 px-4 text-center" colspan="5">
-                                        <a href="{{ route('front.product') }}" class="bg-yellow-500 text-white px-6 py-2 rounded">Shop Now</a>
+                                        <a href="{{ route('front.product') }}" class="bg-yellow-500 text-white px-6 py-2 rounded">Belanja Sekarang</a>
                                     </td>
                                 </tr>
                                 @endforelse
@@ -82,14 +82,14 @@
                 </div>
             </div>
             <div>
-                <!-- Card untuk Cart Totals -->
+                <!-- Kartu untuk Total Keranjang -->
                 <div class="w-[300px] bg-white shadow-md rounded-lg p-6">
-                    <h2 class="text-lg font-bold text-gray-700 mb-4">Cart Totals</h2>
+                    <h2 class="text-lg font-bold text-gray-700 mb-4">Total Keranjang</h2>
                     <div class="flex justify-between mb-4">
                         <span class="text-gray-700">Total</span>
                         <span class="text-orange-500 font-bold">Rp. {{ number_format($total, 2) }}</span>
                     </div>
-                    <a href="{{ route('transactions.checkout') }}" class="block bg-orange-500 text-white text-center py-2 rounded-md hover:bg-orange-600">Proceed to Checkout</a>
+                    <a href="{{ route('transactions.checkout') }}" class="block bg-orange-500 text-white text-center py-2 rounded-md hover:bg-orange-600">Lanjut ke Pembayaran</a>
                 </div>
             </div>
         </div>

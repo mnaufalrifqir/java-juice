@@ -2,10 +2,10 @@
     <x-slot name="header">
         <div class="flex flex-row justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Manage Teams') }}
+                {{ __('Kelola Tim') }}
             </h2>
             <a href="{{ route('admin.teams.create') }}" class="font-bold py-2 px-6 bg-white text-gray-800 border rounded-full">
-                Add New
+                Tambah Baru
             </a>
         </div>
     </x-slot>
@@ -23,10 +23,10 @@
                     <thead class="bg-gray-50">
                         <tr>
                             <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">ID</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Name</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Image</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Occupation</th>
-                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Actions</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Nama</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Gambar</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Pekerjaan</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-600">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,11 +45,11 @@
                                                 <ion-icon name="create-outline" class="text-2xl"></ion-icon>
                                             </a>
                                         </span>
-                                        <span title="Delete">
-                                            <form action="{{ route('admin.teams.destroy', $team->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this team member?');">
+                                        <span title="Hapus">
+                                            <form action="{{ route('admin.teams.destroy', $team->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus anggota tim ini?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" title="Delete" class="focus:outline-none">
+                                                <button type="submit" title="Hapus" class="focus:outline-none">
                                                     <ion-icon name="trash-outline" class="text-2xl text-red-500"></ion-icon>
                                                 </button>
                                             </form>
@@ -60,7 +60,7 @@
                         @empty
                             <tr>
                                 <td colspan="5" class="py-3 text-center bg-red-500 text-white">
-                                    No team members found
+                                    Tidak ada anggota tim ditemukan
                                 </td>
                             </tr>
                         @endforelse
@@ -70,15 +70,15 @@
                     @if($teams->onFirstPage())
                         <span></span>
                     @else
-                        <a href="{{ $teams->previousPageUrl() }}" class="text-gray-500 hover:underline">Previous</a>
+                        <a href="{{ $teams->previousPageUrl() }}" class="text-gray-500 hover:underline">Sebelumnya</a>
                     @endif
 
                     <span class="text-gray-500">
-                        Showing {{ $teams->firstItem() }} - {{ $teams->lastItem() }} of {{ $teams->total() }}
+                        Menampilkan {{ $teams->firstItem() }} - {{ $teams->lastItem() }} dari {{ $teams->total() }}
                     </span>
 
                     @if($teams->hasMorePages())
-                        <a href="{{ $teams->nextPageUrl() }}" class="text-gray-500 hover:underline">Next</a>
+                        <a href="{{ $teams->nextPageUrl() }}" class="text-gray-500 hover:underline">Selanjutnya</a>
                     @else
                         <span></span>
                     @endif

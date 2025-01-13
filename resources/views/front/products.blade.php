@@ -4,7 +4,7 @@
   <x-banner />
   <main class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold mb-4">
-      Product
+      Produk
     </h1>
     <nav class="text-gray-500 mb-8">
       <a class="hover:text-gray-700" href="#">
@@ -18,7 +18,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       @forelse($products as $product)
         <a href="{{ route('front.details', ['product' => $product->id]) }}" class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
-          <img src="{{ Storage::url($product->image) }}" class="object-cover object-center w-full h-full" alt="thumbnails">
+          <img src="{{ Storage::url($product->image) }}" class="object-cover object-center w-full h-full" alt="thumbnail">
           <div class="p-4">
             <h2 class="text-xl font-bold">{{ $product->name }}</h2>
             <p class="text-gray-500">{{ $product->category->name }}</p>
@@ -27,13 +27,13 @@
           </div>
         </a>
       @empty
-      <p>No products found.</p>
+      <p>Produk tidak ditemukan.</p>
       @endforelse
     </div>
   
     <div class="flex justify-center mt-8">
       @if(!$products->onFirstPage())
-      <a href="{{ $products->previousPageUrl() }}#product-list" class="px-4 py-2 bg-gray-300 rounded-md">Previous</a>
+      <a href="{{ $products->previousPageUrl() }}#product-list" class="px-4 py-2 bg-gray-300 rounded-md">Sebelumnya</a>
       @endif
 
       @for ($page = 1; $page <= $products->lastPage(); $page++)
@@ -45,7 +45,7 @@
       @endfor
 
       @if($products->hasMorePages())
-      <a href="{{ $products->nextPageUrl() }}#product-list" class="px-4 py-2 bg-gray-300 rounded-md">Next</a>
+      <a href="{{ $products->nextPageUrl() }}#product-list" class="px-4 py-2 bg-gray-300 rounded-md">Selanjutnya</a>
       @endif
     </div>
   </main>
