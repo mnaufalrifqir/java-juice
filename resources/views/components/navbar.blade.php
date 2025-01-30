@@ -24,27 +24,31 @@
         </div>
         <div x-data="{ downOpen: false }" class="order-3 hidden lg:block">
           @auth
-          <div class="relative" @click.away="downOpen = false">
-            <button @click="downOpen = !downOpen" class="px-8 py-4 font-bold text-[#F8A401] text-sm flex items-center gap-2">
-              {{ Auth::user()->name }}
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </button>
-            <div
-              x-show="downOpen"
-              x-transition
-              class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 flex flex-col"
-            >
-              @role('super_admin')
-              <a href="{{ route('dashboard') }}" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
-              @endrole
-              <a href="{{ route('cart.index') }}" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Keranjang</a>
-              <a href="{{ route('front.orders.index') }}" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Pesanan Saya</a>
-              <form method="POST" action="{{ route('logout') }}" class="w-full">
-                @csrf
-                <button type="submit" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Keluar</button>
-              </form>
+          <div class="flex items-center">
+            <a href="{{ route('cart.index') }}" class="px-8 py-4 font-bold text-[#F8A401] text-sm flex items-center">
+              <ion-icon name="cart-outline" class="text-[#F8A401] text-2xl"></ion-icon>
+            </a>
+            <div class="relative" @click.away="downOpen = false">
+              <button @click="downOpen = !downOpen" class="px-8 py-4 font-bold text-[#F8A401] text-sm flex items-center gap-2">
+                {{ Auth::user()->name }}
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div
+                x-show="downOpen"
+                x-transition
+                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 flex flex-col"
+              >
+                @role('super_admin')
+                <a href="{{ route('dashboard') }}" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                @endrole
+                <a href="{{ route('front.orders.index') }}" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Pesanan Saya</a>
+                <form method="POST" action="{{ route('logout') }}" class="w-full">
+                  @csrf
+                  <button type="submit" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Keluar</button>
+                </form>
+              </div>
             </div>
           </div>
           @else

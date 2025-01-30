@@ -15,7 +15,7 @@
         </div>
     <?php endif; ?>
     <div class="mb-4 text-sm text-gray-600">
-        <?php echo e(__('Terima kasih telah mendaftar! Sebelum memulai, bisakah Anda memverifikasi alamat email Anda dengan mengklik tautan yang baru saja kami kirimkan melalui email? Jika Anda tidak menerima email tersebut, kami dengan senang hati akan mengirimkannya kembali.')); ?>
+        <?php echo e(__('Sebelum memulai proses pembelian produk, Anda harus memverifikasi alamat email terlebih dahulu dengan mengklik tautan yang baru saja kami kirimkan melalui email. Jika Anda tidak menerima email tersebut, kami dengan senang hati akan mengirimkannya kembali.')); ?>
 
     </div>
 

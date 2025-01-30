@@ -24,28 +24,32 @@
         </div>
         <div x-data="{ downOpen: false }" class="order-3 hidden lg:block">
           <?php if(auth()->guard()->check()): ?>
-          <div class="relative" @click.away="downOpen = false">
-            <button @click="downOpen = !downOpen" class="px-8 py-4 font-bold text-[#F8A401] text-sm flex items-center gap-2">
-              <?php echo e(Auth::user()->name); ?>
+          <div class="flex items-center">
+            <a href="<?php echo e(route('cart.index')); ?>" class="px-8 py-4 font-bold text-[#F8A401] text-sm flex items-center">
+              <ion-icon name="cart-outline" class="text-[#F8A401] text-2xl"></ion-icon>
+            </a>
+            <div class="relative" @click.away="downOpen = false">
+              <button @click="downOpen = !downOpen" class="px-8 py-4 font-bold text-[#F8A401] text-sm flex items-center gap-2">
+                <?php echo e(Auth::user()->name); ?>
 
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </button>
-            <div
-              x-show="downOpen"
-              x-transition
-              class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 flex flex-col"
-            >
-              <?php if (\Illuminate\Support\Facades\Blade::check('role', 'super_admin')): ?>
-              <a href="<?php echo e(route('dashboard')); ?>" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
-              <?php endif; ?>
-              <a href="<?php echo e(route('cart.index')); ?>" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Keranjang</a>
-              <a href="<?php echo e(route('front.orders.index')); ?>" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Pesanan Saya</a>
-              <form method="POST" action="<?php echo e(route('logout')); ?>" class="w-full">
-                <?php echo csrf_field(); ?>
-                <button type="submit" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Keluar</button>
-              </form>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div
+                x-show="downOpen"
+                x-transition
+                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 flex flex-col"
+              >
+                <?php if (\Illuminate\Support\Facades\Blade::check('role', 'super_admin')): ?>
+                <a href="<?php echo e(route('dashboard')); ?>" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                <?php endif; ?>
+                <a href="<?php echo e(route('front.orders.index')); ?>" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Pesanan Saya</a>
+                <form method="POST" action="<?php echo e(route('logout')); ?>" class="w-full">
+                  <?php echo csrf_field(); ?>
+                  <button type="submit" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Keluar</button>
+                </form>
+              </div>
             </div>
           </div>
           <?php else: ?>

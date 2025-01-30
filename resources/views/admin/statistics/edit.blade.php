@@ -40,7 +40,7 @@
 
                     <div class="mt-4">
                         <x-input-label for="icon" :value="__('Ikon (Unggah Gambar Baru)')" />
-                        <x-text-input id="icon" type="file" name="icon" class="block mt-1 w-full" accept=".jpeg, .jpg, .png">
+                        <x-text-input id="icon" type="file" name="icon" class="block mt-1 w-full" accept=".jpeg, .jpg, .png" />
                         <p class="text-xs text-gray-500 mt-2">Hanya tipe file .jpeg, .jpg, dan .png yang diterima.</p>
                         <p class="text-sm text-gray-500 mt-2">Ikon Saat Ini: <img src="{{ Storage::url($statistic->icon) }}" alt="Ikon" class="h-10 inline-block"></p>
                         <x-input-error :messages="$errors->get('icon')" class="mt-2" />

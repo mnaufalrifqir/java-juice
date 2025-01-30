@@ -28,6 +28,7 @@ return new class extends Migration
             $table->float('total');
             $table->string('payment_status');
             $table->string('shipping_status');
+            $table->string('tracking_number');
             $table->boolean('review_status')->default(false);
             $table->string('payment_url');
             $table->string('snap_token');

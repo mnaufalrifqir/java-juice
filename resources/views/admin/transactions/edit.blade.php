@@ -109,6 +109,11 @@
                         </div>
 
                         <div class="mt-4">
+                            <x-input-label for="tracking_number" :value="__('Nomor Resi')" />
+                            <x-text-input id="tracking_number" class="block mt-1 w-full" type="text" name="tracking_number" :value="old('tracking_number', $transaction->tracking_number)" required autofocus autocomplete="name" />
+                        </div>
+
+                        <div class="mt-4">
                             <x-input-label for="review_status" :value="__('Status Ulasan')" />
                             @if ($transaction->review_status == false)
                                 <x-text-input id="review_status" class="block mt-1 w-full bg-gray-200 text-gray-500 border-gray-300" type="text" name="review_status" :value="__('Belum Ditinjau')" readonly />

@@ -45,6 +45,14 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
+        DB::transaction(function () use ($request, $transaction) {
+            $transaction->update([
+                'payment_status' => $request->payment_status,
+                'shipping_status' => $request->shipping_status,
+                'tracking_number' => $request->tracking_number,
+            ]);
+        });
+
         return redirect()->route('admin.transactions.index')->with('success', 'Transaction status updated successfully');
     }
 

@@ -1,5 +1,5 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100 p-4">
-    <!-- Primary Navigation Menu -->
+    <!-- Menu Navigasi Utama -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-[43px]">
             <div class="flex">
@@ -10,7 +10,7 @@
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
+                <!-- Tautan Navigasi -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <?php if (isset($component)) { $__componentOriginalc295f12dca9d42f28a259237a5724830 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc295f12dca9d42f28a259237a5724830 = $attributes; } ?>
@@ -22,7 +22,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('front.index')),'active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('front.index'))]); ?>
-                        <?php echo e(__('Home')); ?>
+                        <?php echo e(__('Beranda')); ?>
 
                      <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -91,7 +91,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.statistics.index'))]); ?>
-                                    <?php echo e(__('Company Stats')); ?>
+                                    <?php echo e(__('Statistik Perusahaan')); ?>
 
                                  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -113,7 +113,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.partners.index'))]); ?>
-                                    <?php echo e(__('Our Partners')); ?>
+                                    <?php echo e(__('Mitra Kami')); ?>
 
                                  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -148,7 +148,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.teams.index')),'active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.teams.index'))]); ?>
-                        <?php echo e(__('Our Teams')); ?>
+                        <?php echo e(__('Tim Kami')); ?>
 
                      <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -174,7 +174,7 @@
 <?php $component->withAttributes(['align' => 'right','width' => '48']); ?>
                              <?php $__env->slot('trigger', null, []); ?> 
                                 <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                    <div>Products</div>
+                                    <div>Produk</div>
         
                                     <div class="ms-1">
                                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -195,7 +195,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.products.index'))]); ?>
-                                    <?php echo e(__('Our Products')); ?>
+                                    <?php echo e(__('Produk Kami')); ?>
 
                                  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -217,7 +217,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.categories.index'))]); ?>
-                                    <?php echo e(__('Category')); ?>
+                                    <?php echo e(__('Kategori')); ?>
 
                                  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -252,7 +252,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.transactions.index')),'active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.transactions.index'))]); ?>
-                        <?php echo e(__('Transactions')); ?>
+                        <?php echo e(__('Transaksi')); ?>
 
                      <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -267,7 +267,7 @@
                 </div>
             </div>
 
-            <!-- Settings Dropdown -->
+            <!-- Dropdown Pengaturan -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <?php if (isset($component)) { $__componentOriginaldf8083d4a852c446488d8d384bbc7cbe = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginaldf8083d4a852c446488d8d384bbc7cbe = $attributes; } ?>
@@ -302,7 +302,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('profile.edit'))]); ?>
-                            <?php echo e(__('Profile')); ?>
+                            <?php echo e(__('Profil')); ?>
 
                          <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -315,7 +315,7 @@
 <?php unset($__componentOriginal68cb1971a2b92c9735f83359058f7108); ?>
 <?php endif; ?>
 
-                        <!-- Authentication -->
+                        <!-- Otentikasi -->
                         <form method="POST" action="<?php echo e(route('logout')); ?>">
                             <?php echo csrf_field(); ?>
 
@@ -331,7 +331,7 @@
 <?php endif; ?>
 <?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('logout')),'onclick' => 'event.preventDefault();
                                                 this.closest(\'form\').submit();']); ?>
-                                <?php echo e(__('Log Out')); ?>
+                                <?php echo e(__('Keluar')); ?>
 
                              <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -369,7 +369,7 @@
         </div>
     </div>
 
-    <!-- Responsive Navigation Menu -->
+    <!-- Menu Navigasi Responsif -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <?php if (isset($component)) { $__componentOriginald69b52d99510f1e7cd3d80070b28ca18 = $component; } ?>
@@ -396,7 +396,7 @@
 <?php endif; ?>
         </div>
 
-        <!-- Responsive Settings Options -->
+        <!-- Opsi Pengaturan Responsif -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800"><?php echo e(Auth::user()->name); ?></div>
@@ -414,7 +414,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('profile.edit'))]); ?>
-                    <?php echo e(__('Profile')); ?>
+                    <?php echo e(__('Profil')); ?>
 
                  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -427,7 +427,7 @@
 <?php unset($__componentOriginald69b52d99510f1e7cd3d80070b28ca18); ?>
 <?php endif; ?>
 
-                <!-- Authentication -->
+                <!-- Otentikasi -->
                 <form method="POST" action="<?php echo e(route('logout')); ?>">
                     <?php echo csrf_field(); ?>
 
@@ -443,7 +443,7 @@
 <?php endif; ?>
 <?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('logout')),'onclick' => 'event.preventDefault();
                                         this.closest(\'form\').submit();']); ?>
-                        <?php echo e(__('Log Out')); ?>
+                        <?php echo e(__('Keluar')); ?>
 
                      <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>

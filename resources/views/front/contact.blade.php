@@ -11,25 +11,24 @@
                     <i class="fas fa-map-marker-alt text-2xl text-orange-500 mr-4"></i>
                     <div>
                         <h3 class="text-xl font-semibold mb-2">Alamat</h3>
-                        <p>236 5th SE Avenue, New York NY10000, Amerika Serikat</p>
+                        <p>Jl. Kav IIP No.106 Kalimulya, Depok, Jawa Barat, Indonesia 16413</p>
                     </div>
                 </div>
                 <div class="flex items-start mb-6">
                     <i class="fas fa-phone-alt text-2xl text-orange-500 mr-4"></i>
                     <div>
                         <h3 class="text-xl font-semibold mb-2">Telepon</h3>
-                        <p>Mobile: +(84) 546-6789</p>
-                        <p>Hotline: +(84) 546-6789</p>
+                        <p>Mobile: +(62)811876449</p>
                     </div>
                 </div>
-                <div class="flex items-start">
+                <!-- <div class="flex items-start">
                     <i class="fas fa-clock text-2xl text-orange-500 mr-4"></i>
                     <div>
                         <h3 class="text-xl font-semibold mb-2">Jam Kerja</h3>
                         <p>Senin-Jumat: 9:00 - 22:00</p>
                         <p>Sabtu-Minggu: 9:00 - 21:00</p>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="w-full md:w-1/2 lg:w-2/3 px-6">
                 <form>

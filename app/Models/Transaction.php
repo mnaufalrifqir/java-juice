@@ -25,6 +25,7 @@ class Transaction extends Model
         'total',
         'payment_status',
         'shipping_status',
+        'tracking_number',
         'review_status',
         'payment_url',
         'snap_token',
