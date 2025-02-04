@@ -116,7 +116,7 @@
     <div class="container max-w-[1130px] mx-auto py-10">
       <div class="flex flex-wrap items-center justify-between p-[10px]">
         @foreach ($statistics as $statistic)
-          <div class="flex items-center p-4 max-w-[300px]">
+          <div class="flex items-center p-4 max-w-[270px]">
             <div class="card w-[50px] flex shrink-0 overflow-hidden mr-2">
                 <img src="{{ Storage::url($statistic->icon) }}" class="object-contain w-full h-full" alt="icon">
             </div>

@@ -5,9 +5,10 @@
     <div class="container mx-auto px-4 py-8">
         <div class="flex items-center mb-6">
             <button class="border border-red-600 text-red-600 rounded-full px-4 py-2 mr-2">Semua</button>
-            <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Pembayaran</button>
+            <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Pembayaran Tertunda</button>
             <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Sedang Diproses</button>
-            <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Dikirim</button>
+            <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Sedang Dikirim</button>
+            <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Pesanan Selesai</button>
             <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2">Dibatalkan</button>
         </div>
 

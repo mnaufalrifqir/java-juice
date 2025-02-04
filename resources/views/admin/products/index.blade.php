@@ -80,7 +80,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="8" class="py-3 text-center bg-red-500 text-white">
+                                <td colspan="9" class="py-3 text-center bg-red-500 text-white">
                                     Tidak ada produk ditemukan
                                 </td>
                             </tr>

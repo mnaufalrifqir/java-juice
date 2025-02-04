@@ -31,7 +31,7 @@
                             <x-input-label for="logo" :value="__('Logo')" />
                             <span class="text-red-500">*</span>
                         </div>
-                        <x-text-input id="logo" type="file" name="logo" class="block mt-1 w-full" accept=".jpeg, .jpg, .png" required>
+                        <x-text-input id="logo" type="file" name="logo" class="block mt-1 w-full" accept=".jpeg, .jpg, .png" required />
                         <p class="text-xs text-gray-500 mt-2">Hanya tipe file .jpeg, .jpg, dan .png yang diterima.</p>
                         <x-input-error :messages="$errors->get('logo')" class="mt-2" />
                     </div>

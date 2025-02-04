@@ -161,8 +161,9 @@ class TransactionController extends Controller
         $total = 0;
         $paymentUrl = '';
         $snapToken = '';
+        $tracking_number = '';
 
-        DB::transaction(function () use ($validated, &$weight, &$subtotal, &$total, &$paymentUrl, &$snapToken) {
+        DB::transaction(function () use ($validated, &$weight, &$subtotal, &$total, &$paymentUrl, &$snapToken, &$tracking_number) {
             $transaction = Transaction::create([
                 'first_name' => $validated['first_name'],
                 'last_name' => $validated['last_name'],
@@ -182,6 +183,7 @@ class TransactionController extends Controller
                 'review_status' => false,
                 'payment_url' => '',
                 'snap_token' => '',
+                'tracking_number' => '',
                 'order_id' => (string) Str::uuid(),
                 'user_id' => auth()->id(),
             ]);
@@ -282,7 +284,7 @@ class TransactionController extends Controller
                 if ($fraudStatus == 'challenge') {
                     $transaction->update(['payment_status' => 'Pending']);
                 } else {
-                    $transaction->update(['payment_status' => 'Success']);  
+                    $transaction->update(['payment_status' => 'Success', 'shipping_status' => 'In Progress']);  
                 }
             }
         } elseif ($transactionStatus == 'settlement') {
@@ -290,11 +292,11 @@ class TransactionController extends Controller
         } elseif ($transactionStatus == 'pending') {
             $transaction->update(['payment_status' => 'Pending']);
         } elseif ($transactionStatus == 'deny') {
-            $transaction->update(['payment_status' => 'Failed']);
+            $transaction->update(['payment_status' => 'Failed', 'shipping_status' => 'Cancelled']);
         } elseif ($transactionStatus == 'expire') {
-            $transaction->update(['payment_status' => 'Expired']);
+            $transaction->update(['payment_status' => 'Expired', 'shipping_status' => 'Cancelled']);
         } elseif ($transactionStatus == 'cancel') {
-            $transaction->update(['payment_status' => 'Failed']);
+            $transaction->update(['payment_status' => 'Failed', 'shipping_status' => 'Cancelled']);
         }
 
         return response()->json([

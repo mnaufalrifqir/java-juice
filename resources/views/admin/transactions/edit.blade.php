@@ -103,6 +103,7 @@
                             <select id="shipping_status" name="shipping_status" class="block mt-1 w-full rounded-md shadow-sm border-gray-300">
                                 <option value="Pending" {{ $transaction->shipping_status == 'Pending' ? 'selected' : '' }}>Menunggu</option>
                                 <option value="In Progress" {{ $transaction->shipping_status == 'In Progress' ? 'selected' : '' }}>Dalam Proses</option>
+                                <option value="Shipped" {{ $transaction->shipping_status == 'Shipped' ? 'selected' : '' }}>Sedang Dikirim</option>
                                 <option value="Delivered" {{ $transaction->shipping_status == 'Delivered' ? 'selected' : '' }}>Terkirim</option>
                                 <option value="Received" {{ $transaction->shipping_status == 'Received' ? 'selected' : '' }}>Diterima</option>
                             </select>

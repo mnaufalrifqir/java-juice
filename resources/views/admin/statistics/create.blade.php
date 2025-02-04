@@ -41,7 +41,7 @@
                             <x-input-label for="icon" :value="__('Ikon (Unggah Gambar)')" />
                             <span class="text-red-500">*</span>
                         </div>
-                        <x-text-input id="icon" type="file" name="icon" class="block mt-1 w-full" accept=".jpeg, .jpg, .png" required>
+                        <x-text-input id="icon" type="file" name="icon" class="block mt-1 w-full" accept=".jpeg, .jpg, .png" required />
                         <p class="text-xs text-gray-500 mt-2">Hanya tipe file .jpeg, .jpg, dan .png yang diperbolehkan.</p>
                         <x-input-error :messages="$errors->get('icon')" class="mt-2" />
                     </div>
