@@ -20,7 +20,7 @@ Route::get('/product/{product:id}', [FrontController::class, 'details'])->name('
 
 Route::prefix('about')->name('front.')->group(function () {
     Route::get('/', [FrontController::class, 'about'])->name('about');
-    Route::get('/team', [FrontController::class, 'team'])->name('team');
+    Route::get('/team', [OurTeamController::class, 'frontIndex'])->name('team');
 });
 
 Route::get('/contact', [FrontController::class, 'contact'])->name('front.contact');

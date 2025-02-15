@@ -134,7 +134,7 @@
     <div class="container max-w-[1130px] mx-auto py-10">
       <div class="flex flex-wrap items-center justify-between p-[10px]">
         <?php $__currentLoopData = $statistics; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $statistic): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-          <div class="flex items-center p-4 max-w-[300px]">
+          <div class="flex items-center p-4 max-w-[270px]">
             <div class="card w-[50px] flex shrink-0 overflow-hidden mr-2">
                 <img src="<?php echo e(Storage::url($statistic->icon)); ?>" class="object-contain w-full h-full" alt="icon">
             </div>

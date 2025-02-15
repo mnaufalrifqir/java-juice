@@ -43,7 +43,7 @@ class CompanyStatisticController extends Controller
             CompanyStatistic::create($validated);
         });
 
-        return redirect()->route('admin.statistics.index')->with('success', 'Statistic created successfully.');
+        return redirect()->route('admin.statistics.index')->with('success', 'Statistik perusahaan berhasil dibuat.');
     }
 
     /**
@@ -62,6 +62,8 @@ class CompanyStatisticController extends Controller
         DB::transaction(function () use ($request, $statistic) {
             $validated = $request->validated();
 
+            $validated['icon'] = $statistic->icon;
+
             if ($request->hasFile('icon')) {
                 if ($statistic->icon) {
                     Storage::disk('public')->delete($statistic->icon);
@@ -74,7 +76,7 @@ class CompanyStatisticController extends Controller
             $statistic->update($validated);
         });
 
-        return redirect()->route('admin.statistics.index')->with('success', 'Statistic updated successfully.');
+        return redirect()->route('admin.statistics.index')->with('success', 'Statistik perusahaan berhasil diperbarui.');
     }
 
     /**
@@ -82,8 +84,14 @@ class CompanyStatisticController extends Controller
      */
     public function destroy(CompanyStatistic $statistic)
     {
-        $statistic->delete();
+        DB::transaction(function () use ($statistic) {
+            if ($statistic->icon) {
+                Storage::disk('public')->delete($statistic->icon);
+            }
 
-        return redirect()->route('admin.statistics.index')->with('success', 'Statistic deleted successfully.');
+            $statistic->delete();
+        });
+
+        return redirect()->route('admin.statistics.index')->with('success', 'Statistik perusahaan berhasil dihapus.');
     }
 }

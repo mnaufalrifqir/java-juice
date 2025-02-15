@@ -44,7 +44,7 @@ class OurTeamController extends Controller
             OurTeam::create($validated);
         });
 
-        return redirect()->route('admin.teams.index')->with('success', 'Team member created successfully.');
+        return redirect()->route('admin.teams.index')->with('success', 'Anggota tim berhasil dibuat.');
     }
 
     /**
@@ -63,6 +63,8 @@ class OurTeamController extends Controller
         DB::transaction(function () use ($request, $team) {
             $validated = $request->validated();
 
+            $validated['image'] = $team->image;
+
             if ($request->hasFile('image')) {
                 if ($team->image) {
                     Storage::disk('public')->delete($team->image);
@@ -75,7 +77,7 @@ class OurTeamController extends Controller
             $team->update($validated);
         });
 
-        return redirect()->route('admin.teams.index')->with('success', 'Team member updated successfully.');
+        return redirect()->route('admin.teams.index')->with('success', 'Anggota tim berhasil diperbarui.');
     }
 
     /**
@@ -91,6 +93,12 @@ class OurTeamController extends Controller
             $team->delete();
         });
 
-        return redirect()->route('admin.teams.index')->with('success', 'Team member deleted successfully.');
+        return redirect()->route('admin.teams.index')->with('success', 'Anggota tim berhasil dihapus.');
+    }
+
+    public function frontIndex()
+    {
+        $teams = OurTeam::orderBy('id')->paginate(12);
+        return view('front.team', compact('teams'));
     }
 }

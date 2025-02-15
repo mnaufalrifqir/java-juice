@@ -53,7 +53,7 @@ class TransactionController extends Controller
             ]);
         });
 
-        return redirect()->route('admin.transactions.index')->with('success', 'Transaction status updated successfully');
+        return redirect()->route('admin.transactions.index')->with('success', 'Status transaksi berhasil diperbarui.');
     }
 
     /**
@@ -81,7 +81,7 @@ class TransactionController extends Controller
         $transaction = Transaction::findOrFail($transactionId);
 
         if ($transaction->user_id != auth()->id()) {
-            return redirect()->route('front.orders.index')->with('error', 'You are not authorized to view this order');
+            return redirect()->route('front.orders.index')->with('error', 'Anda tidak memiliki akses untuk melihat pesanan ini');
         }
 
         return view('front.orders.show', compact('transaction'));

@@ -69,7 +69,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.hero_sections.index'))]); ?>
-                                    <?php echo e(__('Hero Section')); ?>
+                                    <?php echo e(__('Gambar Banner')); ?>
 
                                  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight py-2">
-            {{ __('Buat Gambar Hero Baru') }}
+            {{ __('Buat Gambar Banner Baru') }}
         </h2>
     </x-slot>
 
@@ -20,7 +20,7 @@
                     @csrf
                     <div class="mb-4">
                         <div class="flex items-center">
-                            <x-input-label for="image" :value="__('Gambar Hero')" />
+                            <x-input-label for="image" :value="__('Gambar Banner')" />
                             <span class="text-red-500">*</span>
                         </div>
                         <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" accept=".jpeg, .jpg, .png" required />
@@ -42,7 +42,7 @@
 
                     <div class="flex items-center justify-end mt-4">
                         <button type="submit" class="font-bold py-4 px-6 bg-[#FAF3EA] text-gray-800 rounded-full">
-                            Tambahkan Gambar Hero Baru
+                            Tambahkan Gambar Banner Baru
                         </button>
                     </div>
                 </form>

@@ -5,7 +5,7 @@
                 {{ __('Kelola Mitra') }}
             </h2>
             <a href="{{ route('admin.partners.create') }}" class="font-bold py-2 px-6 bg-white text-gray-800 border rounded-full">
-                Tambah Baru
+                Tambah Mitra Baru
             </a>
         </div>
     </x-slot>

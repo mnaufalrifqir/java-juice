@@ -57,7 +57,7 @@ class TestimonialController extends Controller
             }
         });
 
-        return redirect()->back()->with('success', 'All feedback submitted successfully!');
+        return redirect()->back()->with('success', 'Semua umpan balik berhasil dikirimkan!');
     }
 
     /**

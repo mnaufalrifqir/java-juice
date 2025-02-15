@@ -11,11 +11,11 @@
      <?php $__env->slot('header', null, []); ?> 
         <div class="flex flex-row justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                <?php echo e(__('Kelola Tim')); ?>
+                <?php echo e(__('Kelola Anggota Tim')); ?>
 
             </h2>
             <a href="<?php echo e(route('admin.teams.create')); ?>" class="font-bold py-2 px-6 bg-white text-gray-800 border rounded-full">
-                Tambah Baru
+                Tambah Anggota Tim
             </a>
         </div>
      <?php $__env->endSlot(); ?>

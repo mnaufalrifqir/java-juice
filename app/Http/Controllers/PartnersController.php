@@ -33,12 +33,9 @@ class PartnersController extends Controller
      */
     public function store(StorePartnersRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        DB::transaction(function () use ($request) {
+            $validated = $request->validated();
 
-        DB::transaction(function () use ($validated, $request) {
             if ($request->hasFile('logo')) {
                 $path = $request->file('logo')->store('partners', 'public');
                 $validated['logo'] = $path;
@@ -47,7 +44,7 @@ class PartnersController extends Controller
             Partners::create($validated);
         });
 
-        return redirect()->route('admin.partners.index')->with('success', 'Partner created successfully.');
+        return redirect()->route('admin.partners.index')->with('success', 'Mitra berhasil dibuat.');
     }
 
     /**
@@ -63,15 +60,14 @@ class PartnersController extends Controller
      */
     public function update(UpdatePartnersRequest $request, Partners $partner)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        DB::transaction(function () use ($request, $partner) {
+            $validated = $request->validated();
 
-        DB::transaction(function () use ($validated, $request, $partner) {
+            $validated['logo'] = $partner->logo;
+
             if ($request->hasFile('logo')) {
-                if ($partner->logo && Storage::exists('public/' . $partner->logo)) {
-                    Storage::delete('public/' . $partner->logo);
+                if ($partner->logo) {
+                    Storage::disk('public')->delete($partner->logo);
                 }
 
                 $path = $request->file('logo')->store('partners', 'public');
@@ -81,7 +77,7 @@ class PartnersController extends Controller
             $partner->update($validated);
         });
 
-        return redirect()->route('admin.partners.index')->with('success', 'Partner updated successfully.');
+        return redirect()->route('admin.partners.index')->with('success', 'Mitra berhasil diperbarui.');
     }
 
     /**
@@ -90,13 +86,13 @@ class PartnersController extends Controller
     public function destroy(Partners $partner)
     {
         DB::transaction(function () use ($partner) {
-            if ($partner->logo && Storage::exists('public/' . $partner->logo)) {
-                Storage::delete('public/' . $partner->logo);
+            if ($partner->logo) {
+                Storage::disk('public')->delete($partner->logo);
             }
 
             $partner->delete();
         });
 
-        return redirect()->route('admin.partners.index')->with('success', 'Partner deleted successfully.');
+        return redirect()->route('admin.partners.index')->with('success', 'Mitra berhasil dihapus.');
     }
 }

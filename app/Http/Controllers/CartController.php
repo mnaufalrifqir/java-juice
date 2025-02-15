@@ -49,9 +49,9 @@ class CartController extends Controller
         });
 
         if ($isFailed) {
-            return redirect()->back()->with('error', 'Stock is not enough.');
+            return redirect()->back()->with('error', 'Stok tidak mencukupi.');
         } else {
-            return redirect()->back()->with('success', 'Product added to cart!');
+            return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang!');
         }
     }
 
@@ -60,14 +60,14 @@ class CartController extends Controller
         $cartItem = Cart::findOrFail($cartId);
 
         if ($cartItem->user_id != auth()->id()) {
-            return redirect()->back()->withErrors('Unauthorized action.');
+            return redirect()->back()->withErrors('Aksi tidak diizinkan.');
         }
 
         $quantity = $request->input('quantity');
 
         if ($cartItem->product->stock < $quantity) {
             $quantity = $cartItem->product->stock;
-            return redirect()->back()->with('error', 'Stock is not enough.');
+            return redirect()->back()->with('error', 'Stok tidak mencukupi.');
         }
 
         if ($quantity > 0) {
@@ -76,7 +76,7 @@ class CartController extends Controller
             $cartItem->delete();
         }
 
-        return redirect()->back()->with('success', 'Cart updated.');
+        return redirect()->back()->with('success', 'Keranjang diperbarui.');
     }
 
     public function removeFromCart($cartId)
@@ -84,11 +84,11 @@ class CartController extends Controller
         $cartItem = Cart::findOrFail($cartId);
 
         if ($cartItem->user_id != auth()->id()) {
-            return redirect()->back()->withErrors('Unauthorized action.');
+            return redirect()->back()->withErrors('Aksi tidak diizinkan.');
         }
 
         $cartItem->delete();
 
-        return redirect()->back()->with('success', 'Cart updated.');
+        return redirect()->back()->with('success', 'Keranjang diperbarui.');
     }
 }

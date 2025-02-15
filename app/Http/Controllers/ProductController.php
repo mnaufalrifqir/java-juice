@@ -57,7 +57,7 @@ class ProductController extends Controller
             ]);
         });
 
-        return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
+        return redirect()->route('admin.products.index')->with('success', 'Produk berhasil dibuat.');
     }
 
     /**
@@ -85,6 +85,8 @@ class ProductController extends Controller
         DB::transaction(function () use ($request, $product) {
             $validated = $request->validated();
 
+            $validated['image'] = $product->image;
+
             if ($request->hasFile('image')) {
                 if ($product->image) {
                     Storage::disk('public')->delete($product->image);
@@ -107,7 +109,7 @@ class ProductController extends Controller
             ]);
         });
 
-        return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
+        return redirect()->route('admin.products.index')->with('success', 'Produk berhasil diperbarui.');
     }
 
     /**
@@ -123,6 +125,6 @@ class ProductController extends Controller
             $product->delete();
         });
 
-        return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
+        return redirect()->route('admin.products.index')->with('success', 'Produk berhasil dihapus.');
     }
 }

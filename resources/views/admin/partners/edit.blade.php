@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight py-2">
-            {{ __('Edit Partner') }}
+            {{ __('Edit Mitra') }}
         </h2>
     </x-slot>
 
@@ -36,7 +36,7 @@
                     </div>
                     <div class="flex items-center justify-end mt-4">
                         <button type="submit" class="font-bold py-4 px-6 bg-[#FAF3EA] text-gray-800 rounded-full">
-                            Perbarui Partner
+                            Perbarui Mitra
                         </button>
                     </div>
                 </form>

@@ -32,7 +32,7 @@
         
                             <x-slot name="content">
                                 <x-dropdown-link :href="route('admin.hero_sections.index')">
-                                    {{ __('Hero Section') }}
+                                    {{ __('Gambar Banner') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('admin.statistics.index')">
                                     {{ __('Statistik Perusahaan') }}

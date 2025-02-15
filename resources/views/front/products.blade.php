@@ -22,12 +22,17 @@
           <div class="p-4">
             <h2 class="text-xl font-bold">{{ $product->name }}</h2>
             <p class="text-gray-500">{{ $product->category->name }}</p>
-            <p class="text-sm text-gray-400 line-through">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
-            <p class="text-xl font-bold text-gray-900">Rp {{ number_format($product->current_price, 0, ',', '.') }}</p>
+            @if ($product->discount)
+              <p class="text-sm text-gray-400 line-through">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
+              <p class="text-xl font-bold text-gray-900">Rp {{ number_format($product->current_price, 0, ',', '.') }}</p>
+            @else
+              <p class="text-xl font-bold text-gray-900">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
+              <br>
+            @endif
           </div>
         </a>
       @empty
-      <p>Produk tidak ditemukan.</p>
+        <p>Produk tidak ditemukan.</p>
       @endforelse
     </div>
   

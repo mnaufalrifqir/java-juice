@@ -59,12 +59,17 @@
           <div class="p-4">
             <h2 class="text-xl font-bold"><?php echo e($product->name); ?></h2>
             <p class="text-gray-500"><?php echo e($product->category->name); ?></p>
-            <p class="text-sm text-gray-400 line-through">Rp <?php echo e(number_format($product->price, 0, ',', '.')); ?></p>
-            <p class="text-xl font-bold text-gray-900">Rp <?php echo e(number_format($product->current_price, 0, ',', '.')); ?></p>
+            <?php if($product->discount): ?>
+              <p class="text-sm text-gray-400 line-through">Rp <?php echo e(number_format($product->price, 0, ',', '.')); ?></p>
+              <p class="text-xl font-bold text-gray-900">Rp <?php echo e(number_format($product->current_price, 0, ',', '.')); ?></p>
+            <?php else: ?>
+              <p class="text-xl font-bold text-gray-900">Rp <?php echo e(number_format($product->price, 0, ',', '.')); ?></p>
+              <br>
+            <?php endif; ?>
           </div>
         </a>
       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-      <p>Produk tidak ditemukan.</p>
+        <p>Produk tidak ditemukan.</p>
       <?php endif; ?>
     </div>
   

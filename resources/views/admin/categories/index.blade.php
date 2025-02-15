@@ -5,7 +5,7 @@
                 {{ __('Kelola Kategori') }}
             </h2>
             <a href="{{ route('admin.categories.create') }}" class="font-bold py-2 px-6 bg-white text-gray-800 border rounded-full">
-                Tambah Baru
+                Tambah Kategori Baru
             </a>
         </div>
     </x-slot>

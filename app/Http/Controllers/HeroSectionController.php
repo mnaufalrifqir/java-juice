@@ -52,7 +52,7 @@ class HeroSectionController extends Controller
             HeroSection::create($validated);
         });
 
-        return redirect()->route('admin.hero_sections.index')->with('success', 'Hero section created successfully.');
+        return redirect()->route('admin.hero_sections.index')->with('success', 'Gambar banner berhasil diupload.');
     }
 
     /**
@@ -68,7 +68,7 @@ class HeroSectionController extends Controller
             $hero_section->delete();
         });
 
-        return redirect()->route('admin.hero_sections.index')->with('success', 'Image deleted successfully.');
+        return redirect()->route('admin.hero_sections.index')->with('success', 'Gambar banner berhasil dihapus.');
     }
 
     public function setPrimary($id)

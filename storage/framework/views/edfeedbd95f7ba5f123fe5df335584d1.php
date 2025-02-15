@@ -55,7 +55,7 @@
                     <i class="fas fa-phone-alt text-2xl text-orange-500 mr-4"></i>
                     <div>
                         <h3 class="text-xl font-semibold mb-2">Telepon</h3>
-                        <p>Mobile: +(62) 546-6789</p>
+                        <p>Mobile: +(62)811876449</p>
                     </div>
                 </div>
                 <!-- <div class="flex items-start">

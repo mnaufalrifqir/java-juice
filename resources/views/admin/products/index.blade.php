@@ -5,7 +5,7 @@
                 {{ __('Kelola Produk') }}
             </h2>
             <a href="{{ route('admin.products.create') }}" class="font-bold py-2 px-6 bg-white text-gray-800 border rounded-full">
-                Tambah Baru
+                Tambah Produk Baru
             </a>
         </div>
     </x-slot>

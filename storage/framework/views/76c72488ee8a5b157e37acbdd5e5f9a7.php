@@ -11,7 +11,7 @@
      <?php $__env->slot('header', null, []); ?> 
         <div class="flex flex-row justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                <?php echo e(__('Kelola Hero Section')); ?>
+                <?php echo e(__('Kelola Gambar Banner')); ?>
 
             </h2>
             <a href="<?php echo e(route('admin.hero_sections.create')); ?>" class="font-bold py-2 px-6 bg-white text-gray-800 border rounded-full">
@@ -80,7 +80,7 @@
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                             <tr>
                                 <td colspan="4" class="py-3 text-center bg-red-500 text-white">
-                                    Tidak ada gambar hero yang ditemukan
+                                    Tidak ada gambar banner yang ditemukan
                                 </td>
                             </tr>
                         <?php endif; ?>

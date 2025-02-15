@@ -15,7 +15,7 @@
 
             </h2>
             <a href="<?php echo e(route('admin.products.create')); ?>" class="font-bold py-2 px-6 bg-white text-gray-800 border rounded-full">
-                Tambah Baru
+                Tambah Produk Baru
             </a>
         </div>
      <?php $__env->endSlot(); ?>
@@ -91,7 +91,7 @@
                             </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                             <tr>
-                                <td colspan="8" class="py-3 text-center bg-red-500 text-white">
+                                <td colspan="9" class="py-3 text-center bg-red-500 text-white">
                                     Tidak ada produk ditemukan
                                 </td>
                             </tr>

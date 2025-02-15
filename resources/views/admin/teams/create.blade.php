@@ -19,19 +19,29 @@
                 <form method="POST" action="{{ route('admin.teams.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-4">
-                        <x-input-label for="name" :value="__('Nama')" />
+                        <div class="flex items-center">
+                            <x-input-label for="name" :value="__('Nama')" />
+                            <span class="text-red-500">*</span>
+                        </div>
                         <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
                     
                     <div class="mb-4">
-                        <x-input-label for="image" :value="__('Gambar')" />
-                        <input id="image" class="block mt-1 w-full border-gray-300 rounded-md" type="file" name="image" accept="image/*" required />
+                        <div class="flex items-center">
+                            <x-input-label for="image" :value="__('Gambar')" />
+                            <span class="text-red-500">*</span>
+                        </div>
+                        <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" accept=".jpeg, .jpg, .png" required autofocus autocomplete="image" />
+                        <p class="text-xs text-gray-500 mt-2">Hanya file dengan format .jpeg, .jpg, dan .png yang diperbolehkan.</p>
                         <x-input-error :messages="$errors->get('image')" class="mt-2" />
                     </div>
 
                     <div class="mb-4">
-                        <x-input-label for="occupation" :value="__('Jabatan')" />
+                        <div class="flex items-center">
+                            <x-input-label for="occupation" :value="__('Jabatan')" />
+                            <span class="text-red-500">*</span>
+                        </div>
                         <x-text-input id="occupation" class="block mt-1 w-full" type="text" name="occupation" :value="old('occupation')" required autocomplete="occupation" />
                         <x-input-error :messages="$errors->get('occupation')" class="mt-2" />
                     </div>

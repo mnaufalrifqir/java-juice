@@ -70,6 +70,8 @@ document.getElementById("courier").addEventListener("change", function () {
         courier: document.getElementById("courier").value,
     };
 
+    console.log(request);
+
     fetch(`/shipping-cost`, {
         method: "POST",
         headers: {

@@ -22,7 +22,7 @@ class UpdatePartnersRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'sometimes|string|max:255',
+            'name' => 'required|string|max:255',
             'logo' => 'sometimes|image|mimes:jpeg,png,jpg|max:2048',
         ];
     }
