@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
     <?php if (isset($component)) { $__componentOriginala591787d01fe92c5706972626cdf7231 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginala591787d01fe92c5706972626cdf7231 = $attributes; } ?>
@@ -22,13 +21,14 @@
 <?php endif; ?>
     <!-- Konten Utama -->
     <div class="container mx-auto px-4 py-8">
-        <div class="flex items-center mb-6">
+        <!-- <div class="flex items-center mb-6">
             <button class="border border-red-600 text-red-600 rounded-full px-4 py-2 mr-2">Semua</button>
-            <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Pembayaran</button>
+            <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Pembayaran Tertunda</button>
             <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Sedang Diproses</button>
-            <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Dikirim</button>
+            <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Sedang Dikirim</button>
+            <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Pesanan Selesai</button>
             <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2">Dibatalkan</button>
-        </div>
+        </div> -->
 
         <!-- Kartu Pesanan -->
         <?php $__currentLoopData = $transactions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $transaction): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -39,13 +39,21 @@
                             $bgColor = match($transaction->shipping_status) {
                                 'Pending' => 'bg-gray-200 text-gray-600',
                                 'In Progress' => 'bg-orange-200 text-orange-600',
+                                'Shipped' => 'bg-blue-200 text-blue-600',
                                 'Delivered' => 'bg-green-200 text-green-600',
                                 'Cancelled' => 'bg-red-200 text-red-600',
                                 default => 'bg-gray-200 text-gray-600',
                             };
+                            $valueShipping = match($transaction->shipping_status) {
+                                'Pending' => 'Menunggu Pembayaran',
+                                'In Progress' => 'Sedang Diproses',
+                                'Shipped' => 'Pesanan Dikirim',
+                                'Delivered' => 'Pesanan Diterima',
+                                'Cancelled' => 'Dibatalkan',
+                            };
                         ?>
                         <span class="rounded-full px-3 py-1 text-sm <?php echo e($bgColor); ?>">
-                            <?php echo e($transaction->shipping_status); ?>
+                            <?php echo e($valueShipping); ?>
 
                         </span>
                         <span class="text-gray-600 ml-4"><?php echo e($transaction->created_at->format('l, d F Y (T)')); ?></span>

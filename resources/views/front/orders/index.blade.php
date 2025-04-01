@@ -3,14 +3,14 @@
     <x-navbar/>
     <!-- Konten Utama -->
     <div class="container mx-auto px-4 py-8">
-        <div class="flex items-center mb-6">
+        <!-- <div class="flex items-center mb-6">
             <button class="border border-red-600 text-red-600 rounded-full px-4 py-2 mr-2">Semua</button>
             <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Pembayaran Tertunda</button>
             <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Sedang Diproses</button>
             <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Sedang Dikirim</button>
             <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2 mr-2">Pesanan Selesai</button>
             <button class="border border-gray-300 text-gray-600 rounded-full px-4 py-2">Dibatalkan</button>
-        </div>
+        </div> -->
 
         <!-- Kartu Pesanan -->
         @foreach($transactions as $transaction)
@@ -21,13 +21,21 @@
                             $bgColor = match($transaction->shipping_status) {
                                 'Pending' => 'bg-gray-200 text-gray-600',
                                 'In Progress' => 'bg-orange-200 text-orange-600',
+                                'Shipped' => 'bg-blue-200 text-blue-600',
                                 'Delivered' => 'bg-green-200 text-green-600',
                                 'Cancelled' => 'bg-red-200 text-red-600',
                                 default => 'bg-gray-200 text-gray-600',
                             };
+                            $valueShipping = match($transaction->shipping_status) {
+                                'Pending' => 'Menunggu Pembayaran',
+                                'In Progress' => 'Sedang Diproses',
+                                'Shipped' => 'Pesanan Dikirim',
+                                'Delivered' => 'Pesanan Diterima',
+                                'Cancelled' => 'Dibatalkan',
+                            };
                         @endphp
                         <span class="rounded-full px-3 py-1 text-sm {{ $bgColor }}">
-                            {{ $transaction->shipping_status }}
+                            {{ $valueShipping }}
                         </span>
                         <span class="text-gray-600 ml-4">{{ $transaction->created_at->format('l, d F Y (T)') }}</span>
                     </div>

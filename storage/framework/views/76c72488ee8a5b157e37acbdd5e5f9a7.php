@@ -60,7 +60,7 @@
                                                 <?php echo csrf_field(); ?>
                                                 <?php echo method_field('DELETE'); ?>
                                                 <button type="submit" title="Hapus" class="focus:outline-none">
-                                                    <ion-icon name="trash-outline" class="text-2xl text-red-500"></ion-icon>
+                                                    <i class="fa-regular fa-trash-can"></i>
                                                 </button>
                                             </form>
                                         </span>
@@ -70,7 +70,7 @@
                                                 <?php echo csrf_field(); ?>
                                                 <?php echo method_field('PUT'); ?>
                                                 <button type="submit" title="Setel Sebagai Utama" class="focus:outline-none">
-                                                    <ion-icon name="star-outline" class="text-2xl text-yellow-500"></ion-icon>
+                                                    <i class="fa-regular fa-star"></i>
                                                 </button>
                                             </form>
                                         <?php endif; ?>

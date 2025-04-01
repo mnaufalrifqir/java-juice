@@ -50,9 +50,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/orders', [TransactionController::class, 'order'])->name('front.orders.index');
     Route::get('/orders/{transaction_id}', [TransactionController::class, 'details'])->name('front.orders.show');
+    Route::post('/orders/{transaction_id}/delivered', [TransactionController::class, 'setTransactionToDelivered'])->name('front.orders.delivered');
 
     Route::get('/orders/{transaction_id}/review', [TestimonialController::class, 'create'])->name('front.review.create');
     Route::post('/orders/{transaction_id}/review', [TestimonialController::class, 'store'])->name('front.review.store');
+    Route::get('/orders/{transaction_id}/review_details', [TestimonialController::class, 'show'])->name('front.review.show');
 
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::middleware('can:manage statistics')->group(function () {

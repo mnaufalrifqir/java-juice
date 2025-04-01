@@ -46,7 +46,7 @@ document.getElementById("city").addEventListener("change", function () {
     if (this.value) {
         courierSelect.innerHTML = '<option value="">Select Courier</option>';
         courierSelect.innerHTML += '<option value="jne">JNE</option>';
-        courierSelect.innerHTML += '<option value="jnt">JNT</option>';
+        courierSelect.innerHTML += '<option value="pos">POS</option>';
         courierSelect.innerHTML += '<option value="tiki">TIKI</option>';
         courierSelect.disabled = false;
     } else {
@@ -165,5 +165,3 @@ document.getElementById("pay-button").addEventListener("click", function () {
         })
         .catch((error) => console.error("Error:", error));
 });
-    
-

@@ -60,8 +60,8 @@
                                         <form action="{{ route('cart.removeFromCart', $item->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="text-yellow-500 cursor-pointer">
-                                                <i class="fas fa-trash-alt"></i>
+                                            <button type="submit" class="cursor-pointer">
+                                                <i class="fa-regular fa-trash-can" style="color: #f8a401;"></i>
                                             </button>
                                         </form>
                                     </td>

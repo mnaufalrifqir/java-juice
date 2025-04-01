@@ -305,4 +305,16 @@ class TransactionController extends Controller
         ]);
     }
 
+    public function setTransactionToDelivered($transactionId)
+    {
+        $transaction = Transaction::findOrFail($transactionId);
+
+        if ($transaction->user_id != auth()->id()) {
+            return redirect()->route('front.orders.index')->with('error', 'Anda tidak memiliki akses untuk melihat pesanan ini');
+        }
+
+        $transaction->update(['shipping_status' => 'Delivered']);
+
+        return redirect()->route('front.orders.show', $transactionId)->with('success', 'Terimakasih telah melakukan konfirmasi penerimaan barang. Silahkan beri ulasan untuk produk yang telah Anda beli.');
+    }
 }

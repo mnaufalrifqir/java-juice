@@ -40,6 +40,11 @@ class TestimonialController extends Controller
         DB::transaction(function () use ($request, $transaction_id) {
             $validated = $request->validated();
 
+            $transaction = Transaction::findOrFail($transaction_id);
+            if ($transaction->user_id != auth()->id()) {
+                return redirect()->back()->with('error', 'Anda tidak memiliki akses untuk memberikan umpan balik pada transaksi ini.');
+            }
+
             $testimonial = Testimonial::create([
                 'transaction_id' => $transaction_id,
                 'rating' => $validated['transaction']['rating'],
@@ -55,6 +60,10 @@ class TestimonialController extends Controller
                     'comment' => $feedback['comment'],
                 ]);
             }
+
+            $transaction->update([
+                'review_status' => 1,
+            ]);
         });
 
         return redirect()->back()->with('success', 'Semua umpan balik berhasil dikirimkan!');
@@ -63,9 +72,11 @@ class TestimonialController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Testimonial $testimonial)
+    public function show($transaction_id)
     {
-        //
+        $transaction = Transaction::with(['detailsTransaction.product'])->findOrFail($transaction_id);
+        $testimonial = Testimonial::with(['testimonialDetails.product'])->where('transaction_id', $transaction_id)->first();
+        return view('front.review.show', compact('transaction', 'testimonial'));
     }
 
     /**
@@ -74,8 +85,6 @@ class TestimonialController extends Controller
     public function edit(Testimonial $testimonial)
     {
         //
-        $clients = ProjectClient::orderByDesc('id')->get();
-        return view('admin.testimonials.edit', compact('testimonial', 'clients'));
     }
 
     /**
@@ -92,10 +101,5 @@ class TestimonialController extends Controller
     public function destroy(Testimonial $testimonial)
     {
         //
-        DB::transaction(function () use ($testimonial) {
-            $testimonial->delete();
-        });
-
-        return redirect()->route('admin.testimonials.index');
     }
 }

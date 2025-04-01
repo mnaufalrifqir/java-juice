@@ -36,7 +36,7 @@
                                     <div class="flex justify-center items-center space-x-4">
                                         <span title="Ubah">
                                             <a href="{{ route('admin.categories.edit', $category->id) }}">
-                                                <ion-icon name="create-outline" class="text-2xl"></ion-icon>
+                                                <i class="fa-regular fa-pen-to-square"></i>
                                             </a>
                                         </span>
                                         <span title="Hapus">
@@ -44,7 +44,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" title="Hapus" class="focus:outline-none">
-                                                    <ion-icon name="trash-outline" class="text-2xl text-red-500"></ion-icon>
+                                                    <i class="fa-regular fa-trash-can"></i>
                                                 </button>
                                             </form>
                                         </span>

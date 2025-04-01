@@ -13,9 +13,9 @@
             <form id="feedback-form" method="POST" action="{{ route('front.review.store', $transaction->id) }}">
                 @csrf
                 <div class="space-y-6">
-                    <!-- Umpan Balik Transaksi -->
+                    <!-- Ulasan Transaksi -->
                     <div class="border-t border-gray-200 pt-4">
-                        <h2 class="font-semibold text-gray-700">Umpan Balik Transaksi</h2>
+                        <h2 class="font-semibold text-gray-700">Ulasan Transaksi</h2>
                         <div class="rating-box">
                             <label class="text-gray-700">Rating</label>
                             <div class="stars">
@@ -31,9 +31,9 @@
                         </div>
                     </div>
 
-                    <!-- Umpan Balik Produk -->
+                    <!-- Ulasan Produk -->
                     <div class="border-t border-gray-200 pt-4">
-                        <h2 class="font-semibold text-gray-700">Umpan Balik Produk</h2>
+                        <h2 class="font-semibold text-gray-700">Ulasan Produk</h2>
                         @foreach ($transaction->detailsTransaction as $item)
                             <div class="border-b border-gray-200 py-4">
                                 <div class="flex items-center space-x-4">
@@ -75,5 +75,4 @@
 @push('after-scripts')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
     <script src="{{asset('js/rating.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('css/rating.css')}}"/>
 @endpush

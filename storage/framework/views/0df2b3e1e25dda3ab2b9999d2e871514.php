@@ -570,6 +570,7 @@
                             <select id="shipping_status" name="shipping_status" class="block mt-1 w-full rounded-md shadow-sm border-gray-300">
                                 <option value="Pending" <?php echo e($transaction->shipping_status == 'Pending' ? 'selected' : ''); ?>>Menunggu</option>
                                 <option value="In Progress" <?php echo e($transaction->shipping_status == 'In Progress' ? 'selected' : ''); ?>>Dalam Proses</option>
+                                <option value="Shipped" <?php echo e($transaction->shipping_status == 'Shipped' ? 'selected' : ''); ?>>Sedang Dikirim</option>
                                 <option value="Delivered" <?php echo e($transaction->shipping_status == 'Delivered' ? 'selected' : ''); ?>>Terkirim</option>
                                 <option value="Received" <?php echo e($transaction->shipping_status == 'Received' ? 'selected' : ''); ?>>Diterima</option>
                             </select>

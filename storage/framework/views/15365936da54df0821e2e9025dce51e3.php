@@ -69,12 +69,12 @@
                                     <div class="flex justify-center items-center space-x-4">
                                         <span title="Lihat">
                                             <a href="<?php echo e(route('admin.products.show', $product->id)); ?>">
-                                                <ion-icon name="eye-outline" class="text-2xl"></ion-icon>
+                                                <i class="fa-solid fa-magnifying-glass"></i>
                                             </a>
                                         </span>
                                         <span title="Edit">
                                             <a href="<?php echo e(route('admin.products.edit', $product->id)); ?>">
-                                                <ion-icon name="create-outline" class="text-2xl"></ion-icon>
+                                                <i class="fa-regular fa-pen-to-square"></i>
                                             </a>
                                         </span>
                                         <span title="Hapus">
@@ -82,7 +82,7 @@
                                                 <?php echo csrf_field(); ?>
                                                 <?php echo method_field('DELETE'); ?>
                                                 <button type="submit" title="Hapus" class="focus:outline-none">
-                                                    <ion-icon name="trash-outline" class="text-2xl text-red-500"></ion-icon>
+                                                    <i class="fa-regular fa-trash-can"></i>
                                                 </button>
                                             </form>
                                         </span>

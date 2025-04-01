@@ -81,8 +81,8 @@
                                         <form action="<?php echo e(route('cart.removeFromCart', $item->id)); ?>" method="POST">
                                             <?php echo csrf_field(); ?>
                                             <?php echo method_field('DELETE'); ?>
-                                            <button type="submit" class="text-yellow-500 cursor-pointer">
-                                                <i class="fas fa-trash-alt"></i>
+                                            <button type="submit" class="cursor-pointer">
+                                                <i class="fa-regular fa-trash-can" style="color: #f8a401;"></i>
                                             </button>
                                         </form>
                                     </td>
