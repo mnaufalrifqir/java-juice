@@ -111,6 +111,25 @@
         <p class="text-lg">Dengarkan Cerita Mereka Tentang Pengalaman Luar Biasa dengan Produk Kami!</p>
       </div>
     </div>
+    <div class="relative">
+      <div id="slider" class="responsive flex flex-wrap items-center gap-[30px] justify-center">
+        @foreach ($testimonials as $testimonial)
+          <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[20px] p-5">
+            <div class="flex items-center gap-3">
+              <div>
+                <h3 class="font-semibold text-lg">
+                  {{ $testimonial->transaction->user->name ?? 'Unknown User' }}
+                </h3>
+                @foreach ($testimonial->testimonialDetails as $item)
+                  <p class="text-sm text-gray-500">{{ $item->product->name }}{{ !$loop->last ? ', ' : '' }}</p>
+                @endforeach
+              </div>
+            </div>
+            <p class="text-gray-700 text-sm italic">"{{ $testimonial->comment }}"</p>
+          </div>
+        @endforeach
+      </div>
+    </div>
   </div>
   <div id="Stats" class="bg-[#FAF3EA] w-full mt-10">
     <div class="container max-w-[1130px] mx-auto py-10">

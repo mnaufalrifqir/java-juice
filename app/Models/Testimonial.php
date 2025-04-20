@@ -17,7 +17,7 @@ class Testimonial extends Model
         'transaction_id',
     ];
 
-    public function trasanction()
+    public function transaction()
     {
         return $this->belongsTo(Transaction::class);
     }

@@ -64,29 +64,25 @@
     <section class="mt-12">
       <h2 class="text-2xl font-bold mb-6">Ulasan Pelanggan</h2>
       @if($testimonials_details->count() > 0)
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          @foreach($testimonials_details as $testimonial)
-            <div class="bg-white shadow-lg rounded-lg p-4">
-              <p class="text-gray-600">{{ $testimonial->comment }}</p>
-              <div class="flex items-center justify-between mt-4">
-                <div class="flex items-center">
-                  <div class="flex flex-col ml-4">
-                    <p class="font-bold">{{ $testimonial->user->name }}</p>
-                  </div>
-                </div>
-                <div class="flex items-center">
-                  @for($i = 0; $i < 5; $i++)
-                    @if($i < $testimonial->rating)
-                      <i class="fas fa-star text-yellow-500 text-2xl"></i>
-                    @else
-                      <i class="fas fa-star text-gray-400 text-2xl"></i>
-                    @endif
+      <div class="relative">
+        <div id="slider" class="responsive flex flex-wrap items-center gap-[30px] justify-center">
+          @foreach ($testimonials_details as $testimonial)
+            <div class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] gap-[20px] p-5">
+              <div>
+                <h3 class="font-semibold text-lg">
+                  {{ $testimonial->testimonial->transaction->user->name ?? 'Unknown User' }}
+                </h3>
+                <div class="stars">
+                  @for ($i = 1; $i <= 5; $i++)
+                    <i class="text-sm fa-solid fa-star {{ $testimonial->rating >= $i ? 'text-[#ff9c1a]' : 'text-gray-400' }}"></i>
                   @endfor
                 </div>
               </div>
+              <p class="text-gray-700 text-sm italic">"{{ $testimonial->comment }}"</p>
             </div>
           @endforeach
         </div>
+      </div>
       @else
         <div class="text-center">
           <p class="text-gray-600">Belum ada ulasan</p>
@@ -97,7 +93,7 @@
     <!-- Anda mungkin juga suka -->
     <section class="mt-12">
       <h2 class="text-2xl font-bold mb-6">Anda mungkin juga suka</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
         @foreach($related_products as $related_product)
           <a href="{{ route('front.details', ['product' => $related_product->id]) }}" class="bg-white shadow-lg rounded-lg p-4">
             <img src="{{ Storage::url($related_product->image) }}" alt="{{ $related_product->name }}" class="w-full h-auto object-cover rounded-lg" />
