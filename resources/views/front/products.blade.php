@@ -15,19 +15,18 @@
         Produk
       </span>
     </nav>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
       @forelse($products as $product)
-        <a href="{{ route('front.details', ['product' => $product->id]) }}" class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
+        <a href="{{ route('front.details', ['product' => $product->id]) }}" class="card w-auto flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
           <img src="{{ Storage::url($product->image) }}" class="object-cover object-center w-full h-full" alt="thumbnail">
           <div class="p-4">
-            <h2 class="text-xl font-bold">{{ $product->name }}</h2>
-            <p class="text-gray-500">{{ $product->category->name }}</p>
+            <h2 class="font-bold lg:text-base">{{ $product->name }}</h2>
+            <p class="text-gray-500 text-sm lg:text-base">{{ $product->category->name }}</p>
             @if ($product->discount)
-              <p class="text-sm text-gray-400 line-through">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
-              <p class="text-xl font-bold text-gray-900">Rp {{ number_format($product->current_price, 0, ',', '.') }}</p>
+              <p class="text-sm text-gray-400 line-through lg:text-base">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
+              <p class="text-md font-bold text-gray-900 lg:text-base">Rp {{ number_format($product->current_price, 0, ',', '.') }}</p>
             @else
-              <p class="text-xl font-bold text-gray-900">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
-              <br>
+              <p class="text-md font-bold text-gray-900 mb-5 lg:text-base">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
             @endif
           </div>
         </a>

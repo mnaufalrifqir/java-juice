@@ -1,11 +1,15 @@
-<nav x-data="{navOpen : false}" class="p-4 border-b shadow">
+<!--<nav x-data="{navOpen : false}" class="p-4 border-b shadow">-->
+<nav x-data="{navOpen : true}" class="p-4 border-b shadow">
     <div class="container mx-auto">
       <div class="flex items-center justify-between h-[43px]">
         <div class="flex items-center order-1">
           <img src="{{asset('assets/logo/logo-app.png')}}" class="h-[43px]" alt="logo">
           <p id="CompanyName" class="font-extrabold text-xl">Java Juice Indonesia</p>
         </div>
-        <img @click ="navOpen = !navOpen" src="{{asset('assets/icon/more.svg')}}" class="lg:hidden order-2" alt="navbar">
+        <a href="{{ route('cart.index') }}" class="px-4 py-4 flex text-xl items-center lg:hidden order-2">
+          <i class="fa-solid fa-cart-shopping" style="color: #f8a401;"></i>
+        </a>
+        <!--<img @click ="navOpen = !navOpen" src="{{asset('assets/icon/more.svg')}}" class="lg:hidden order-2" alt="navbar">-->
         <div class="order-2 hidden lg:block">
           <ul class="flex items-center gap-[30px]">
             <li class="{{request()->routeIs('front.index') ? 'text-[#F8A401]' : ''}} font-semibold hover:text-[#F8A401] transition-all duration-300">
@@ -73,35 +77,43 @@
       x-transition:leave-end="opacity-0 scale-90"
       x-data="{open : false}"
       class="fixed bottom-0 right-0 left-0 p-4 bg-[#FAF3EA] border lg:hidden z-10">
-      <ul class="flex justify-between">
+      <ul class="flex justify-between items-center gap-3">
         <li>
           <a href="{{route('front.index')}}" class="flex justify-center flex-col items-center gap-1">
-            <i class="fa-solid fa-house"></i>
-            <span class="text-grey opacity-50 text-base font-bold">Beranda</span>
+            <i class="fa-solid fa-house text-sm md:text-base"></i>
+            <span class="text-grey opacity-50 text-base font-bold text-sm md:text-base">Beranda</span>
           </a>
         </li>
         <li>
           <a href="{{route('front.product')}}" class="flex justify-center flex-col items-center gap-1">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span class="text-grey opacity-50 text-base font-normal">Produk</span>
+            <i class="fa-solid fa-bag-shopping text-sm md:text-base"></i>
+            <span class="text-grey opacity-50 text-base font-normal text-sm md:text-base">Produk</span>
           </a>
         </li>
         <li>
-          <a href="{{route('front.about')}}" class="flex justify-center flex-col items-center gap-1">
-            <i class="fa-solid fa-circle-info"></i>
-            <span class="text-grey opacity-50 text-base font-normal">Tentang</span>
+          <a href="{{route('front.orders.index')}}" class="flex justify-center flex-col items-center gap-1">
+            <i class="fa-solid fa-receipt text-sm md:text-base"></i>
+            <span class="text-grey opacity-50 text-base font-normal text-sm md:text-base">Transaksi</span>
           </a>
+          <!-- <a href="{{route('front.about')}}" class="flex justify-center flex-col items-center gap-1">
+            <i class="fa-solid fa-circle-info text-sm md:text-base"></i>
+            <span class="text-grey opacity-50 text-base font-normal text-sm md:text-base">Tentang</span>
+          </a> -->
         </li>
         <li>
           <a href="{{route('front.contact')}}" class="flex justify-center flex-col items-center gap-1">
-            <i class="fa-solid fa-envelope"></i>
-            <span class="text-grey opacity-50 text-base font-normal">Kontak</span>
+            <i class="fa-solid fa-user text-sm md:text-base"></i>
+            <span class="text-grey opacity-50 text-base font-normal text-sm md:text-base">Akun</span>
           </a>
+          <!-- <a href="{{route('front.contact')}}" class="flex justify-center flex-col items-center gap-1">
+            <i class="fa-solid fa-envelope text-sm md:text-base"></i>
+            <span class="text-grey opacity-50 text-base font-normal text-sm md:text-base">Kontak</span>
+          </a> -->
         </li>
         <li>
           <button @click ="open = !open" class="flex justify-center flex-col items-center gap-1">
-            <i class="fa-solid fa-chevron-up"></i>
-            <span class="text-grey opacity-50 text-base font-normal">Selebihnya</span>
+            <i class="fa-solid fa-chevron-up text-sm md:text-base"></i>
+            <span class="text-grey opacity-50 text-base font-normal text-sm md:text-base">Selebihnya</span>
           </button>
         </li>
       </ul>
@@ -120,7 +132,7 @@
             <a href="{{ route('dashboard') }}" class="w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
             @endrole
 
-            <a href="{{ route('cart.index') }}" class="w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Keranjang</a>
+            <!--<a href="{{ route('cart.index') }}" class="w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Keranjang</a>-->
             <a href="{{ route('front.orders.index') }}" class="w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Pesanan Saya</a>
             <form method="POST" action="{{ route('logout') }}" class="w-full">
               @csrf

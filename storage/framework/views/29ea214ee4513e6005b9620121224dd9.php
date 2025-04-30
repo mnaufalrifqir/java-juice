@@ -52,19 +52,18 @@
         Produk
       </span>
     </nav>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
       <?php $__empty_1 = true; $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-        <a href="<?php echo e(route('front.details', ['product' => $product->id])); ?>" class="card w-[356.67px] flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
+        <a href="<?php echo e(route('front.details', ['product' => $product->id])); ?>" class="card w-auto flex flex-col bg-white border border-[#E8EAF2] rounded-[20px] overflow-hidden hover:border-cp-dark-blue transition-all duration-300">
           <img src="<?php echo e(Storage::url($product->image)); ?>" class="object-cover object-center w-full h-full" alt="thumbnail">
           <div class="p-4">
-            <h2 class="text-xl font-bold"><?php echo e($product->name); ?></h2>
-            <p class="text-gray-500"><?php echo e($product->category->name); ?></p>
+            <h2 class="font-bold lg:text-base"><?php echo e($product->name); ?></h2>
+            <p class="text-gray-500 text-sm lg:text-base"><?php echo e($product->category->name); ?></p>
             <?php if($product->discount): ?>
-              <p class="text-sm text-gray-400 line-through">Rp <?php echo e(number_format($product->price, 0, ',', '.')); ?></p>
-              <p class="text-xl font-bold text-gray-900">Rp <?php echo e(number_format($product->current_price, 0, ',', '.')); ?></p>
+              <p class="text-sm text-gray-400 line-through lg:text-base">Rp <?php echo e(number_format($product->price, 0, ',', '.')); ?></p>
+              <p class="text-md font-bold text-gray-900 lg:text-base">Rp <?php echo e(number_format($product->current_price, 0, ',', '.')); ?></p>
             <?php else: ?>
-              <p class="text-xl font-bold text-gray-900">Rp <?php echo e(number_format($product->price, 0, ',', '.')); ?></p>
-              <br>
+              <p class="text-md font-bold text-gray-900 mb-5 lg:text-base">Rp <?php echo e(number_format($product->price, 0, ',', '.')); ?></p>
             <?php endif; ?>
           </div>
         </a>

@@ -34,7 +34,7 @@
 
             </div>
             <?php endif; ?>
-            <div class="flex flex-col lg:flex-row lg:space-x-8">
+            <div class="flex flex-col lg:flex-row lg:space-8">
                 <!-- Kartu untuk Item Keranjang -->
                 <div class="flex-1 bg-white shadow-md rounded-lg overflow-hidden">
                     <div class="p-6">

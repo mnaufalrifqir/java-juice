@@ -37,9 +37,6 @@
     text-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
-.slick-dots {
-    bottom: 15px;
-}
 .slick-dots li button:before {
     font-size: 12px;
     color: #fff;
