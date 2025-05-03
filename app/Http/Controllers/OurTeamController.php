@@ -16,7 +16,7 @@ class OurTeamController extends Controller
      */
     public function index()
     {
-        $teams = OurTeam::orderBy('id')->paginate(10);
+        $teams = OurTeam::orderBy('id')->paginate(1);
         return view('admin.teams.index', compact('teams'));
     }
 

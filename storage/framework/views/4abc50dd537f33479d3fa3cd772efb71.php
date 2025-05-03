@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
     <?php if (isset($component)) { $__componentOriginala591787d01fe92c5706972626cdf7231 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginala591787d01fe92c5706972626cdf7231 = $attributes; } ?>
@@ -34,7 +33,7 @@
 
             </div>
             <?php endif; ?>
-            <div class="flex flex-col lg:flex-row lg:space-8">
+            <div class="flex flex-col lg:flex-row lg:space-x-8">
                 <!-- Kartu untuk Item Keranjang -->
                 <div class="flex-1 bg-white shadow-md rounded-lg overflow-hidden">
                     <div class="p-6">

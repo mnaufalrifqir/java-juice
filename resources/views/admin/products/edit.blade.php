@@ -5,18 +5,18 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden p-10 shadow-sm sm:rounded-lg">
+    <div class="py-6 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto">
+            <div class="bg-white p-6 sm:p-10 shadow-sm border rounded-lg space-y-4">
                 @if($errors->any())
                     @foreach($errors->all() as $error)
-                        <div class="py-3 w-full rounded-3xl bg-red-500 text-white">
+                        <div class="py-3 w-full rounded-3xl bg-red-500 text-white px-4 text-sm sm:text-base mb-2">
                             {{ $error }}
                         </div>
                     @endforeach
                 @endif
 
-                <form method="POST" action="{{ route('admin.products.update', $product->id) }}" enctype="multipart/form-data"> 
+                <form method="POST" action="{{ route('admin.products.update', $product->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -28,7 +28,7 @@
 
                     <div class="mt-4">
                         <x-input-label for="category" :value="__('Kategori')" />
-                        <select name="category_id" id="category_id" class="py-3 rounded-lg pl-3 w-full bg-gray-50 text-[#9ca3af]">
+                        <select name="category_id" id="category_id" class="py-3 rounded-lg pl-3 w-full bg-gray-50 text-gray-700">
                             <option value="">Pilih Kategori Produk</option>
                             @foreach($categories as $category)
                                 <option value="{{$category->id}}" {{ $product->category_id == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
@@ -76,8 +76,8 @@
                         <x-input-error :messages="$errors->get('image')" class="mt-2" />
                     </div>
 
-                    <div class="flex items-center justify-end mt-4">
-                        <button type="submit" class="font-bold py-4 px-6 bg-[#FAF3EA] text-gray-800 rounded-full">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-end mt-6 gap-3">
+                        <button type="submit" class="w-full sm:w-auto font-bold py-3 px-6 bg-[#FAF3EA] text-gray-800 rounded-full text-sm sm:text-base">
                             Perbarui Produk
                         </button>
                     </div>

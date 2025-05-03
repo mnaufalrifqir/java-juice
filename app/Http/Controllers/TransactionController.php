@@ -20,7 +20,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::orderBy('id')->paginate(10);
+        $transactions = Transaction::orderBy('id')->paginate(1);
         return view('admin.transactions.index', compact('transactions'));
     }
 
@@ -37,7 +37,8 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        return view('admin.transactions.edit', compact('transaction'));
+        $detail_transactions = $transaction->detailsTransaction()->with('product')->get();
+        return view('admin.transactions.edit', compact('transaction', 'detail_transactions'));
     }
 
     /**

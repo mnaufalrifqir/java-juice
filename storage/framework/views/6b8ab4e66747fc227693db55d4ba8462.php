@@ -9,18 +9,18 @@
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
      <?php $__env->slot('header', null, []); ?> 
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight py-2">
+        <h2 class="font-semibold text-lg sm:text-xl text-gray-800 leading-tight py-2">
             <?php echo e(__('Buat Gambar Banner Baru')); ?>
 
         </h2>
      <?php $__env->endSlot(); ?>
 
-    <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden p-10 border sm:rounded-lg">
+    <div class="py-6 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto">
+            <div class="bg-white p-6 sm:p-10 border rounded-lg sm:rounded-lg shadow-sm">
                 <?php if($errors->any()): ?>
                     <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="py-3 w-full rounded-3xl bg-red-500 text-white">
+                        <div class="py-3 px-4 mb-2 w-full rounded-xl bg-red-500 text-white text-sm sm:text-base">
                             <?php echo e($error); ?>
 
                         </div>
@@ -29,8 +29,10 @@
 
                 <form method="POST" action="<?php echo e(route('admin.hero_sections.store')); ?>" enctype="multipart/form-data">
                     <?php echo csrf_field(); ?>
+
+                    
                     <div class="mb-4">
-                        <div class="flex items-center">
+                        <div class="flex items-center mb-1">
                             <?php if (isset($component)) { $__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginale3da9d84bb64e4bc2eeebaafabfb2581 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.input-label','data' => ['for' => 'image','value' => __('Gambar Banner')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -51,18 +53,18 @@
 <?php $component = $__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581; ?>
 <?php unset($__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581); ?>
 <?php endif; ?>
-                            <span class="text-red-500">*</span>
+                            <span class="text-red-500 ml-1">*</span>
                         </div>
                         <?php if (isset($component)) { $__componentOriginal18c21970322f9e5c938bc954620c12bb = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal18c21970322f9e5c938bc954620c12bb = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['id' => 'image','class' => 'block mt-1 w-full','type' => 'file','name' => 'image','accept' => '.jpeg, .jpg, .png','required' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['id' => 'image','class' => 'block w-full','type' => 'file','name' => 'image','accept' => '.jpeg, .jpg, .png','required' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('text-input'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['id' => 'image','class' => 'block mt-1 w-full','type' => 'file','name' => 'image','accept' => '.jpeg, .jpg, .png','required' => true]); ?>
+<?php $component->withAttributes(['id' => 'image','class' => 'block w-full','type' => 'file','name' => 'image','accept' => '.jpeg, .jpg, .png','required' => true]); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal18c21970322f9e5c938bc954620c12bb)): ?>
@@ -96,8 +98,9 @@
 <?php endif; ?>
                     </div>
 
+                    
                     <div class="mb-4">
-                        <div class="flex items-center">
+                        <div class="flex items-center mb-1">
                             <?php if (isset($component)) { $__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginale3da9d84bb64e4bc2eeebaafabfb2581 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.input-label','data' => ['for' => 'isPrimary','value' => __('Apakah Utama?')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -118,9 +121,9 @@
 <?php $component = $__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581; ?>
 <?php unset($__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581); ?>
 <?php endif; ?>
-                            <span class="text-red-500">*</span>
+                            <span class="text-red-500 ml-1">*</span>
                         </div>
-                        <select id="isPrimary" name="isPrimary" class="block mt-1 w-full">
+                        <select id="isPrimary" name="isPrimary" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50">
                             <option value="0" <?php echo e(old('isPrimary') == '0' ? 'selected' : ''); ?>>Tidak</option>
                             <option value="1" <?php echo e(old('isPrimary') == '1' ? 'selected' : ''); ?>>Ya</option>
                         </select>
@@ -146,8 +149,9 @@
 <?php endif; ?>
                     </div>
 
-                    <div class="flex items-center justify-end mt-4">
-                        <button type="submit" class="font-bold py-4 px-6 bg-[#FAF3EA] text-gray-800 rounded-full">
+                    
+                    <div class="flex justify-end mt-6">
+                        <button type="submit" class="font-semibold py-3 px-5 sm:py-4 sm:px-6 bg-[#FAF3EA] text-gray-800 rounded-full text-sm sm:text-base">
                             Tambahkan Gambar Banner Baru
                         </button>
                     </div>

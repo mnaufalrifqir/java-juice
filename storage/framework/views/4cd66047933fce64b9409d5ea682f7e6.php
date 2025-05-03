@@ -2,10 +2,10 @@
 <nav x-data="{navOpen : true}" class="p-4 border-b shadow">
     <div class="container mx-auto">
       <div class="flex items-center justify-between h-[43px]">
-        <div class="flex items-center order-1">
+        <a href="<?php echo e(route('front.index')); ?>" class="flex items-center order-1">
           <img src="<?php echo e(asset('assets/logo/logo-app.png')); ?>" class="h-[43px]" alt="logo">
           <p id="CompanyName" class="font-extrabold text-xl">Java Juice Indonesia</p>
-        </div>
+        </a>
         <a href="<?php echo e(route('cart.index')); ?>" class="px-4 py-4 flex text-xl items-center lg:hidden order-2">
           <i class="fa-solid fa-cart-shopping" style="color: #f8a401;"></i>
         </a>
@@ -102,7 +102,7 @@
           </a> -->
         </li>
         <li>
-          <a href="<?php echo e(route('front.contact')); ?>" class="flex justify-center flex-col items-center gap-1">
+          <a href="<?php echo e(route('profile.edit')); ?>" class="flex justify-center flex-col items-center gap-1">
             <i class="fa-solid fa-user text-sm md:text-base"></i>
             <span class="text-grey opacity-50 text-base font-normal text-sm md:text-base">Akun</span>
           </a>
@@ -127,8 +127,8 @@
         x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-90"
         class="absolute bottom-24 left-0 w-full flex gap-4">
-        <?php if(auth()->guard()->check()): ?>
-          <div class="bg-white rounded-md shadow-lg z-20 flex flex-col w-full">
+        <div class="bg-white rounded-md shadow-lg z-20 flex flex-col w-full">
+          <?php if(auth()->guard()->check()): ?>
             <?php if (\Illuminate\Support\Facades\Blade::check('role', 'super_admin')): ?>
             <a href="<?php echo e(route('dashboard')); ?>" class="w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
             <?php endif; ?>
@@ -139,11 +139,15 @@
               <?php echo csrf_field(); ?>
               <button type="submit" class="w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Keluar</button>
             </form>
+          <?php else: ?>
+          <div class="flex items-center justify-center gap-4">
+            <a href="<?php echo e(route('login')); ?>" class="w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border rounded">Masuk</a>
+            <a href="<?php echo e(route('register')); ?>" class="w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border rounded">Daftar</a>
           </div>
-        <?php else: ?>
-          <a href="<?php echo e(route('login')); ?>" class="grow bg-[#F8A401] px-8 py-4 font-bold text-grey rounded-full text-white text-sm text-center">Masuk</a>
-          <a href="<?php echo e(route('register')); ?>" class="grow bg-[#F6F7FA] px-8 py-4 font-bold text-grey rounded-full text-white text-sm text-center">Daftar</a>
-        <?php endif; ?>
+          <?php endif; ?>
+          <a href="<?php echo e(route('front.about')); ?>" class="w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Tentang</a>
+          <a href="<?php echo e(route('front.contact')); ?>" class="w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Kontak</a>
+        </div>
       </div>
     </div>
   </nav><?php /**PATH E:\Project\Backend\Laravel\java-juice\resources\views/components/navbar.blade.php ENDPATH**/ ?>

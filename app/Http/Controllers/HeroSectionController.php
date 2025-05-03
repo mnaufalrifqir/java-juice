@@ -18,7 +18,7 @@ class HeroSectionController extends Controller
     {
         $hero_sections = HeroSection::orderByDesc('isPrimary')
                                     ->orderBy('id')
-                                    ->paginate(10);
+                                    ->paginate(1);
 
         return view('admin.hero_sections.index', compact('hero_sections'));
     }
