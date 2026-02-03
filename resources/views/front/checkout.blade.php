@@ -11,16 +11,16 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700" for="first_name">Nama Depan</label>
-                        <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" id="first_name" type="text" value="first"/>
+                        <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" id="first_name" type="text"/>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700" for="last_name">Nama Belakang</label>
-                        <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" id="last_name" type="text" value="last"/>
+                        <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" id="last_name" type="text"/>
                     </div>
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700" for="street_address">Alamat Jalan</label>
-                    <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" id="street_address" type="text" value="address"/>
+                    <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" id="street_address" type="text"/>
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700" for="province">Provinsi</label>
@@ -39,15 +39,15 @@
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700" for="postal_code">Kode Pos</label>
-                    <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" id="postal_code" type="text" value="1"/>
+                    <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" id="postal_code" type="text"/>
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700" for="phone_number">Nomor Telepon</label>
-                    <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" id="phone_number" type="text" value="1"/>
+                    <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" id="phone_number" type="text"/>
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700" for="email">Alamat Email</label>
-                    <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" id="email" type="email" value="blbla@gmail.com"/>
+                    <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" id="email" type="email"/>
                 </div>
             </div>
 

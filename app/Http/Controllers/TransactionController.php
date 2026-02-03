@@ -37,7 +37,8 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        return view('admin.transactions.edit', compact('transaction'));
+        $detail_transactions = $transaction->detailsTransaction()->with('product')->get();
+        return view('admin.transactions.edit', compact('transaction', 'detail_transactions'));
     }
 
     /**
@@ -197,7 +198,7 @@ class TransactionController extends Controller
                 ]);
                 $weight += $item->product->weight * $item->quantity;
                 $subtotal += $item->product->current_price * $item->quantity;
-                // $item->delete();
+                $item->delete();
             }
 
             $total = $validated['shipping_cost'] + $subtotal;

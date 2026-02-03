@@ -5,17 +5,21 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden p-10 shadow-sm sm:rounded-lg flex border">
-                <div class="w-1/2 pr-4">
+    <div class="py-6 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto">
+            <div class="bg-white p-6 sm:p-10 border rounded-lg sm:rounded-lg shadow-sm flex flex-col sm:flex-row gap-4">
+                <!-- Gambar Produk -->
+                <div class="w-full sm:w-1/2">
                     @if($product->image)
-                        <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" class="rounded-2xl object-cover w-full h-[300px]">
+                        <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}"
+                            class="rounded-2xl object-cover w-full h-[200px] sm:h-[300px] lg:h-[400px]">
                     @else
                         <p class="text-gray-500">{{ __('Tidak ada gambar tersedia') }}</p>
                     @endif
                 </div>
-                <div class="w-1/2 flex flex-col justify-between">
+
+                <!-- Detail Produk -->
+                <div class="w-full sm:w-1/2 flex flex-col justify-between">
                     <div>
                         <h3 class="text-lg font-semibold">{{ $product->name }}</h3>
                         <p class="mt-2 text-gray-600"><strong>{{ __('Kategori:') }}</strong> {{ $product->category->name }}</p>
@@ -27,14 +31,19 @@
                         <p class="mt-2 text-gray-600"><strong>{{ __('Stok:') }}</strong> {{ $product->stock }} pcs</p>
                         <p class="mt-2 text-gray-600"><strong>{{ __('Terjual:') }}</strong> {{ $product->sold }} pcs</p>
                     </div>
-                    <div class="flex items-center justify-end mt-4">
-                        <a href="{{ route('admin.products.edit', $product->id) }}" class="font-bold py-2 px-4 bg-[#FAF3EA] text-gray-800 rounded-full mr-2">
+
+                    <!-- Tombol Aksi -->
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-end mt-4 gap-2">
+                        <a href="{{ route('admin.products.edit', $product->id) }}"
+                            class="font-bold py-2 px-4 bg-[#FAF3EA] text-gray-800 rounded-full w-full sm:w-auto text-center">
                             Ubah
                         </a>
-                        <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">
+                        <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST"
+                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk ini?');" class="w-full sm:w-auto">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="font-bold py-2 px-4 bg-red-500 text-white rounded-full">
+                            <button type="submit"
+                                    class="w-full sm:w-auto font-bold py-2 px-4 bg-red-500 text-white rounded-full">
                                 Hapus
                             </button>
                         </form>
@@ -42,8 +51,10 @@
                 </div>
             </div>
 
-            <div class="flex justify-end mt-6">
-                <a href="{{ route('admin.products.index') }}" class="font-bold py-2 px-4 bg-[#FAF3EA] text-gray-800 rounded-full">
+            <!-- Tombol Kembali -->
+            <div class="flex justify-center sm:justify-end mt-6">
+                <a href="{{ route('admin.products.index') }}"
+                    class="font-bold py-2 px-4 bg-[#FAF3EA] text-gray-800 rounded-full text-center">
                     Kembali ke Daftar Produk
                 </a>
             </div>

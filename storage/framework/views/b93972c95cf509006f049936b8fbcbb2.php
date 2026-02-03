@@ -1,0 +1,2 @@
+<img src="<?php echo e(asset('assets/logo/logo-app.png')); ?>" class="object-contain w-full h-full" alt="logo">
+<?php /**PATH /home/java5379/public_html/test.javajuice.id/resources/views/components/application-logo.blade.php ENDPATH**/ ?>
